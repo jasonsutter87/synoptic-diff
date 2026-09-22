@@ -1,0 +1,7515 @@
+[
+{
+"id": "p000",
+"div": "Prologue & Infancy",
+"title": "Luke's preface",
+"refs": {
+"luke": {
+"ref": "1:1-4",
+"ranges": [
+[
+[
+1,
+1
+],
+[
+1,
+4
+]
+]
+]
+}
+}
+},
+{
+"id": "p001",
+"div": "Prologue & Infancy",
+"title": "The Word made flesh",
+"refs": {
+"john": {
+"ref": "1:1-18",
+"ranges": [
+[
+[
+1,
+1
+],
+[
+1,
+18
+]
+]
+]
+}
+}
+},
+{
+"id": "p002",
+"div": "Prologue & Infancy",
+"title": "Genealogy of Jesus",
+"refs": {
+"matthew": {
+"ref": "1:1-17",
+"ranges": [
+[
+[
+1,
+1
+],
+[
+1,
+17
+]
+]
+]
+},
+"luke": {
+"ref": "3:23-38",
+"ranges": [
+[
+[
+3,
+23
+],
+[
+3,
+38
+]
+]
+]
+}
+}
+},
+{
+"id": "p003",
+"div": "Prologue & Infancy",
+"title": "Annunciation to Zechariah",
+"refs": {
+"luke": {
+"ref": "1:5-25",
+"ranges": [
+[
+[
+1,
+5
+],
+[
+1,
+25
+]
+]
+]
+}
+}
+},
+{
+"id": "p004",
+"div": "Prologue & Infancy",
+"title": "Annunciation to Mary",
+"refs": {
+"luke": {
+"ref": "1:26-38",
+"ranges": [
+[
+[
+1,
+26
+],
+[
+1,
+38
+]
+]
+]
+}
+}
+},
+{
+"id": "p005",
+"div": "Prologue & Infancy",
+"title": "Mary visits Elizabeth; the Magnificat",
+"refs": {
+"luke": {
+"ref": "1:39-56",
+"ranges": [
+[
+[
+1,
+39
+],
+[
+1,
+56
+]
+]
+]
+}
+}
+},
+{
+"id": "p006",
+"div": "Prologue & Infancy",
+"title": "Birth of John the Baptist",
+"refs": {
+"luke": {
+"ref": "1:57-80",
+"ranges": [
+[
+[
+1,
+57
+],
+[
+1,
+80
+]
+]
+]
+}
+}
+},
+{
+"id": "p007",
+"div": "Prologue & Infancy",
+"title": "Birth of Jesus",
+"refs": {
+"matthew": {
+"ref": "1:18-25",
+"ranges": [
+[
+[
+1,
+18
+],
+[
+1,
+25
+]
+]
+]
+},
+"luke": {
+"ref": "2:1-7",
+"ranges": [
+[
+[
+2,
+1
+],
+[
+2,
+7
+]
+]
+]
+}
+}
+},
+{
+"id": "p008",
+"div": "Prologue & Infancy",
+"title": "The shepherds",
+"refs": {
+"luke": {
+"ref": "2:8-20",
+"ranges": [
+[
+[
+2,
+8
+],
+[
+2,
+20
+]
+]
+]
+}
+}
+},
+{
+"id": "p009",
+"div": "Prologue & Infancy",
+"title": "Presentation; Simeon and Anna",
+"refs": {
+"luke": {
+"ref": "2:21-38",
+"ranges": [
+[
+[
+2,
+21
+],
+[
+2,
+38
+]
+]
+]
+}
+}
+},
+{
+"id": "p010",
+"div": "Prologue & Infancy",
+"title": "Visit of the magi",
+"refs": {
+"matthew": {
+"ref": "2:1-12",
+"ranges": [
+[
+[
+2,
+1
+],
+[
+2,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p011",
+"div": "Prologue & Infancy",
+"title": "Flight to Egypt; the innocents",
+"refs": {
+"matthew": {
+"ref": "2:13-18",
+"ranges": [
+[
+[
+2,
+13
+],
+[
+2,
+18
+]
+]
+]
+}
+}
+},
+{
+"id": "p012",
+"div": "Prologue & Infancy",
+"title": "Return to Nazareth",
+"refs": {
+"matthew": {
+"ref": "2:19-23",
+"ranges": [
+[
+[
+2,
+19
+],
+[
+2,
+23
+]
+]
+]
+},
+"luke": {
+"ref": "2:39-40",
+"ranges": [
+[
+[
+2,
+39
+],
+[
+2,
+40
+]
+]
+]
+}
+}
+},
+{
+"id": "p013",
+"div": "Prologue & Infancy",
+"title": "The boy Jesus in the temple",
+"refs": {
+"luke": {
+"ref": "2:41-52",
+"ranges": [
+[
+[
+2,
+41
+],
+[
+2,
+52
+]
+]
+]
+}
+}
+},
+{
+"id": "p014",
+"div": "Preparation",
+"title": "Ministry of John the Baptist",
+"refs": {
+"matthew": {
+"ref": "3:1-12",
+"ranges": [
+[
+[
+3,
+1
+],
+[
+3,
+12
+]
+]
+]
+},
+"mark": {
+"ref": "1:1-8",
+"ranges": [
+[
+[
+1,
+1
+],
+[
+1,
+8
+]
+]
+]
+},
+"luke": {
+"ref": "3:1-18",
+"ranges": [
+[
+[
+3,
+1
+],
+[
+3,
+18
+]
+]
+]
+},
+"john": {
+"ref": "1:19-28",
+"ranges": [
+[
+[
+1,
+19
+],
+[
+1,
+28
+]
+]
+]
+}
+}
+},
+{
+"id": "p015",
+"div": "Preparation",
+"title": "Baptism of Jesus",
+"refs": {
+"matthew": {
+"ref": "3:13-17",
+"ranges": [
+[
+[
+3,
+13
+],
+[
+3,
+17
+]
+]
+]
+},
+"mark": {
+"ref": "1:9-11",
+"ranges": [
+[
+[
+1,
+9
+],
+[
+1,
+11
+]
+]
+]
+},
+"luke": {
+"ref": "3:21-22",
+"ranges": [
+[
+[
+3,
+21
+],
+[
+3,
+22
+]
+]
+]
+}
+}
+},
+{
+"id": "p016",
+"div": "Preparation",
+"title": "Temptation in the wilderness",
+"refs": {
+"matthew": {
+"ref": "4:1-11",
+"ranges": [
+[
+[
+4,
+1
+],
+[
+4,
+11
+]
+]
+]
+},
+"mark": {
+"ref": "1:12-13",
+"ranges": [
+[
+[
+1,
+12
+],
+[
+1,
+13
+]
+]
+]
+},
+"luke": {
+"ref": "4:1-13",
+"ranges": [
+[
+[
+4,
+1
+],
+[
+4,
+13
+]
+]
+]
+}
+}
+},
+{
+"id": "p017",
+"div": "Preparation",
+"title": "John's testimony; first disciples",
+"refs": {
+"john": {
+"ref": "1:29-51",
+"ranges": [
+[
+[
+1,
+29
+],
+[
+1,
+51
+]
+]
+]
+}
+}
+},
+{
+"id": "p018",
+"div": "Preparation",
+"title": "Wedding at Cana",
+"refs": {
+"john": {
+"ref": "2:1-12",
+"ranges": [
+[
+[
+2,
+1
+],
+[
+2,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p019",
+"div": "Preparation",
+"title": "First cleansing of the temple",
+"refs": {
+"john": {
+"ref": "2:13-25",
+"ranges": [
+[
+[
+2,
+13
+],
+[
+2,
+25
+]
+]
+]
+}
+}
+},
+{
+"id": "p020",
+"div": "Preparation",
+"title": "Nicodemus",
+"refs": {
+"john": {
+"ref": "3:1-21",
+"ranges": [
+[
+[
+3,
+1
+],
+[
+3,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p021",
+"div": "Preparation",
+"title": "John the Baptist's final witness",
+"refs": {
+"john": {
+"ref": "3:22-36",
+"ranges": [
+[
+[
+3,
+22
+],
+[
+3,
+36
+]
+]
+]
+}
+}
+},
+{
+"id": "p022",
+"div": "Preparation",
+"title": "The woman at the well",
+"refs": {
+"john": {
+"ref": "4:1-42",
+"ranges": [
+[
+[
+4,
+1
+],
+[
+4,
+42
+]
+]
+]
+}
+}
+},
+{
+"id": "p023",
+"div": "Preparation",
+"title": "Healing the official's son",
+"refs": {
+"john": {
+"ref": "4:43-54",
+"ranges": [
+[
+[
+4,
+43
+],
+[
+4,
+54
+]
+]
+]
+}
+}
+},
+{
+"id": "p024",
+"div": "Preparation",
+"title": "Imprisonment of John",
+"refs": {
+"matthew": {
+"ref": "14:3-5",
+"ranges": [
+[
+[
+14,
+3
+],
+[
+14,
+5
+]
+]
+]
+},
+"mark": {
+"ref": "6:17-20",
+"ranges": [
+[
+[
+6,
+17
+],
+[
+6,
+20
+]
+]
+]
+},
+"luke": {
+"ref": "3:19-20",
+"ranges": [
+[
+[
+3,
+19
+],
+[
+3,
+20
+]
+]
+]
+}
+}
+},
+{
+"id": "p025",
+"div": "Galilean Ministry",
+"title": "Return to Galilee; preaching begins",
+"refs": {
+"matthew": {
+"ref": "4:12-17",
+"ranges": [
+[
+[
+4,
+12
+],
+[
+4,
+17
+]
+]
+]
+},
+"mark": {
+"ref": "1:14-15",
+"ranges": [
+[
+[
+1,
+14
+],
+[
+1,
+15
+]
+]
+]
+},
+"luke": {
+"ref": "4:14-15",
+"ranges": [
+[
+[
+4,
+14
+],
+[
+4,
+15
+]
+]
+]
+}
+}
+},
+{
+"id": "p026",
+"div": "Galilean Ministry",
+"title": "Rejection at Nazareth",
+"refs": {
+"luke": {
+"ref": "4:16-30",
+"ranges": [
+[
+[
+4,
+16
+],
+[
+4,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p027",
+"div": "Galilean Ministry",
+"title": "Call of the four fishermen",
+"refs": {
+"matthew": {
+"ref": "4:18-22",
+"ranges": [
+[
+[
+4,
+18
+],
+[
+4,
+22
+]
+]
+]
+},
+"mark": {
+"ref": "1:16-20",
+"ranges": [
+[
+[
+1,
+16
+],
+[
+1,
+20
+]
+]
+]
+}
+}
+},
+{
+"id": "p028",
+"div": "Galilean Ministry",
+"title": "The miraculous catch; call of Peter",
+"refs": {
+"luke": {
+"ref": "5:1-11",
+"ranges": [
+[
+[
+5,
+1
+],
+[
+5,
+11
+]
+]
+]
+}
+}
+},
+{
+"id": "p029",
+"div": "Galilean Ministry",
+"title": "Demoniac in the synagogue",
+"refs": {
+"mark": {
+"ref": "1:21-28",
+"ranges": [
+[
+[
+1,
+21
+],
+[
+1,
+28
+]
+]
+]
+},
+"luke": {
+"ref": "4:31-37",
+"ranges": [
+[
+[
+4,
+31
+],
+[
+4,
+37
+]
+]
+]
+}
+}
+},
+{
+"id": "p030",
+"div": "Galilean Ministry",
+"title": "Peter's mother-in-law; healings at evening",
+"refs": {
+"matthew": {
+"ref": "8:14-17",
+"ranges": [
+[
+[
+8,
+14
+],
+[
+8,
+17
+]
+]
+]
+},
+"mark": {
+"ref": "1:29-34",
+"ranges": [
+[
+[
+1,
+29
+],
+[
+1,
+34
+]
+]
+]
+},
+"luke": {
+"ref": "4:38-41",
+"ranges": [
+[
+[
+4,
+38
+],
+[
+4,
+41
+]
+]
+]
+}
+}
+},
+{
+"id": "p031",
+"div": "Galilean Ministry",
+"title": "Preaching tour of Galilee",
+"refs": {
+"matthew": {
+"ref": "4:23-25",
+"ranges": [
+[
+[
+4,
+23
+],
+[
+4,
+25
+]
+]
+]
+},
+"mark": {
+"ref": "1:35-39",
+"ranges": [
+[
+[
+1,
+35
+],
+[
+1,
+39
+]
+]
+]
+},
+"luke": {
+"ref": "4:42-44",
+"ranges": [
+[
+[
+4,
+42
+],
+[
+4,
+44
+]
+]
+]
+}
+}
+},
+{
+"id": "p032",
+"div": "Galilean Ministry",
+"title": "Cleansing a leper",
+"refs": {
+"matthew": {
+"ref": "8:1-4",
+"ranges": [
+[
+[
+8,
+1
+],
+[
+8,
+4
+]
+]
+]
+},
+"mark": {
+"ref": "1:40-45",
+"ranges": [
+[
+[
+1,
+40
+],
+[
+1,
+45
+]
+]
+]
+},
+"luke": {
+"ref": "5:12-16",
+"ranges": [
+[
+[
+5,
+12
+],
+[
+5,
+16
+]
+]
+]
+}
+}
+},
+{
+"id": "p033",
+"div": "Galilean Ministry",
+"title": "Healing the paralytic",
+"refs": {
+"matthew": {
+"ref": "9:1-8",
+"ranges": [
+[
+[
+9,
+1
+],
+[
+9,
+8
+]
+]
+]
+},
+"mark": {
+"ref": "2:1-12",
+"ranges": [
+[
+[
+2,
+1
+],
+[
+2,
+12
+]
+]
+]
+},
+"luke": {
+"ref": "5:17-26",
+"ranges": [
+[
+[
+5,
+17
+],
+[
+5,
+26
+]
+]
+]
+}
+}
+},
+{
+"id": "p034",
+"div": "Galilean Ministry",
+"title": "Call of Levi; eating with sinners",
+"refs": {
+"matthew": {
+"ref": "9:9-13",
+"ranges": [
+[
+[
+9,
+9
+],
+[
+9,
+13
+]
+]
+]
+},
+"mark": {
+"ref": "2:13-17",
+"ranges": [
+[
+[
+2,
+13
+],
+[
+2,
+17
+]
+]
+]
+},
+"luke": {
+"ref": "5:27-32",
+"ranges": [
+[
+[
+5,
+27
+],
+[
+5,
+32
+]
+]
+]
+}
+}
+},
+{
+"id": "p035",
+"div": "Galilean Ministry",
+"title": "Question about fasting",
+"refs": {
+"matthew": {
+"ref": "9:14-17",
+"ranges": [
+[
+[
+9,
+14
+],
+[
+9,
+17
+]
+]
+]
+},
+"mark": {
+"ref": "2:18-22",
+"ranges": [
+[
+[
+2,
+18
+],
+[
+2,
+22
+]
+]
+]
+},
+"luke": {
+"ref": "5:33-39",
+"ranges": [
+[
+[
+5,
+33
+],
+[
+5,
+39
+]
+]
+]
+}
+}
+},
+{
+"id": "p036",
+"div": "Galilean Ministry",
+"title": "Plucking grain on the Sabbath",
+"refs": {
+"matthew": {
+"ref": "12:1-8",
+"ranges": [
+[
+[
+12,
+1
+],
+[
+12,
+8
+]
+]
+]
+},
+"mark": {
+"ref": "2:23-28",
+"ranges": [
+[
+[
+2,
+23
+],
+[
+2,
+28
+]
+]
+]
+},
+"luke": {
+"ref": "6:1-5",
+"ranges": [
+[
+[
+6,
+1
+],
+[
+6,
+5
+]
+]
+]
+}
+}
+},
+{
+"id": "p037",
+"div": "Galilean Ministry",
+"title": "The man with the withered hand",
+"refs": {
+"matthew": {
+"ref": "12:9-14",
+"ranges": [
+[
+[
+12,
+9
+],
+[
+12,
+14
+]
+]
+]
+},
+"mark": {
+"ref": "3:1-6",
+"ranges": [
+[
+[
+3,
+1
+],
+[
+3,
+6
+]
+]
+]
+},
+"luke": {
+"ref": "6:6-11",
+"ranges": [
+[
+[
+6,
+6
+],
+[
+6,
+11
+]
+]
+]
+}
+}
+},
+{
+"id": "p038",
+"div": "Galilean Ministry",
+"title": "Multitudes healed by the sea",
+"refs": {
+"matthew": {
+"ref": "12:15-21",
+"ranges": [
+[
+[
+12,
+15
+],
+[
+12,
+21
+]
+]
+]
+},
+"mark": {
+"ref": "3:7-12",
+"ranges": [
+[
+[
+3,
+7
+],
+[
+3,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p039",
+"div": "Galilean Ministry",
+"title": "Choosing the Twelve",
+"refs": {
+"mark": {
+"ref": "3:13-19",
+"ranges": [
+[
+[
+3,
+13
+],
+[
+3,
+19
+]
+]
+]
+},
+"luke": {
+"ref": "6:12-16",
+"ranges": [
+[
+[
+6,
+12
+],
+[
+6,
+16
+]
+]
+]
+}
+}
+},
+{
+"id": "p040",
+"div": "Sermon",
+"title": "The Beatitudes",
+"refs": {
+"matthew": {
+"ref": "5:1-12",
+"ranges": [
+[
+[
+5,
+1
+],
+[
+5,
+12
+]
+]
+]
+},
+"luke": {
+"ref": "6:17-26",
+"ranges": [
+[
+[
+6,
+17
+],
+[
+6,
+26
+]
+]
+]
+}
+}
+},
+{
+"id": "p041",
+"div": "Sermon",
+"title": "Salt and light",
+"refs": {
+"matthew": {
+"ref": "5:13-16",
+"ranges": [
+[
+[
+5,
+13
+],
+[
+5,
+16
+]
+]
+]
+}
+}
+},
+{
+"id": "p042",
+"div": "Sermon",
+"title": "The law and the prophets",
+"refs": {
+"matthew": {
+"ref": "5:17-20",
+"ranges": [
+[
+[
+5,
+17
+],
+[
+5,
+20
+]
+]
+]
+}
+}
+},
+{
+"id": "p043",
+"div": "Sermon",
+"title": "Anger, adultery, divorce, oaths",
+"refs": {
+"matthew": {
+"ref": "5:21-37",
+"ranges": [
+[
+[
+5,
+21
+],
+[
+5,
+37
+]
+]
+]
+}
+}
+},
+{
+"id": "p044",
+"div": "Sermon",
+"title": "Love your enemies",
+"refs": {
+"matthew": {
+"ref": "5:38-48",
+"ranges": [
+[
+[
+5,
+38
+],
+[
+5,
+48
+]
+]
+]
+},
+"luke": {
+"ref": "6:27-36",
+"ranges": [
+[
+[
+6,
+27
+],
+[
+6,
+36
+]
+]
+]
+}
+}
+},
+{
+"id": "p045",
+"div": "Sermon",
+"title": "Giving, prayer, fasting; the Lord's Prayer",
+"refs": {
+"matthew": {
+"ref": "6:1-18",
+"ranges": [
+[
+[
+6,
+1
+],
+[
+6,
+18
+]
+]
+]
+}
+}
+},
+{
+"id": "p046",
+"div": "Sermon",
+"title": "Treasure in heaven; do not be anxious",
+"refs": {
+"matthew": {
+"ref": "6:19-34",
+"ranges": [
+[
+[
+6,
+19
+],
+[
+6,
+34
+]
+]
+]
+}
+}
+},
+{
+"id": "p047",
+"div": "Sermon",
+"title": "Judging others",
+"refs": {
+"matthew": {
+"ref": "7:1-6",
+"ranges": [
+[
+[
+7,
+1
+],
+[
+7,
+6
+]
+]
+]
+},
+"luke": {
+"ref": "6:37-42",
+"ranges": [
+[
+[
+6,
+37
+],
+[
+6,
+42
+]
+]
+]
+}
+}
+},
+{
+"id": "p048",
+"div": "Sermon",
+"title": "Ask, seek, knock; the golden rule",
+"refs": {
+"matthew": {
+"ref": "7:7-12",
+"ranges": [
+[
+[
+7,
+7
+],
+[
+7,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p049",
+"div": "Sermon",
+"title": "The narrow gate; a tree and its fruit",
+"refs": {
+"matthew": {
+"ref": "7:13-20",
+"ranges": [
+[
+[
+7,
+13
+],
+[
+7,
+20
+]
+]
+]
+},
+"luke": {
+"ref": "6:43-45",
+"ranges": [
+[
+[
+6,
+43
+],
+[
+6,
+45
+]
+]
+]
+}
+}
+},
+{
+"id": "p050",
+"div": "Sermon",
+"title": "The two builders",
+"refs": {
+"matthew": {
+"ref": "7:21-29",
+"ranges": [
+[
+[
+7,
+21
+],
+[
+7,
+29
+]
+]
+]
+},
+"luke": {
+"ref": "6:46-49",
+"ranges": [
+[
+[
+6,
+46
+],
+[
+6,
+49
+]
+]
+]
+}
+}
+},
+{
+"id": "p051",
+"div": "Galilean Ministry",
+"title": "The centurion's servant",
+"refs": {
+"matthew": {
+"ref": "8:5-13",
+"ranges": [
+[
+[
+8,
+5
+],
+[
+8,
+13
+]
+]
+]
+},
+"luke": {
+"ref": "7:1-10",
+"ranges": [
+[
+[
+7,
+1
+],
+[
+7,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p052",
+"div": "Galilean Ministry",
+"title": "The widow's son at Nain",
+"refs": {
+"luke": {
+"ref": "7:11-17",
+"ranges": [
+[
+[
+7,
+11
+],
+[
+7,
+17
+]
+]
+]
+}
+}
+},
+{
+"id": "p053",
+"div": "Galilean Ministry",
+"title": "John's question from prison",
+"refs": {
+"matthew": {
+"ref": "11:2-19",
+"ranges": [
+[
+[
+11,
+2
+],
+[
+11,
+19
+]
+]
+]
+},
+"luke": {
+"ref": "7:18-35",
+"ranges": [
+[
+[
+7,
+18
+],
+[
+7,
+35
+]
+]
+]
+}
+}
+},
+{
+"id": "p054",
+"div": "Galilean Ministry",
+"title": "Woes on the unrepentant cities",
+"refs": {
+"matthew": {
+"ref": "11:20-24",
+"ranges": [
+[
+[
+11,
+20
+],
+[
+11,
+24
+]
+]
+]
+}
+}
+},
+{
+"id": "p055",
+"div": "Galilean Ministry",
+"title": "Come to me, all who labor",
+"refs": {
+"matthew": {
+"ref": "11:25-30",
+"ranges": [
+[
+[
+11,
+25
+],
+[
+11,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p056",
+"div": "Galilean Ministry",
+"title": "Anointing by a sinful woman",
+"refs": {
+"luke": {
+"ref": "7:36-50",
+"ranges": [
+[
+[
+7,
+36
+],
+[
+7,
+50
+]
+]
+]
+}
+}
+},
+{
+"id": "p057",
+"div": "Galilean Ministry",
+"title": "The women who provided for him",
+"refs": {
+"luke": {
+"ref": "8:1-3",
+"ranges": [
+[
+[
+8,
+1
+],
+[
+8,
+3
+]
+]
+]
+}
+}
+},
+{
+"id": "p058",
+"div": "Galilean Ministry",
+"title": "The Beelzebul controversy",
+"refs": {
+"matthew": {
+"ref": "12:22-37",
+"ranges": [
+[
+[
+12,
+22
+],
+[
+12,
+37
+]
+]
+]
+},
+"mark": {
+"ref": "3:20-30",
+"ranges": [
+[
+[
+3,
+20
+],
+[
+3,
+30
+]
+]
+]
+},
+"luke": {
+"ref": "11:14-23",
+"ranges": [
+[
+[
+11,
+14
+],
+[
+11,
+23
+]
+]
+]
+}
+}
+},
+{
+"id": "p059",
+"div": "Galilean Ministry",
+"title": "The sign of Jonah",
+"refs": {
+"matthew": {
+"ref": "12:38-45",
+"ranges": [
+[
+[
+12,
+38
+],
+[
+12,
+45
+]
+]
+]
+},
+"luke": {
+"ref": "11:24-32",
+"ranges": [
+[
+[
+11,
+24
+],
+[
+11,
+32
+]
+]
+]
+}
+}
+},
+{
+"id": "p060",
+"div": "Galilean Ministry",
+"title": "Jesus' true kindred",
+"refs": {
+"matthew": {
+"ref": "12:46-50",
+"ranges": [
+[
+[
+12,
+46
+],
+[
+12,
+50
+]
+]
+]
+},
+"mark": {
+"ref": "3:31-35",
+"ranges": [
+[
+[
+3,
+31
+],
+[
+3,
+35
+]
+]
+]
+},
+"luke": {
+"ref": "8:19-21",
+"ranges": [
+[
+[
+8,
+19
+],
+[
+8,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p061",
+"div": "Parables",
+"title": "The sower",
+"refs": {
+"matthew": {
+"ref": "13:1-9",
+"ranges": [
+[
+[
+13,
+1
+],
+[
+13,
+9
+]
+]
+]
+},
+"mark": {
+"ref": "4:1-9",
+"ranges": [
+[
+[
+4,
+1
+],
+[
+4,
+9
+]
+]
+]
+},
+"luke": {
+"ref": "8:4-8",
+"ranges": [
+[
+[
+8,
+4
+],
+[
+8,
+8
+]
+]
+]
+}
+}
+},
+{
+"id": "p062",
+"div": "Parables",
+"title": "Why he speaks in parables",
+"refs": {
+"matthew": {
+"ref": "13:10-17",
+"ranges": [
+[
+[
+13,
+10
+],
+[
+13,
+17
+]
+]
+]
+},
+"mark": {
+"ref": "4:10-12",
+"ranges": [
+[
+[
+4,
+10
+],
+[
+4,
+12
+]
+]
+]
+},
+"luke": {
+"ref": "8:9-10",
+"ranges": [
+[
+[
+8,
+9
+],
+[
+8,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p063",
+"div": "Parables",
+"title": "The sower explained",
+"refs": {
+"matthew": {
+"ref": "13:18-23",
+"ranges": [
+[
+[
+13,
+18
+],
+[
+13,
+23
+]
+]
+]
+},
+"mark": {
+"ref": "4:13-20",
+"ranges": [
+[
+[
+4,
+13
+],
+[
+4,
+20
+]
+]
+]
+},
+"luke": {
+"ref": "8:11-15",
+"ranges": [
+[
+[
+8,
+11
+],
+[
+8,
+15
+]
+]
+]
+}
+}
+},
+{
+"id": "p064",
+"div": "Parables",
+"title": "A lamp under a basket",
+"refs": {
+"mark": {
+"ref": "4:21-25",
+"ranges": [
+[
+[
+4,
+21
+],
+[
+4,
+25
+]
+]
+]
+},
+"luke": {
+"ref": "8:16-18",
+"ranges": [
+[
+[
+8,
+16
+],
+[
+8,
+18
+]
+]
+]
+}
+}
+},
+{
+"id": "p065",
+"div": "Parables",
+"title": "The seed growing secretly",
+"refs": {
+"mark": {
+"ref": "4:26-29",
+"ranges": [
+[
+[
+4,
+26
+],
+[
+4,
+29
+]
+]
+]
+}
+}
+},
+{
+"id": "p066",
+"div": "Parables",
+"title": "The wheat and the tares",
+"refs": {
+"matthew": {
+"ref": "13:24-30",
+"ranges": [
+[
+[
+13,
+24
+],
+[
+13,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p067",
+"div": "Parables",
+"title": "Mustard seed and leaven",
+"refs": {
+"matthew": {
+"ref": "13:31-35",
+"ranges": [
+[
+[
+13,
+31
+],
+[
+13,
+35
+]
+]
+]
+},
+"mark": {
+"ref": "4:30-34",
+"ranges": [
+[
+[
+4,
+30
+],
+[
+4,
+34
+]
+]
+]
+},
+"luke": {
+"ref": "13:18-21",
+"ranges": [
+[
+[
+13,
+18
+],
+[
+13,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p068",
+"div": "Parables",
+"title": "The tares explained",
+"refs": {
+"matthew": {
+"ref": "13:36-43",
+"ranges": [
+[
+[
+13,
+36
+],
+[
+13,
+43
+]
+]
+]
+}
+}
+},
+{
+"id": "p069",
+"div": "Parables",
+"title": "Treasure, pearl, and net",
+"refs": {
+"matthew": {
+"ref": "13:44-52",
+"ranges": [
+[
+[
+13,
+44
+],
+[
+13,
+52
+]
+]
+]
+}
+}
+},
+{
+"id": "p070",
+"div": "Galilean Ministry",
+"title": "Stilling the storm",
+"refs": {
+"matthew": {
+"ref": "8:23-27",
+"ranges": [
+[
+[
+8,
+23
+],
+[
+8,
+27
+]
+]
+]
+},
+"mark": {
+"ref": "4:35-41",
+"ranges": [
+[
+[
+4,
+35
+],
+[
+4,
+41
+]
+]
+]
+},
+"luke": {
+"ref": "8:22-25",
+"ranges": [
+[
+[
+8,
+22
+],
+[
+8,
+25
+]
+]
+]
+}
+}
+},
+{
+"id": "p071",
+"div": "Galilean Ministry",
+"title": "The Gerasene demoniac",
+"refs": {
+"matthew": {
+"ref": "8:28-34",
+"ranges": [
+[
+[
+8,
+28
+],
+[
+8,
+34
+]
+]
+]
+},
+"mark": {
+"ref": "5:1-20",
+"ranges": [
+[
+[
+5,
+1
+],
+[
+5,
+20
+]
+]
+]
+},
+"luke": {
+"ref": "8:26-39",
+"ranges": [
+[
+[
+8,
+26
+],
+[
+8,
+39
+]
+]
+]
+}
+}
+},
+{
+"id": "p072",
+"div": "Galilean Ministry",
+"title": "Jairus' daughter; the woman healed",
+"refs": {
+"matthew": {
+"ref": "9:18-26",
+"ranges": [
+[
+[
+9,
+18
+],
+[
+9,
+26
+]
+]
+]
+},
+"mark": {
+"ref": "5:21-43",
+"ranges": [
+[
+[
+5,
+21
+],
+[
+5,
+43
+]
+]
+]
+},
+"luke": {
+"ref": "8:40-56",
+"ranges": [
+[
+[
+8,
+40
+],
+[
+8,
+56
+]
+]
+]
+}
+}
+},
+{
+"id": "p073",
+"div": "Galilean Ministry",
+"title": "Two blind men; a mute demoniac",
+"refs": {
+"matthew": {
+"ref": "9:27-34",
+"ranges": [
+[
+[
+9,
+27
+],
+[
+9,
+34
+]
+]
+]
+}
+}
+},
+{
+"id": "p074",
+"div": "Galilean Ministry",
+"title": "Rejection at Nazareth (second)",
+"refs": {
+"matthew": {
+"ref": "13:53-58",
+"ranges": [
+[
+[
+13,
+53
+],
+[
+13,
+58
+]
+]
+]
+},
+"mark": {
+"ref": "6:1-6",
+"ranges": [
+[
+[
+6,
+1
+],
+[
+6,
+6
+]
+]
+]
+}
+}
+},
+{
+"id": "p075",
+"div": "Galilean Ministry",
+"title": "Mission of the Twelve",
+"refs": {
+"matthew": {
+"ref": "9:35-10:15",
+"ranges": [
+[
+[
+9,
+35
+],
+[
+10,
+15
+]
+]
+]
+},
+"mark": {
+"ref": "6:7-13",
+"ranges": [
+[
+[
+6,
+7
+],
+[
+6,
+13
+]
+]
+]
+},
+"luke": {
+"ref": "9:1-6",
+"ranges": [
+[
+[
+9,
+1
+],
+[
+9,
+6
+]
+]
+]
+}
+}
+},
+{
+"id": "p076",
+"div": "Galilean Ministry",
+"title": "Persecution foretold",
+"refs": {
+"matthew": {
+"ref": "10:16-11:1",
+"ranges": [
+[
+[
+10,
+16
+],
+[
+11,
+1
+]
+]
+]
+}
+}
+},
+{
+"id": "p077",
+"div": "Galilean Ministry",
+"title": "Death of John the Baptist",
+"refs": {
+"matthew": {
+"ref": "14:1-2,6-12",
+"ranges": [
+[
+[
+14,
+1
+],
+[
+14,
+2
+]
+],
+[
+[
+14,
+6
+],
+[
+14,
+12
+]
+]
+]
+},
+"mark": {
+"ref": "6:14-16,21-29",
+"ranges": [
+[
+[
+6,
+14
+],
+[
+6,
+16
+]
+],
+[
+[
+6,
+21
+],
+[
+6,
+29
+]
+]
+]
+},
+"luke": {
+"ref": "9:7-9",
+"ranges": [
+[
+[
+9,
+7
+],
+[
+9,
+9
+]
+]
+]
+}
+}
+},
+{
+"id": "p078",
+"div": "The Feedings",
+"title": "Feeding the five thousand",
+"refs": {
+"matthew": {
+"ref": "14:13-21",
+"ranges": [
+[
+[
+14,
+13
+],
+[
+14,
+21
+]
+]
+]
+},
+"mark": {
+"ref": "6:30-44",
+"ranges": [
+[
+[
+6,
+30
+],
+[
+6,
+44
+]
+]
+]
+},
+"luke": {
+"ref": "9:10-17",
+"ranges": [
+[
+[
+9,
+10
+],
+[
+9,
+17
+]
+]
+]
+},
+"john": {
+"ref": "6:1-15",
+"ranges": [
+[
+[
+6,
+1
+],
+[
+6,
+15
+]
+]
+]
+}
+}
+},
+{
+"id": "p079",
+"div": "The Feedings",
+"title": "Walking on the water",
+"refs": {
+"matthew": {
+"ref": "14:22-33",
+"ranges": [
+[
+[
+14,
+22
+],
+[
+14,
+33
+]
+]
+]
+},
+"mark": {
+"ref": "6:45-52",
+"ranges": [
+[
+[
+6,
+45
+],
+[
+6,
+52
+]
+]
+]
+},
+"john": {
+"ref": "6:16-21",
+"ranges": [
+[
+[
+6,
+16
+],
+[
+6,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p080",
+"div": "The Feedings",
+"title": "Healings at Gennesaret",
+"refs": {
+"matthew": {
+"ref": "14:34-36",
+"ranges": [
+[
+[
+14,
+34
+],
+[
+14,
+36
+]
+]
+]
+},
+"mark": {
+"ref": "6:53-56",
+"ranges": [
+[
+[
+6,
+53
+],
+[
+6,
+56
+]
+]
+]
+}
+}
+},
+{
+"id": "p081",
+"div": "The Feedings",
+"title": "The bread of life",
+"refs": {
+"john": {
+"ref": "6:22-71",
+"ranges": [
+[
+[
+6,
+22
+],
+[
+6,
+71
+]
+]
+]
+}
+}
+},
+{
+"id": "p082",
+"div": "The Feedings",
+"title": "Tradition of the elders; what defiles",
+"refs": {
+"matthew": {
+"ref": "15:1-20",
+"ranges": [
+[
+[
+15,
+1
+],
+[
+15,
+20
+]
+]
+]
+},
+"mark": {
+"ref": "7:1-23",
+"ranges": [
+[
+[
+7,
+1
+],
+[
+7,
+23
+]
+]
+]
+}
+}
+},
+{
+"id": "p083",
+"div": "The Feedings",
+"title": "The Syrophoenician woman",
+"refs": {
+"matthew": {
+"ref": "15:21-28",
+"ranges": [
+[
+[
+15,
+21
+],
+[
+15,
+28
+]
+]
+]
+},
+"mark": {
+"ref": "7:24-30",
+"ranges": [
+[
+[
+7,
+24
+],
+[
+7,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p084",
+"div": "The Feedings",
+"title": "Healing in the Decapolis",
+"refs": {
+"matthew": {
+"ref": "15:29-31",
+"ranges": [
+[
+[
+15,
+29
+],
+[
+15,
+31
+]
+]
+]
+},
+"mark": {
+"ref": "7:31-37",
+"ranges": [
+[
+[
+7,
+31
+],
+[
+7,
+37
+]
+]
+]
+}
+}
+},
+{
+"id": "p085",
+"div": "The Feedings",
+"title": "Feeding the four thousand",
+"refs": {
+"matthew": {
+"ref": "15:32-39",
+"ranges": [
+[
+[
+15,
+32
+],
+[
+15,
+39
+]
+]
+]
+},
+"mark": {
+"ref": "8:1-10",
+"ranges": [
+[
+[
+8,
+1
+],
+[
+8,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p086",
+"div": "The Feedings",
+"title": "The Pharisees demand a sign",
+"refs": {
+"matthew": {
+"ref": "16:1-4",
+"ranges": [
+[
+[
+16,
+1
+],
+[
+16,
+4
+]
+]
+]
+},
+"mark": {
+"ref": "8:11-13",
+"ranges": [
+[
+[
+8,
+11
+],
+[
+8,
+13
+]
+]
+]
+}
+}
+},
+{
+"id": "p087",
+"div": "The Feedings",
+"title": "The leaven; “Don't you understand yet?”",
+"refs": {
+"matthew": {
+"ref": "16:5-12",
+"ranges": [
+[
+[
+16,
+5
+],
+[
+16,
+12
+]
+]
+]
+},
+"mark": {
+"ref": "8:14-21",
+"ranges": [
+[
+[
+8,
+14
+],
+[
+8,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p088",
+"div": "The Feedings",
+"title": "The blind man at Bethsaida",
+"refs": {
+"mark": {
+"ref": "8:22-26",
+"ranges": [
+[
+[
+8,
+22
+],
+[
+8,
+26
+]
+]
+]
+}
+}
+},
+{
+"id": "p089",
+"div": "Toward Jerusalem",
+"title": "Peter's confession",
+"refs": {
+"matthew": {
+"ref": "16:13-20",
+"ranges": [
+[
+[
+16,
+13
+],
+[
+16,
+20
+]
+]
+]
+},
+"mark": {
+"ref": "8:27-30",
+"ranges": [
+[
+[
+8,
+27
+],
+[
+8,
+30
+]
+]
+]
+},
+"luke": {
+"ref": "9:18-21",
+"ranges": [
+[
+[
+9,
+18
+],
+[
+9,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p090",
+"div": "Toward Jerusalem",
+"title": "First passion prediction; take up the cross",
+"refs": {
+"matthew": {
+"ref": "16:21-28",
+"ranges": [
+[
+[
+16,
+21
+],
+[
+16,
+28
+]
+]
+]
+},
+"mark": {
+"ref": "8:31-9:1",
+"ranges": [
+[
+[
+8,
+31
+],
+[
+9,
+1
+]
+]
+]
+},
+"luke": {
+"ref": "9:22-27",
+"ranges": [
+[
+[
+9,
+22
+],
+[
+9,
+27
+]
+]
+]
+}
+}
+},
+{
+"id": "p091",
+"div": "Toward Jerusalem",
+"title": "The transfiguration",
+"refs": {
+"matthew": {
+"ref": "17:1-13",
+"ranges": [
+[
+[
+17,
+1
+],
+[
+17,
+13
+]
+]
+]
+},
+"mark": {
+"ref": "9:2-13",
+"ranges": [
+[
+[
+9,
+2
+],
+[
+9,
+13
+]
+]
+]
+},
+"luke": {
+"ref": "9:28-36",
+"ranges": [
+[
+[
+9,
+28
+],
+[
+9,
+36
+]
+]
+]
+}
+}
+},
+{
+"id": "p092",
+"div": "Toward Jerusalem",
+"title": "The epileptic boy",
+"refs": {
+"matthew": {
+"ref": "17:14-21",
+"ranges": [
+[
+[
+17,
+14
+],
+[
+17,
+21
+]
+]
+]
+},
+"mark": {
+"ref": "9:14-29",
+"ranges": [
+[
+[
+9,
+14
+],
+[
+9,
+29
+]
+]
+]
+},
+"luke": {
+"ref": "9:37-43",
+"ranges": [
+[
+[
+9,
+37
+],
+[
+9,
+43
+]
+]
+]
+}
+}
+},
+{
+"id": "p093",
+"div": "Toward Jerusalem",
+"title": "Second passion prediction",
+"refs": {
+"matthew": {
+"ref": "17:22-23",
+"ranges": [
+[
+[
+17,
+22
+],
+[
+17,
+23
+]
+]
+]
+},
+"mark": {
+"ref": "9:30-32",
+"ranges": [
+[
+[
+9,
+30
+],
+[
+9,
+32
+]
+]
+]
+},
+"luke": {
+"ref": "9:44-45",
+"ranges": [
+[
+[
+9,
+44
+],
+[
+9,
+45
+]
+]
+]
+}
+}
+},
+{
+"id": "p094",
+"div": "Toward Jerusalem",
+"title": "The temple tax",
+"refs": {
+"matthew": {
+"ref": "17:24-27",
+"ranges": [
+[
+[
+17,
+24
+],
+[
+17,
+27
+]
+]
+]
+}
+}
+},
+{
+"id": "p095",
+"div": "Toward Jerusalem",
+"title": "Who is the greatest",
+"refs": {
+"matthew": {
+"ref": "18:1-5",
+"ranges": [
+[
+[
+18,
+1
+],
+[
+18,
+5
+]
+]
+]
+},
+"mark": {
+"ref": "9:33-37",
+"ranges": [
+[
+[
+9,
+33
+],
+[
+9,
+37
+]
+]
+]
+},
+"luke": {
+"ref": "9:46-48",
+"ranges": [
+[
+[
+9,
+46
+],
+[
+9,
+48
+]
+]
+]
+}
+}
+},
+{
+"id": "p096",
+"div": "Toward Jerusalem",
+"title": "Whoever is not against us",
+"refs": {
+"mark": {
+"ref": "9:38-41",
+"ranges": [
+[
+[
+9,
+38
+],
+[
+9,
+41
+]
+]
+]
+},
+"luke": {
+"ref": "9:49-50",
+"ranges": [
+[
+[
+9,
+49
+],
+[
+9,
+50
+]
+]
+]
+}
+}
+},
+{
+"id": "p097",
+"div": "Toward Jerusalem",
+"title": "Causes of stumbling",
+"refs": {
+"matthew": {
+"ref": "18:6-11",
+"ranges": [
+[
+[
+18,
+6
+],
+[
+18,
+11
+]
+]
+]
+},
+"mark": {
+"ref": "9:42-50",
+"ranges": [
+[
+[
+9,
+42
+],
+[
+9,
+50
+]
+]
+]
+}
+}
+},
+{
+"id": "p098",
+"div": "Toward Jerusalem",
+"title": "The lost sheep",
+"refs": {
+"matthew": {
+"ref": "18:12-14",
+"ranges": [
+[
+[
+18,
+12
+],
+[
+18,
+14
+]
+]
+]
+}
+}
+},
+{
+"id": "p099",
+"div": "Toward Jerusalem",
+"title": "Reproving a brother; forgiving seventy-seven times",
+"refs": {
+"matthew": {
+"ref": "18:15-22",
+"ranges": [
+[
+[
+18,
+15
+],
+[
+18,
+22
+]
+]
+]
+}
+}
+},
+{
+"id": "p100",
+"div": "Toward Jerusalem",
+"title": "The unforgiving servant",
+"refs": {
+"matthew": {
+"ref": "18:23-35",
+"ranges": [
+[
+[
+18,
+23
+],
+[
+18,
+35
+]
+]
+]
+}
+}
+},
+{
+"id": "p101",
+"div": "Judean Ministry",
+"title": "Healing at the pool of Bethesda",
+"refs": {
+"john": {
+"ref": "5:1-18",
+"ranges": [
+[
+[
+5,
+1
+],
+[
+5,
+18
+]
+]
+]
+}
+}
+},
+{
+"id": "p102",
+"div": "Judean Ministry",
+"title": "The authority of the Son",
+"refs": {
+"john": {
+"ref": "5:19-47",
+"ranges": [
+[
+[
+5,
+19
+],
+[
+5,
+47
+]
+]
+]
+}
+}
+},
+{
+"id": "p103",
+"div": "Judean Ministry",
+"title": "At the Feast of Tabernacles",
+"refs": {
+"john": {
+"ref": "7:1-52",
+"ranges": [
+[
+[
+7,
+1
+],
+[
+7,
+52
+]
+]
+]
+}
+}
+},
+{
+"id": "p104",
+"div": "Judean Ministry",
+"title": "The woman caught in adultery",
+"refs": {
+"john": {
+"ref": "7:53-8:11",
+"ranges": [
+[
+[
+7,
+53
+],
+[
+8,
+11
+]
+]
+]
+}
+}
+},
+{
+"id": "p105",
+"div": "Judean Ministry",
+"title": "Light of the world; before Abraham was",
+"refs": {
+"john": {
+"ref": "8:12-59",
+"ranges": [
+[
+[
+8,
+12
+],
+[
+8,
+59
+]
+]
+]
+}
+}
+},
+{
+"id": "p106",
+"div": "Judean Ministry",
+"title": "The man born blind",
+"refs": {
+"john": {
+"ref": "9:1-41",
+"ranges": [
+[
+[
+9,
+1
+],
+[
+9,
+41
+]
+]
+]
+}
+}
+},
+{
+"id": "p107",
+"div": "Judean Ministry",
+"title": "The good shepherd",
+"refs": {
+"john": {
+"ref": "10:1-21",
+"ranges": [
+[
+[
+10,
+1
+],
+[
+10,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p108",
+"div": "Judean Ministry",
+"title": "At the Feast of Dedication",
+"refs": {
+"john": {
+"ref": "10:22-42",
+"ranges": [
+[
+[
+10,
+22
+],
+[
+10,
+42
+]
+]
+]
+}
+}
+},
+{
+"id": "p109",
+"div": "Perean Ministry",
+"title": "Setting out for Jerusalem",
+"refs": {
+"luke": {
+"ref": "9:51-56",
+"ranges": [
+[
+[
+9,
+51
+],
+[
+9,
+56
+]
+]
+]
+}
+}
+},
+{
+"id": "p110",
+"div": "Perean Ministry",
+"title": "Would-be followers",
+"refs": {
+"matthew": {
+"ref": "8:18-22",
+"ranges": [
+[
+[
+8,
+18
+],
+[
+8,
+22
+]
+]
+]
+},
+"luke": {
+"ref": "9:57-62",
+"ranges": [
+[
+[
+9,
+57
+],
+[
+9,
+62
+]
+]
+]
+}
+}
+},
+{
+"id": "p111",
+"div": "Perean Ministry",
+"title": "Mission of the seventy",
+"refs": {
+"luke": {
+"ref": "10:1-24",
+"ranges": [
+[
+[
+10,
+1
+],
+[
+10,
+24
+]
+]
+]
+}
+}
+},
+{
+"id": "p112",
+"div": "Perean Ministry",
+"title": "The good Samaritan",
+"refs": {
+"luke": {
+"ref": "10:25-37",
+"ranges": [
+[
+[
+10,
+25
+],
+[
+10,
+37
+]
+]
+]
+}
+}
+},
+{
+"id": "p113",
+"div": "Perean Ministry",
+"title": "Mary and Martha",
+"refs": {
+"luke": {
+"ref": "10:38-42",
+"ranges": [
+[
+[
+10,
+38
+],
+[
+10,
+42
+]
+]
+]
+}
+}
+},
+{
+"id": "p114",
+"div": "Perean Ministry",
+"title": "Teaching on prayer",
+"refs": {
+"luke": {
+"ref": "11:1-13",
+"ranges": [
+[
+[
+11,
+1
+],
+[
+11,
+13
+]
+]
+]
+}
+}
+},
+{
+"id": "p115",
+"div": "Perean Ministry",
+"title": "Woes on Pharisees and lawyers",
+"refs": {
+"luke": {
+"ref": "11:33-54",
+"ranges": [
+[
+[
+11,
+33
+],
+[
+11,
+54
+]
+]
+]
+}
+}
+},
+{
+"id": "p116",
+"div": "Perean Ministry",
+"title": "Fear God, not men",
+"refs": {
+"luke": {
+"ref": "12:1-12",
+"ranges": [
+[
+[
+12,
+1
+],
+[
+12,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p117",
+"div": "Perean Ministry",
+"title": "The rich fool",
+"refs": {
+"luke": {
+"ref": "12:13-21",
+"ranges": [
+[
+[
+12,
+13
+],
+[
+12,
+21
+]
+]
+]
+}
+}
+},
+{
+"id": "p118",
+"div": "Perean Ministry",
+"title": "Anxiety and treasure",
+"refs": {
+"luke": {
+"ref": "12:22-34",
+"ranges": [
+[
+[
+12,
+22
+],
+[
+12,
+34
+]
+]
+]
+}
+}
+},
+{
+"id": "p119",
+"div": "Perean Ministry",
+"title": "Watchful servants",
+"refs": {
+"luke": {
+"ref": "12:35-48",
+"ranges": [
+[
+[
+12,
+35
+],
+[
+12,
+48
+]
+]
+]
+}
+}
+},
+{
+"id": "p120",
+"div": "Perean Ministry",
+"title": "Division; interpreting the time",
+"refs": {
+"luke": {
+"ref": "12:49-59",
+"ranges": [
+[
+[
+12,
+49
+],
+[
+12,
+59
+]
+]
+]
+}
+}
+},
+{
+"id": "p121",
+"div": "Perean Ministry",
+"title": "Repent or perish; the barren fig tree",
+"refs": {
+"luke": {
+"ref": "13:1-9",
+"ranges": [
+[
+[
+13,
+1
+],
+[
+13,
+9
+]
+]
+]
+}
+}
+},
+{
+"id": "p122",
+"div": "Perean Ministry",
+"title": "The crippled woman on the Sabbath",
+"refs": {
+"luke": {
+"ref": "13:10-17",
+"ranges": [
+[
+[
+13,
+10
+],
+[
+13,
+17
+]
+]
+]
+}
+}
+},
+{
+"id": "p123",
+"div": "Perean Ministry",
+"title": "The narrow door",
+"refs": {
+"luke": {
+"ref": "13:22-30",
+"ranges": [
+[
+[
+13,
+22
+],
+[
+13,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p124",
+"div": "Perean Ministry",
+"title": "Herod the fox; lament over Jerusalem",
+"refs": {
+"luke": {
+"ref": "13:31-35",
+"ranges": [
+[
+[
+13,
+31
+],
+[
+13,
+35
+]
+]
+]
+}
+}
+},
+{
+"id": "p125",
+"div": "Perean Ministry",
+"title": "The man with dropsy",
+"refs": {
+"luke": {
+"ref": "14:1-6",
+"ranges": [
+[
+[
+14,
+1
+],
+[
+14,
+6
+]
+]
+]
+}
+}
+},
+{
+"id": "p126",
+"div": "Perean Ministry",
+"title": "Places at table; the great banquet",
+"refs": {
+"luke": {
+"ref": "14:7-24",
+"ranges": [
+[
+[
+14,
+7
+],
+[
+14,
+24
+]
+]
+]
+}
+}
+},
+{
+"id": "p127",
+"div": "Perean Ministry",
+"title": "The cost of discipleship",
+"refs": {
+"luke": {
+"ref": "14:25-35",
+"ranges": [
+[
+[
+14,
+25
+],
+[
+14,
+35
+]
+]
+]
+}
+}
+},
+{
+"id": "p128",
+"div": "Perean Ministry",
+"title": "The lost sheep and the lost coin",
+"refs": {
+"luke": {
+"ref": "15:1-10",
+"ranges": [
+[
+[
+15,
+1
+],
+[
+15,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p129",
+"div": "Perean Ministry",
+"title": "The prodigal son",
+"refs": {
+"luke": {
+"ref": "15:11-32",
+"ranges": [
+[
+[
+15,
+11
+],
+[
+15,
+32
+]
+]
+]
+}
+}
+},
+{
+"id": "p130",
+"div": "Perean Ministry",
+"title": "The dishonest manager",
+"refs": {
+"luke": {
+"ref": "16:1-13",
+"ranges": [
+[
+[
+16,
+1
+],
+[
+16,
+13
+]
+]
+]
+}
+}
+},
+{
+"id": "p131",
+"div": "Perean Ministry",
+"title": "The rich man and Lazarus",
+"refs": {
+"luke": {
+"ref": "16:14-31",
+"ranges": [
+[
+[
+16,
+14
+],
+[
+16,
+31
+]
+]
+]
+}
+}
+},
+{
+"id": "p132",
+"div": "Perean Ministry",
+"title": "Forgiveness, faith, and duty",
+"refs": {
+"luke": {
+"ref": "17:1-10",
+"ranges": [
+[
+[
+17,
+1
+],
+[
+17,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p133",
+"div": "Perean Ministry",
+"title": "The ten lepers",
+"refs": {
+"luke": {
+"ref": "17:11-19",
+"ranges": [
+[
+[
+17,
+11
+],
+[
+17,
+19
+]
+]
+]
+}
+}
+},
+{
+"id": "p134",
+"div": "Perean Ministry",
+"title": "The coming of the kingdom",
+"refs": {
+"luke": {
+"ref": "17:20-37",
+"ranges": [
+[
+[
+17,
+20
+],
+[
+17,
+37
+]
+]
+]
+}
+}
+},
+{
+"id": "p135",
+"div": "Perean Ministry",
+"title": "The persistent widow",
+"refs": {
+"luke": {
+"ref": "18:1-8",
+"ranges": [
+[
+[
+18,
+1
+],
+[
+18,
+8
+]
+]
+]
+}
+}
+},
+{
+"id": "p136",
+"div": "Perean Ministry",
+"title": "The Pharisee and the tax collector",
+"refs": {
+"luke": {
+"ref": "18:9-14",
+"ranges": [
+[
+[
+18,
+9
+],
+[
+18,
+14
+]
+]
+]
+}
+}
+},
+{
+"id": "p137",
+"div": "Judean Ministry",
+"title": "The raising of Lazarus",
+"refs": {
+"john": {
+"ref": "11:1-44",
+"ranges": [
+[
+[
+11,
+1
+],
+[
+11,
+44
+]
+]
+]
+}
+}
+},
+{
+"id": "p138",
+"div": "Judean Ministry",
+"title": "The plot to kill Jesus",
+"refs": {
+"john": {
+"ref": "11:45-57",
+"ranges": [
+[
+[
+11,
+45
+],
+[
+11,
+57
+]
+]
+]
+}
+}
+},
+{
+"id": "p139",
+"div": "Toward Jerusalem",
+"title": "Teaching on divorce",
+"refs": {
+"matthew": {
+"ref": "19:1-12",
+"ranges": [
+[
+[
+19,
+1
+],
+[
+19,
+12
+]
+]
+]
+},
+"mark": {
+"ref": "10:1-12",
+"ranges": [
+[
+[
+10,
+1
+],
+[
+10,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p140",
+"div": "Toward Jerusalem",
+"title": "Blessing the children",
+"refs": {
+"matthew": {
+"ref": "19:13-15",
+"ranges": [
+[
+[
+19,
+13
+],
+[
+19,
+15
+]
+]
+]
+},
+"mark": {
+"ref": "10:13-16",
+"ranges": [
+[
+[
+10,
+13
+],
+[
+10,
+16
+]
+]
+]
+},
+"luke": {
+"ref": "18:15-17",
+"ranges": [
+[
+[
+18,
+15
+],
+[
+18,
+17
+]
+]
+]
+}
+}
+},
+{
+"id": "p141",
+"div": "Toward Jerusalem",
+"title": "The rich young ruler",
+"refs": {
+"matthew": {
+"ref": "19:16-30",
+"ranges": [
+[
+[
+19,
+16
+],
+[
+19,
+30
+]
+]
+]
+},
+"mark": {
+"ref": "10:17-31",
+"ranges": [
+[
+[
+10,
+17
+],
+[
+10,
+31
+]
+]
+]
+},
+"luke": {
+"ref": "18:18-30",
+"ranges": [
+[
+[
+18,
+18
+],
+[
+18,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p142",
+"div": "Toward Jerusalem",
+"title": "Laborers in the vineyard",
+"refs": {
+"matthew": {
+"ref": "20:1-16",
+"ranges": [
+[
+[
+20,
+1
+],
+[
+20,
+16
+]
+]
+]
+}
+}
+},
+{
+"id": "p143",
+"div": "Toward Jerusalem",
+"title": "Third passion prediction",
+"refs": {
+"matthew": {
+"ref": "20:17-19",
+"ranges": [
+[
+[
+20,
+17
+],
+[
+20,
+19
+]
+]
+]
+},
+"mark": {
+"ref": "10:32-34",
+"ranges": [
+[
+[
+10,
+32
+],
+[
+10,
+34
+]
+]
+]
+},
+"luke": {
+"ref": "18:31-34",
+"ranges": [
+[
+[
+18,
+31
+],
+[
+18,
+34
+]
+]
+]
+}
+}
+},
+{
+"id": "p144",
+"div": "Toward Jerusalem",
+"title": "The request of James and John",
+"refs": {
+"matthew": {
+"ref": "20:20-28",
+"ranges": [
+[
+[
+20,
+20
+],
+[
+20,
+28
+]
+]
+]
+},
+"mark": {
+"ref": "10:35-45",
+"ranges": [
+[
+[
+10,
+35
+],
+[
+10,
+45
+]
+]
+]
+}
+}
+},
+{
+"id": "p145",
+"div": "Toward Jerusalem",
+"title": "Blind Bartimaeus",
+"refs": {
+"matthew": {
+"ref": "20:29-34",
+"ranges": [
+[
+[
+20,
+29
+],
+[
+20,
+34
+]
+]
+]
+},
+"mark": {
+"ref": "10:46-52",
+"ranges": [
+[
+[
+10,
+46
+],
+[
+10,
+52
+]
+]
+]
+},
+"luke": {
+"ref": "18:35-43",
+"ranges": [
+[
+[
+18,
+35
+],
+[
+18,
+43
+]
+]
+]
+}
+}
+},
+{
+"id": "p146",
+"div": "Toward Jerusalem",
+"title": "Zacchaeus",
+"refs": {
+"luke": {
+"ref": "19:1-10",
+"ranges": [
+[
+[
+19,
+1
+],
+[
+19,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p147",
+"div": "Toward Jerusalem",
+"title": "The parable of the pounds",
+"refs": {
+"luke": {
+"ref": "19:11-27",
+"ranges": [
+[
+[
+19,
+11
+],
+[
+19,
+27
+]
+]
+]
+}
+}
+},
+{
+"id": "p148",
+"div": "Passion Week",
+"title": "The anointing at Bethany",
+"refs": {
+"matthew": {
+"ref": "26:6-13",
+"ranges": [
+[
+[
+26,
+6
+],
+[
+26,
+13
+]
+]
+]
+},
+"mark": {
+"ref": "14:3-9",
+"ranges": [
+[
+[
+14,
+3
+],
+[
+14,
+9
+]
+]
+]
+},
+"john": {
+"ref": "12:1-11",
+"ranges": [
+[
+[
+12,
+1
+],
+[
+12,
+11
+]
+]
+]
+}
+}
+},
+{
+"id": "p149",
+"div": "Passion Week",
+"title": "The triumphal entry",
+"refs": {
+"matthew": {
+"ref": "21:1-11",
+"ranges": [
+[
+[
+21,
+1
+],
+[
+21,
+11
+]
+]
+]
+},
+"mark": {
+"ref": "11:1-11",
+"ranges": [
+[
+[
+11,
+1
+],
+[
+11,
+11
+]
+]
+]
+},
+"luke": {
+"ref": "19:28-44",
+"ranges": [
+[
+[
+19,
+28
+],
+[
+19,
+44
+]
+]
+]
+},
+"john": {
+"ref": "12:12-19",
+"ranges": [
+[
+[
+12,
+12
+],
+[
+12,
+19
+]
+]
+]
+}
+}
+},
+{
+"id": "p150",
+"div": "Passion Week",
+"title": "Cursing the fig tree",
+"refs": {
+"matthew": {
+"ref": "21:18-19",
+"ranges": [
+[
+[
+21,
+18
+],
+[
+21,
+19
+]
+]
+]
+},
+"mark": {
+"ref": "11:12-14",
+"ranges": [
+[
+[
+11,
+12
+],
+[
+11,
+14
+]
+]
+]
+}
+}
+},
+{
+"id": "p151",
+"div": "Passion Week",
+"title": "Cleansing the temple",
+"refs": {
+"matthew": {
+"ref": "21:12-17",
+"ranges": [
+[
+[
+21,
+12
+],
+[
+21,
+17
+]
+]
+]
+},
+"mark": {
+"ref": "11:15-19",
+"ranges": [
+[
+[
+11,
+15
+],
+[
+11,
+19
+]
+]
+]
+},
+"luke": {
+"ref": "19:45-48",
+"ranges": [
+[
+[
+19,
+45
+],
+[
+19,
+48
+]
+]
+]
+}
+}
+},
+{
+"id": "p152",
+"div": "Passion Week",
+"title": "The fig tree withered; faith and forgiveness",
+"refs": {
+"matthew": {
+"ref": "21:20-22",
+"ranges": [
+[
+[
+21,
+20
+],
+[
+21,
+22
+]
+]
+]
+},
+"mark": {
+"ref": "11:20-26",
+"ranges": [
+[
+[
+11,
+20
+],
+[
+11,
+26
+]
+]
+]
+}
+}
+},
+{
+"id": "p153",
+"div": "Passion Week",
+"title": "Greeks seek Jesus; the grain of wheat",
+"refs": {
+"john": {
+"ref": "12:20-36",
+"ranges": [
+[
+[
+12,
+20
+],
+[
+12,
+36
+]
+]
+]
+}
+}
+},
+{
+"id": "p154",
+"div": "Passion Week",
+"title": "The unbelief of the people",
+"refs": {
+"john": {
+"ref": "12:37-50",
+"ranges": [
+[
+[
+12,
+37
+],
+[
+12,
+50
+]
+]
+]
+}
+}
+},
+{
+"id": "p155",
+"div": "Passion Week",
+"title": "By what authority?",
+"refs": {
+"matthew": {
+"ref": "21:23-27",
+"ranges": [
+[
+[
+21,
+23
+],
+[
+21,
+27
+]
+]
+]
+},
+"mark": {
+"ref": "11:27-33",
+"ranges": [
+[
+[
+11,
+27
+],
+[
+11,
+33
+]
+]
+]
+},
+"luke": {
+"ref": "20:1-8",
+"ranges": [
+[
+[
+20,
+1
+],
+[
+20,
+8
+]
+]
+]
+}
+}
+},
+{
+"id": "p156",
+"div": "Passion Week",
+"title": "The two sons",
+"refs": {
+"matthew": {
+"ref": "21:28-32",
+"ranges": [
+[
+[
+21,
+28
+],
+[
+21,
+32
+]
+]
+]
+}
+}
+},
+{
+"id": "p157",
+"div": "Passion Week",
+"title": "The wicked tenants",
+"refs": {
+"matthew": {
+"ref": "21:33-46",
+"ranges": [
+[
+[
+21,
+33
+],
+[
+21,
+46
+]
+]
+]
+},
+"mark": {
+"ref": "12:1-12",
+"ranges": [
+[
+[
+12,
+1
+],
+[
+12,
+12
+]
+]
+]
+},
+"luke": {
+"ref": "20:9-19",
+"ranges": [
+[
+[
+20,
+9
+],
+[
+20,
+19
+]
+]
+]
+}
+}
+},
+{
+"id": "p158",
+"div": "Passion Week",
+"title": "The wedding banquet",
+"refs": {
+"matthew": {
+"ref": "22:1-14",
+"ranges": [
+[
+[
+22,
+1
+],
+[
+22,
+14
+]
+]
+]
+}
+}
+},
+{
+"id": "p159",
+"div": "Passion Week",
+"title": "Paying taxes to Caesar",
+"refs": {
+"matthew": {
+"ref": "22:15-22",
+"ranges": [
+[
+[
+22,
+15
+],
+[
+22,
+22
+]
+]
+]
+},
+"mark": {
+"ref": "12:13-17",
+"ranges": [
+[
+[
+12,
+13
+],
+[
+12,
+17
+]
+]
+]
+},
+"luke": {
+"ref": "20:20-26",
+"ranges": [
+[
+[
+20,
+20
+],
+[
+20,
+26
+]
+]
+]
+}
+}
+},
+{
+"id": "p160",
+"div": "Passion Week",
+"title": "The Sadducees and the resurrection",
+"refs": {
+"matthew": {
+"ref": "22:23-33",
+"ranges": [
+[
+[
+22,
+23
+],
+[
+22,
+33
+]
+]
+]
+},
+"mark": {
+"ref": "12:18-27",
+"ranges": [
+[
+[
+12,
+18
+],
+[
+12,
+27
+]
+]
+]
+},
+"luke": {
+"ref": "20:27-40",
+"ranges": [
+[
+[
+20,
+27
+],
+[
+20,
+40
+]
+]
+]
+}
+}
+},
+{
+"id": "p161",
+"div": "Passion Week",
+"title": "The greatest commandment",
+"refs": {
+"matthew": {
+"ref": "22:34-40",
+"ranges": [
+[
+[
+22,
+34
+],
+[
+22,
+40
+]
+]
+]
+},
+"mark": {
+"ref": "12:28-34",
+"ranges": [
+[
+[
+12,
+28
+],
+[
+12,
+34
+]
+]
+]
+}
+}
+},
+{
+"id": "p162",
+"div": "Passion Week",
+"title": "Whose son is the Christ?",
+"refs": {
+"matthew": {
+"ref": "22:41-46",
+"ranges": [
+[
+[
+22,
+41
+],
+[
+22,
+46
+]
+]
+]
+},
+"mark": {
+"ref": "12:35-37",
+"ranges": [
+[
+[
+12,
+35
+],
+[
+12,
+37
+]
+]
+]
+},
+"luke": {
+"ref": "20:41-44",
+"ranges": [
+[
+[
+20,
+41
+],
+[
+20,
+44
+]
+]
+]
+}
+}
+},
+{
+"id": "p163",
+"div": "Passion Week",
+"title": "Woes on the scribes and Pharisees",
+"refs": {
+"matthew": {
+"ref": "23:1-39",
+"ranges": [
+[
+[
+23,
+1
+],
+[
+23,
+39
+]
+]
+]
+},
+"mark": {
+"ref": "12:38-40",
+"ranges": [
+[
+[
+12,
+38
+],
+[
+12,
+40
+]
+]
+]
+},
+"luke": {
+"ref": "20:45-47",
+"ranges": [
+[
+[
+20,
+45
+],
+[
+20,
+47
+]
+]
+]
+}
+}
+},
+{
+"id": "p164",
+"div": "Passion Week",
+"title": "The widow's offering",
+"refs": {
+"mark": {
+"ref": "12:41-44",
+"ranges": [
+[
+[
+12,
+41
+],
+[
+12,
+44
+]
+]
+]
+},
+"luke": {
+"ref": "21:1-4",
+"ranges": [
+[
+[
+21,
+1
+],
+[
+21,
+4
+]
+]
+]
+}
+}
+},
+{
+"id": "p165",
+"div": "Olivet Discourse",
+"title": "Not one stone left",
+"refs": {
+"matthew": {
+"ref": "24:1-2",
+"ranges": [
+[
+[
+24,
+1
+],
+[
+24,
+2
+]
+]
+]
+},
+"mark": {
+"ref": "13:1-2",
+"ranges": [
+[
+[
+13,
+1
+],
+[
+13,
+2
+]
+]
+]
+},
+"luke": {
+"ref": "21:5-6",
+"ranges": [
+[
+[
+21,
+5
+],
+[
+21,
+6
+]
+]
+]
+}
+}
+},
+{
+"id": "p166",
+"div": "Olivet Discourse",
+"title": "The beginning of birth pains",
+"refs": {
+"matthew": {
+"ref": "24:3-14",
+"ranges": [
+[
+[
+24,
+3
+],
+[
+24,
+14
+]
+]
+]
+},
+"mark": {
+"ref": "13:3-13",
+"ranges": [
+[
+[
+13,
+3
+],
+[
+13,
+13
+]
+]
+]
+},
+"luke": {
+"ref": "21:7-19",
+"ranges": [
+[
+[
+21,
+7
+],
+[
+21,
+19
+]
+]
+]
+}
+}
+},
+{
+"id": "p167",
+"div": "Olivet Discourse",
+"title": "The desolating sacrilege",
+"refs": {
+"matthew": {
+"ref": "24:15-28",
+"ranges": [
+[
+[
+24,
+15
+],
+[
+24,
+28
+]
+]
+]
+},
+"mark": {
+"ref": "13:14-23",
+"ranges": [
+[
+[
+13,
+14
+],
+[
+13,
+23
+]
+]
+]
+},
+"luke": {
+"ref": "21:20-24",
+"ranges": [
+[
+[
+21,
+20
+],
+[
+21,
+24
+]
+]
+]
+}
+}
+},
+{
+"id": "p168",
+"div": "Olivet Discourse",
+"title": "The coming of the Son of Man",
+"refs": {
+"matthew": {
+"ref": "24:29-31",
+"ranges": [
+[
+[
+24,
+29
+],
+[
+24,
+31
+]
+]
+]
+},
+"mark": {
+"ref": "13:24-27",
+"ranges": [
+[
+[
+13,
+24
+],
+[
+13,
+27
+]
+]
+]
+},
+"luke": {
+"ref": "21:25-28",
+"ranges": [
+[
+[
+21,
+25
+],
+[
+21,
+28
+]
+]
+]
+}
+}
+},
+{
+"id": "p169",
+"div": "Olivet Discourse",
+"title": "The lesson of the fig tree",
+"refs": {
+"matthew": {
+"ref": "24:32-36",
+"ranges": [
+[
+[
+24,
+32
+],
+[
+24,
+36
+]
+]
+]
+},
+"mark": {
+"ref": "13:28-32",
+"ranges": [
+[
+[
+13,
+28
+],
+[
+13,
+32
+]
+]
+]
+},
+"luke": {
+"ref": "21:29-33",
+"ranges": [
+[
+[
+21,
+29
+],
+[
+21,
+33
+]
+]
+]
+}
+}
+},
+{
+"id": "p170",
+"div": "Olivet Discourse",
+"title": "Keep watch",
+"refs": {
+"matthew": {
+"ref": "24:37-51",
+"ranges": [
+[
+[
+24,
+37
+],
+[
+24,
+51
+]
+]
+]
+},
+"mark": {
+"ref": "13:33-37",
+"ranges": [
+[
+[
+13,
+33
+],
+[
+13,
+37
+]
+]
+]
+},
+"luke": {
+"ref": "21:34-38",
+"ranges": [
+[
+[
+21,
+34
+],
+[
+21,
+38
+]
+]
+]
+}
+}
+},
+{
+"id": "p171",
+"div": "Olivet Discourse",
+"title": "The ten virgins",
+"refs": {
+"matthew": {
+"ref": "25:1-13",
+"ranges": [
+[
+[
+25,
+1
+],
+[
+25,
+13
+]
+]
+]
+}
+}
+},
+{
+"id": "p172",
+"div": "Olivet Discourse",
+"title": "The talents",
+"refs": {
+"matthew": {
+"ref": "25:14-30",
+"ranges": [
+[
+[
+25,
+14
+],
+[
+25,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p173",
+"div": "Olivet Discourse",
+"title": "The sheep and the goats",
+"refs": {
+"matthew": {
+"ref": "25:31-46",
+"ranges": [
+[
+[
+25,
+31
+],
+[
+25,
+46
+]
+]
+]
+}
+}
+},
+{
+"id": "p174",
+"div": "Passion",
+"title": "The plot; Judas agrees to betray",
+"refs": {
+"matthew": {
+"ref": "26:1-5,14-16",
+"ranges": [
+[
+[
+26,
+1
+],
+[
+26,
+5
+]
+],
+[
+[
+26,
+14
+],
+[
+26,
+16
+]
+]
+]
+},
+"mark": {
+"ref": "14:1-2,10-11",
+"ranges": [
+[
+[
+14,
+1
+],
+[
+14,
+2
+]
+],
+[
+[
+14,
+10
+],
+[
+14,
+11
+]
+]
+]
+},
+"luke": {
+"ref": "22:1-6",
+"ranges": [
+[
+[
+22,
+1
+],
+[
+22,
+6
+]
+]
+]
+}
+}
+},
+{
+"id": "p175",
+"div": "Passion",
+"title": "Preparing the Passover",
+"refs": {
+"matthew": {
+"ref": "26:17-19",
+"ranges": [
+[
+[
+26,
+17
+],
+[
+26,
+19
+]
+]
+]
+},
+"mark": {
+"ref": "14:12-16",
+"ranges": [
+[
+[
+14,
+12
+],
+[
+14,
+16
+]
+]
+]
+},
+"luke": {
+"ref": "22:7-13",
+"ranges": [
+[
+[
+22,
+7
+],
+[
+22,
+13
+]
+]
+]
+}
+}
+},
+{
+"id": "p176",
+"div": "Passion",
+"title": "Washing the disciples' feet",
+"refs": {
+"john": {
+"ref": "13:1-20",
+"ranges": [
+[
+[
+13,
+1
+],
+[
+13,
+20
+]
+]
+]
+}
+}
+},
+{
+"id": "p177",
+"div": "Passion",
+"title": "The betrayer foretold",
+"refs": {
+"matthew": {
+"ref": "26:20-25",
+"ranges": [
+[
+[
+26,
+20
+],
+[
+26,
+25
+]
+]
+]
+},
+"mark": {
+"ref": "14:17-21",
+"ranges": [
+[
+[
+14,
+17
+],
+[
+14,
+21
+]
+]
+]
+},
+"luke": {
+"ref": "22:21-23",
+"ranges": [
+[
+[
+22,
+21
+],
+[
+22,
+23
+]
+]
+]
+},
+"john": {
+"ref": "13:21-30",
+"ranges": [
+[
+[
+13,
+21
+],
+[
+13,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p178",
+"div": "Passion",
+"title": "The Lord's Supper",
+"refs": {
+"matthew": {
+"ref": "26:26-29",
+"ranges": [
+[
+[
+26,
+26
+],
+[
+26,
+29
+]
+]
+]
+},
+"mark": {
+"ref": "14:22-25",
+"ranges": [
+[
+[
+14,
+22
+],
+[
+14,
+25
+]
+]
+]
+},
+"luke": {
+"ref": "22:14-20",
+"ranges": [
+[
+[
+22,
+14
+],
+[
+22,
+20
+]
+]
+]
+}
+}
+},
+{
+"id": "p179",
+"div": "Passion",
+"title": "Dispute about greatness",
+"refs": {
+"luke": {
+"ref": "22:24-30",
+"ranges": [
+[
+[
+22,
+24
+],
+[
+22,
+30
+]
+]
+]
+}
+}
+},
+{
+"id": "p180",
+"div": "Passion",
+"title": "Peter's denial foretold",
+"refs": {
+"matthew": {
+"ref": "26:30-35",
+"ranges": [
+[
+[
+26,
+30
+],
+[
+26,
+35
+]
+]
+]
+},
+"mark": {
+"ref": "14:26-31",
+"ranges": [
+[
+[
+14,
+26
+],
+[
+14,
+31
+]
+]
+]
+},
+"luke": {
+"ref": "22:31-38",
+"ranges": [
+[
+[
+22,
+31
+],
+[
+22,
+38
+]
+]
+]
+},
+"john": {
+"ref": "13:31-38",
+"ranges": [
+[
+[
+13,
+31
+],
+[
+13,
+38
+]
+]
+]
+}
+}
+},
+{
+"id": "p181",
+"div": "Passion",
+"title": "Let not your hearts be troubled",
+"refs": {
+"john": {
+"ref": "14:1-31",
+"ranges": [
+[
+[
+14,
+1
+],
+[
+14,
+31
+]
+]
+]
+}
+}
+},
+{
+"id": "p182",
+"div": "Passion",
+"title": "The vine and the branches",
+"refs": {
+"john": {
+"ref": "15:1-27",
+"ranges": [
+[
+[
+15,
+1
+],
+[
+15,
+27
+]
+]
+]
+}
+}
+},
+{
+"id": "p183",
+"div": "Passion",
+"title": "The work of the Spirit",
+"refs": {
+"john": {
+"ref": "16:1-33",
+"ranges": [
+[
+[
+16,
+1
+],
+[
+16,
+33
+]
+]
+]
+}
+}
+},
+{
+"id": "p184",
+"div": "Passion",
+"title": "The high priestly prayer",
+"refs": {
+"john": {
+"ref": "17:1-26",
+"ranges": [
+[
+[
+17,
+1
+],
+[
+17,
+26
+]
+]
+]
+}
+}
+},
+{
+"id": "p185",
+"div": "Passion",
+"title": "Gethsemane",
+"refs": {
+"matthew": {
+"ref": "26:36-46",
+"ranges": [
+[
+[
+26,
+36
+],
+[
+26,
+46
+]
+]
+]
+},
+"mark": {
+"ref": "14:32-42",
+"ranges": [
+[
+[
+14,
+32
+],
+[
+14,
+42
+]
+]
+]
+},
+"luke": {
+"ref": "22:39-46",
+"ranges": [
+[
+[
+22,
+39
+],
+[
+22,
+46
+]
+]
+]
+}
+}
+},
+{
+"id": "p186",
+"div": "Passion",
+"title": "The arrest",
+"refs": {
+"matthew": {
+"ref": "26:47-56",
+"ranges": [
+[
+[
+26,
+47
+],
+[
+26,
+56
+]
+]
+]
+},
+"mark": {
+"ref": "14:43-52",
+"ranges": [
+[
+[
+14,
+43
+],
+[
+14,
+52
+]
+]
+]
+},
+"luke": {
+"ref": "22:47-53",
+"ranges": [
+[
+[
+22,
+47
+],
+[
+22,
+53
+]
+]
+]
+},
+"john": {
+"ref": "18:1-12",
+"ranges": [
+[
+[
+18,
+1
+],
+[
+18,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p187",
+"div": "Passion",
+"title": "Before the high priest",
+"refs": {
+"matthew": {
+"ref": "26:57-68",
+"ranges": [
+[
+[
+26,
+57
+],
+[
+26,
+68
+]
+]
+]
+},
+"mark": {
+"ref": "14:53-65",
+"ranges": [
+[
+[
+14,
+53
+],
+[
+14,
+65
+]
+]
+]
+},
+"luke": {
+"ref": "22:54,63-71",
+"ranges": [
+[
+[
+22,
+54
+],
+[
+22,
+54
+]
+],
+[
+[
+22,
+63
+],
+[
+22,
+71
+]
+]
+]
+},
+"john": {
+"ref": "18:13-14,19-24",
+"ranges": [
+[
+[
+18,
+13
+],
+[
+18,
+14
+]
+],
+[
+[
+18,
+19
+],
+[
+18,
+24
+]
+]
+]
+}
+}
+},
+{
+"id": "p188",
+"div": "Passion",
+"title": "Peter's denial",
+"refs": {
+"matthew": {
+"ref": "26:69-75",
+"ranges": [
+[
+[
+26,
+69
+],
+[
+26,
+75
+]
+]
+]
+},
+"mark": {
+"ref": "14:66-72",
+"ranges": [
+[
+[
+14,
+66
+],
+[
+14,
+72
+]
+]
+]
+},
+"luke": {
+"ref": "22:55-62",
+"ranges": [
+[
+[
+22,
+55
+],
+[
+22,
+62
+]
+]
+]
+},
+"john": {
+"ref": "18:15-18,25-27",
+"ranges": [
+[
+[
+18,
+15
+],
+[
+18,
+18
+]
+],
+[
+[
+18,
+25
+],
+[
+18,
+27
+]
+]
+]
+}
+}
+},
+{
+"id": "p189",
+"div": "Passion",
+"title": "The death of Judas",
+"refs": {
+"matthew": {
+"ref": "27:3-10",
+"ranges": [
+[
+[
+27,
+3
+],
+[
+27,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p190",
+"div": "Passion",
+"title": "Before Pilate",
+"refs": {
+"matthew": {
+"ref": "27:1-2,11-14",
+"ranges": [
+[
+[
+27,
+1
+],
+[
+27,
+2
+]
+],
+[
+[
+27,
+11
+],
+[
+27,
+14
+]
+]
+]
+},
+"mark": {
+"ref": "15:1-5",
+"ranges": [
+[
+[
+15,
+1
+],
+[
+15,
+5
+]
+]
+]
+},
+"luke": {
+"ref": "23:1-5",
+"ranges": [
+[
+[
+23,
+1
+],
+[
+23,
+5
+]
+]
+]
+},
+"john": {
+"ref": "18:28-38",
+"ranges": [
+[
+[
+18,
+28
+],
+[
+18,
+38
+]
+]
+]
+}
+}
+},
+{
+"id": "p191",
+"div": "Passion",
+"title": "Before Herod",
+"refs": {
+"luke": {
+"ref": "23:6-12",
+"ranges": [
+[
+[
+23,
+6
+],
+[
+23,
+12
+]
+]
+]
+}
+}
+},
+{
+"id": "p192",
+"div": "Passion",
+"title": "Barabbas and the sentence",
+"refs": {
+"matthew": {
+"ref": "27:15-26",
+"ranges": [
+[
+[
+27,
+15
+],
+[
+27,
+26
+]
+]
+]
+},
+"mark": {
+"ref": "15:6-15",
+"ranges": [
+[
+[
+15,
+6
+],
+[
+15,
+15
+]
+]
+]
+},
+"luke": {
+"ref": "23:13-25",
+"ranges": [
+[
+[
+23,
+13
+],
+[
+23,
+25
+]
+]
+]
+},
+"john": {
+"ref": "18:39-19:16",
+"ranges": [
+[
+[
+18,
+39
+],
+[
+19,
+16
+]
+]
+]
+}
+}
+},
+{
+"id": "p193",
+"div": "Passion",
+"title": "Mocked by the soldiers",
+"refs": {
+"matthew": {
+"ref": "27:27-31",
+"ranges": [
+[
+[
+27,
+27
+],
+[
+27,
+31
+]
+]
+]
+},
+"mark": {
+"ref": "15:16-20",
+"ranges": [
+[
+[
+15,
+16
+],
+[
+15,
+20
+]
+]
+]
+}
+}
+},
+{
+"id": "p194",
+"div": "Passion",
+"title": "The road to Golgotha",
+"refs": {
+"matthew": {
+"ref": "27:32",
+"ranges": [
+[
+[
+27,
+32
+],
+[
+27,
+32
+]
+]
+]
+},
+"mark": {
+"ref": "15:21",
+"ranges": [
+[
+[
+15,
+21
+],
+[
+15,
+21
+]
+]
+]
+},
+"luke": {
+"ref": "23:26-32",
+"ranges": [
+[
+[
+23,
+26
+],
+[
+23,
+32
+]
+]
+]
+},
+"john": {
+"ref": "19:17",
+"ranges": [
+[
+[
+19,
+17
+],
+[
+19,
+17
+]
+]
+]
+}
+}
+},
+{
+"id": "p195",
+"div": "Passion",
+"title": "The crucifixion",
+"refs": {
+"matthew": {
+"ref": "27:33-44",
+"ranges": [
+[
+[
+27,
+33
+],
+[
+27,
+44
+]
+]
+]
+},
+"mark": {
+"ref": "15:22-32",
+"ranges": [
+[
+[
+15,
+22
+],
+[
+15,
+32
+]
+]
+]
+},
+"luke": {
+"ref": "23:33-43",
+"ranges": [
+[
+[
+23,
+33
+],
+[
+23,
+43
+]
+]
+]
+},
+"john": {
+"ref": "19:18-27",
+"ranges": [
+[
+[
+19,
+18
+],
+[
+19,
+27
+]
+]
+]
+}
+}
+},
+{
+"id": "p196",
+"div": "Passion",
+"title": "The death of Jesus",
+"refs": {
+"matthew": {
+"ref": "27:45-56",
+"ranges": [
+[
+[
+27,
+45
+],
+[
+27,
+56
+]
+]
+]
+},
+"mark": {
+"ref": "15:33-41",
+"ranges": [
+[
+[
+15,
+33
+],
+[
+15,
+41
+]
+]
+]
+},
+"luke": {
+"ref": "23:44-49",
+"ranges": [
+[
+[
+23,
+44
+],
+[
+23,
+49
+]
+]
+]
+},
+"john": {
+"ref": "19:28-37",
+"ranges": [
+[
+[
+19,
+28
+],
+[
+19,
+37
+]
+]
+]
+}
+}
+},
+{
+"id": "p197",
+"div": "Passion",
+"title": "The burial",
+"refs": {
+"matthew": {
+"ref": "27:57-61",
+"ranges": [
+[
+[
+27,
+57
+],
+[
+27,
+61
+]
+]
+]
+},
+"mark": {
+"ref": "15:42-47",
+"ranges": [
+[
+[
+15,
+42
+],
+[
+15,
+47
+]
+]
+]
+},
+"luke": {
+"ref": "23:50-56",
+"ranges": [
+[
+[
+23,
+50
+],
+[
+23,
+56
+]
+]
+]
+},
+"john": {
+"ref": "19:38-42",
+"ranges": [
+[
+[
+19,
+38
+],
+[
+19,
+42
+]
+]
+]
+}
+}
+},
+{
+"id": "p198",
+"div": "Passion",
+"title": "The guard at the tomb",
+"refs": {
+"matthew": {
+"ref": "27:62-66",
+"ranges": [
+[
+[
+27,
+62
+],
+[
+27,
+66
+]
+]
+]
+}
+}
+},
+{
+"id": "p199",
+"div": "Resurrection",
+"title": "The empty tomb",
+"refs": {
+"matthew": {
+"ref": "28:1-8",
+"ranges": [
+[
+[
+28,
+1
+],
+[
+28,
+8
+]
+]
+]
+},
+"mark": {
+"ref": "16:1-8",
+"ranges": [
+[
+[
+16,
+1
+],
+[
+16,
+8
+]
+]
+]
+},
+"luke": {
+"ref": "24:1-12",
+"ranges": [
+[
+[
+24,
+1
+],
+[
+24,
+12
+]
+]
+]
+},
+"john": {
+"ref": "20:1-10",
+"ranges": [
+[
+[
+20,
+1
+],
+[
+20,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p200",
+"div": "Resurrection",
+"title": "Appearance to Mary Magdalene",
+"refs": {
+"mark": {
+"ref": "16:9-11",
+"ranges": [
+[
+[
+16,
+9
+],
+[
+16,
+11
+]
+]
+]
+},
+"john": {
+"ref": "20:11-18",
+"ranges": [
+[
+[
+20,
+11
+],
+[
+20,
+18
+]
+]
+]
+}
+}
+},
+{
+"id": "p201",
+"div": "Resurrection",
+"title": "Appearance to the women",
+"refs": {
+"matthew": {
+"ref": "28:9-10",
+"ranges": [
+[
+[
+28,
+9
+],
+[
+28,
+10
+]
+]
+]
+}
+}
+},
+{
+"id": "p202",
+"div": "Resurrection",
+"title": "The report of the guard",
+"refs": {
+"matthew": {
+"ref": "28:11-15",
+"ranges": [
+[
+[
+28,
+11
+],
+[
+28,
+15
+]
+]
+]
+}
+}
+},
+{
+"id": "p203",
+"div": "Resurrection",
+"title": "The road to Emmaus",
+"refs": {
+"mark": {
+"ref": "16:12-13",
+"ranges": [
+[
+[
+16,
+12
+],
+[
+16,
+13
+]
+]
+]
+},
+"luke": {
+"ref": "24:13-35",
+"ranges": [
+[
+[
+24,
+13
+],
+[
+24,
+35
+]
+]
+]
+}
+}
+},
+{
+"id": "p204",
+"div": "Resurrection",
+"title": "Appearance to the disciples",
+"refs": {
+"mark": {
+"ref": "16:14",
+"ranges": [
+[
+[
+16,
+14
+],
+[
+16,
+14
+]
+]
+]
+},
+"luke": {
+"ref": "24:36-43",
+"ranges": [
+[
+[
+24,
+36
+],
+[
+24,
+43
+]
+]
+]
+},
+"john": {
+"ref": "20:19-23",
+"ranges": [
+[
+[
+20,
+19
+],
+[
+20,
+23
+]
+]
+]
+}
+}
+},
+{
+"id": "p205",
+"div": "Resurrection",
+"title": "Thomas",
+"refs": {
+"john": {
+"ref": "20:24-31",
+"ranges": [
+[
+[
+20,
+24
+],
+[
+20,
+31
+]
+]
+]
+}
+}
+},
+{
+"id": "p206",
+"div": "Resurrection",
+"title": "By the Sea of Tiberias",
+"refs": {
+"john": {
+"ref": "21:1-25",
+"ranges": [
+[
+[
+21,
+1
+],
+[
+21,
+25
+]
+]
+]
+}
+}
+},
+{
+"id": "p207",
+"div": "Resurrection",
+"title": "The great commission",
+"refs": {
+"matthew": {
+"ref": "28:16-20",
+"ranges": [
+[
+[
+28,
+16
+],
+[
+28,
+20
+]
+]
+]
+},
+"mark": {
+"ref": "16:15-18",
+"ranges": [
+[
+[
+16,
+15
+],
+[
+16,
+18
+]
+]
+]
+}
+}
+},
+{
+"id": "p208",
+"div": "Resurrection",
+"title": "The ascension",
+"refs": {
+"mark": {
+"ref": "16:19-20",
+"ranges": [
+[
+[
+16,
+19
+],
+[
+16,
+20
+]
+]
+]
+},
+"luke": {
+"ref": "24:44-53",
+"ranges": [
+[
+[
+24,
+44
+],
+[
+24,
+53
+]
+]
+]
+}
+}
+}
+]

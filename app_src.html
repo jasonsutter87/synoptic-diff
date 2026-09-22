@@ -1,0 +1,855 @@
+<title>Synoptic Diff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F1F2EF; --raised:#FAFAF8; --sunk:#E7E9E4;
+  --ink:#171A1F; --ink-2:#464C54; --ink-3:#767D86;
+  --rule:#D5D8D2; --rule-2:#C2C6BE;
+  --mt:#1263A8; --mk:#B8500A; --lk:#0A7D5A; --jn:#9B4F96;
+  --mt-w:#1263A81A; --mk-w:#B8500A1A; --lk-w:#0A7D5A1A; --jn-w:#9B4F961A;
+  --elev-hi:#8A6A2B; --elev-lo:#2E6B8A; --elev-mid:#9AA0A6;
+  --serif:"EB Garamond",Iowan Old Style,Palatino,Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#13151A; --raised:#1B1E24; --sunk:#0E1014;
+  --ink:#E8E6E0; --ink-2:#AFB4BB; --ink-3:#7C838C;
+  --rule:#2A2F36; --rule-2:#3A4049;
+  --mt:#4A90D9; --mk:#CE7430; --lk:#2BA075; --jn:#B96FB3;
+  --mt-w:#4A90D922; --mk-w:#CE743022; --lk-w:#2BA07522; --jn-w:#B96FB322;
+  --elev-hi:#C8A461; --elev-lo:#6BA8C9; --elev-mid:#7C838C;
+}}
+:root[data-theme="dark"]{
+  --paper:#13151A; --raised:#1B1E24; --sunk:#0E1014;
+  --ink:#E8E6E0; --ink-2:#AFB4BB; --ink-3:#7C838C;
+  --rule:#2A2F36; --rule-2:#3A4049;
+  --mt:#4A90D9; --mk:#CE7430; --lk:#2BA075; --jn:#B96FB3;
+  --mt-w:#4A90D922; --mk-w:#CE743022; --lk-w:#2BA07522; --jn-w:#B96FB322;
+  --elev-hi:#C8A461; --elev-lo:#6BA8C9; --elev-mid:#7C838C;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* ---- shell ---- */
+.shell{display:grid;grid-template-columns:288px minmax(0,1fr);height:100%}
+@media (max-width:900px){.shell{grid-template-columns:1fr;height:auto}
+  .side{position:static!important;height:auto!important;max-height:none!important;border-right:none!important;
+    border-bottom:1px solid var(--rule-2)}}
+
+/* ---- sidebar ---- */
+.side{border-right:1px solid var(--rule-2);background:var(--sunk);display:flex;flex-direction:column;
+  position:sticky;top:0;height:100%;max-height:100vh}
+.side-head{padding:16px 16px 12px;border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.015em;margin:0 0 2px}
+.brand-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.stat{display:flex;gap:11px;margin-top:11px;font-family:var(--mono);font-size:10px;color:var(--ink-3);flex-wrap:wrap}
+.stat b{color:var(--ink-2);font-weight:600}
+#q{width:100%;margin-top:11px;font-family:var(--sans);font-size:13px;padding:7px 10px;
+  border:1px solid var(--rule-2);border-radius:4px;background:var(--raised);color:var(--ink)}
+#q:focus{outline:2px solid var(--lk);outline-offset:-1px}
+.filters{display:flex;gap:4px;margin-top:9px;flex-wrap:wrap}
+.filters button{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;cursor:pointer;
+  background:none;border:1px solid var(--rule-2);color:var(--ink-3);padding:3px 7px;border-radius:3px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.side-list{overflow-y:auto;flex:1;padding:6px 8px 26px;min-height:0}
+.divlabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);padding:13px 8px 5px;position:sticky;top:0;background:var(--sunk);z-index:1}
+.pitem{display:block;width:100%;text-align:left;cursor:pointer;font-family:var(--sans);font-size:13px;
+  background:none;border:none;border-left:2px solid transparent;color:var(--ink-2);
+  padding:6px 8px 6px 9px;border-radius:0 3px 3px 0;line-height:1.35}
+.pitem:hover{background:var(--raised);color:var(--ink)}
+.pitem[aria-current="true"]{background:var(--raised);color:var(--ink);border-left-color:var(--mk);font-weight:500}
+.pitem .gs{font-family:var(--mono);font-size:9px;letter-spacing:.06em;margin-left:5px;white-space:nowrap}
+.pitem .lay{color:var(--jn);font-weight:700}
+
+/* ---- main ---- */
+main{min-width:0;overflow-x:hidden}
+.pad{padding:24px 28px 80px;max-width:1180px}
+@media (max-width:620px){.pad{padding:18px 16px 60px}}
+.crumb{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(25px,3.6vw,34px);margin:4px 0 8px;
+  letter-spacing:-.015em;text-wrap:balance}
+.badges{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;
+  border:1px solid currentColor;border-radius:2px;padding:2px 6px}
+.tag-quad{color:var(--jn)}.tag-tri{color:var(--mk)}.tag-dbl{color:var(--mt)}.tag-uni{color:var(--ink-3)}
+
+.sec{margin-block:30px}
+.sec-head{display:flex;align-items:baseline;gap:11px;border-bottom:1px solid var(--rule);
+  padding-bottom:6px;margin-bottom:15px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--serif);font-size:20px;font-weight:600;margin:0}
+.sec-head .note{font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.03em}
+.toggles{margin-left:auto;display:flex;gap:5px}
+.toggles button{font-family:var(--mono);font-size:10px;cursor:pointer;background:var(--raised);
+  border:1px solid var(--rule-2);color:var(--ink-3);padding:4px 9px;border-radius:3px}
+.toggles button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---- context strip ---- */
+.ctx{display:grid;gap:11px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.ctxcol{border:1px solid var(--rule);border-radius:4px;background:var(--raised);overflow:hidden}
+.ctxcol h4{margin:0;font-family:var(--serif);font-size:15px;font-weight:600;padding:7px 11px;
+  border-bottom:1px solid var(--rule);color:var(--gc);background:var(--gw)}
+.ctxrow{padding:7px 11px;font-size:12.5px;line-height:1.4;border-bottom:1px dotted var(--rule);color:var(--ink-3)}
+.ctxrow:last-child{border-bottom:none}
+.ctxrow.here{color:var(--ink);font-weight:600;background:var(--sunk)}
+.ctxrow .arr{font-family:var(--mono);font-size:9px;color:var(--ink-3);display:block;letter-spacing:.09em}
+.ctxcol.none{opacity:.55}
+.ctxcol.none .empty{padding:15px 11px;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+
+/* ---- parallel text ---- */
+.parallel{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(265px,1fr))}
+.pcol{background:var(--raised);border:1px solid var(--rule);border-radius:4px;display:flex;flex-direction:column}
+.pcol-head{padding:8px 12px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;
+  align-items:baseline;gap:8px;background:var(--gw)}
+.pcol-head .g{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--gc)}
+.pcol-head .r{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+.ptext{font-family:var(--serif);font-size:16.5px;line-height:1.66;padding:12px;margin:0;flex:1}
+.ptext.gk{font-size:16px;line-height:1.75}
+.vn{font-family:var(--mono);font-size:9px;color:var(--ink-3);vertical-align:super;margin-right:2px;user-select:none}
+.uniq{background:var(--gw);border-bottom:1.5px solid var(--gc);border-radius:2px;padding:0 1px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hitw{background:var(--mk);color:var(--paper);border-radius:2px;padding:0 2px;font-weight:600}
+.absent{padding:15px 12px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);line-height:1.6;
+  background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--sunk) 8px,var(--sunk) 9px)}
+.nogk{font-family:var(--mono);font-size:11px;color:var(--mk);padding:8px 12px;border-top:1px dashed var(--rule-2);line-height:1.5}
+.legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+.legend i{font-style:normal;display:inline-flex;align-items:center;gap:5px}
+.sw{width:17px;height:9px;border-radius:2px;display:inline-block;border:1px solid var(--rule-2)}
+
+/* ---- word study ---- */
+.ws{background:var(--sunk);border:1px solid var(--rule);border-radius:4px;padding:15px 17px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chips button{font-family:var(--serif);font-size:15px;cursor:pointer;background:var(--raised);
+  border:1px solid var(--rule-2);color:var(--ink);padding:4px 11px;border-radius:14px}
+.chips button:hover{border-color:var(--mk)}
+.chips button[aria-pressed="true"]{background:var(--mk);color:var(--paper);border-color:var(--mk)}
+.chips button .en{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);margin-left:5px}
+.chips button[aria-pressed="true"] .en{color:var(--paper);opacity:.75}
+#lq{font-family:var(--serif);font-size:15px;padding:5px 10px;border:1px solid var(--rule-2);
+  border-radius:14px;background:var(--raised);color:var(--ink);width:170px}
+.wsres{margin-top:4px}
+.wscount{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-bottom:9px}
+.wscount b{color:var(--ink);font-size:14px}
+.dist{display:flex;gap:3px;margin-bottom:11px;height:26px;align-items:flex-end}
+.distcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.distbar{width:100%;background:var(--gc);border-radius:1px;min-height:2px}
+.distlab{font-family:var(--mono);font-size:9px;color:var(--ink-3)}
+.occ{display:grid;gap:3px;max-height:250px;overflow-y:auto}
+.occrow{display:grid;grid-template-columns:82px 1fr;gap:9px;font-size:13px;padding:4px 7px;
+  border-radius:3px;cursor:pointer;background:none;border:none;text-align:left;font-family:inherit;color:var(--ink-2);align-items:baseline}
+.occrow:hover{background:var(--raised);color:var(--ink)}
+.occrow .ref{font-family:var(--mono);font-size:10px;color:var(--gc);font-weight:600}
+.occrow .frag{font-family:var(--serif);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.occrow .frag b{color:var(--mk)}
+
+/* ---- layers ---- */
+.layers{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.layers button{cursor:pointer;font-family:var(--sans);font-size:13px;background:var(--raised);
+  border:1px solid var(--rule-2);border-radius:3px;padding:7px 12px;color:var(--ink-2);
+  display:flex;align-items:center;gap:7px}
+.layers button[aria-selected="true"]{border-color:var(--lc);color:var(--ink);background:var(--lw)}
+.layers .n{font-family:var(--mono);font-size:9.5px;color:var(--lc);font-weight:600}
+.layerbody{background:var(--raised);border:1px solid var(--rule);border-left:3px solid var(--lc,var(--rule-2));
+  border-radius:4px;padding:18px 21px}
+.layerbody h3{font-family:var(--serif);font-size:19px;margin:0 0 3px;font-weight:600}
+.layerbody .lsub{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--lc);margin-bottom:13px}
+.layerbody p{font-family:var(--serif);font-size:16.5px;line-height:1.68;margin:0 0 12px;max-width:68ch}
+.layerbody p:last-child{margin-bottom:0}
+.layerbody .q{border-left:2px solid var(--rule-2);padding-left:13px;color:var(--ink-2);font-style:italic}
+.nolayer{background:var(--sunk);border:1px dashed var(--rule-2);border-radius:4px;padding:16px 19px;
+  color:var(--ink-3);font-size:14px;line-height:1.6;max-width:70ch}
+.nolayer b{color:var(--ink-2)}
+
+
+/* ---- view switch ---- */
+.vswitch{display:flex;gap:4px;margin-top:11px}
+.vswitch button{flex:1;font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  cursor:pointer;background:var(--raised);border:1px solid var(--rule-2);color:var(--ink-3);padding:6px;border-radius:3px}
+.vswitch button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---- map ---- */
+.maplayout{display:grid;gap:18px;grid-template-columns:minmax(0,1.05fr) minmax(255px,.95fr);align-items:start}
+@media (max-width:860px){.maplayout{grid-template-columns:1fr}}
+.mapwrap{background:var(--raised);border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;position:relative}
+.mapwrap svg{display:block;width:100%;height:auto}
+.sea{fill:var(--sunk)}
+.coast{fill:none;stroke:var(--ink-3);stroke-width:1.1;stroke-linejoin:round;opacity:.65}
+.lake{fill:var(--elev-lo);opacity:.22;stroke:var(--elev-lo);stroke-width:.9}
+.river{fill:none;stroke:var(--elev-lo);stroke-width:1.2;opacity:.6;stroke-linecap:round}
+.jpath{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.pdot{cursor:pointer}
+.pdot circle.hit{fill:transparent}
+.plabel{font-family:var(--sans);font-size:8.4px;fill:var(--ink-2);pointer-events:none;paint-order:stroke;
+  stroke:var(--raised);stroke-width:2.6px;stroke-linejoin:round}
+.plabel.big{font-size:9.6px;fill:var(--ink);font-weight:600}
+.waterlab{font-family:var(--serif);font-style:italic;font-size:10px;fill:var(--elev-lo);opacity:.8;pointer-events:none}
+.jtoggles{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.jtoggles button{display:flex;align-items:center;gap:9px;cursor:pointer;font-family:var(--sans);font-size:13px;
+  background:var(--raised);border:1px solid var(--rule-2);border-radius:3px;padding:7px 11px;color:var(--ink-2);text-align:left}
+.jtoggles button[aria-pressed="true"]{border-color:var(--jc);color:var(--ink);background:var(--raised);
+  box-shadow:inset 3px 0 0 var(--jc)}
+.jtoggles .dash{width:22px;height:0;border-top:2px dashed var(--jc);flex:none}
+.jtoggles .n{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--ink-3)}
+.mapnote{font-size:13px;color:var(--ink-2);line-height:1.55;background:var(--sunk);border-left:3px solid var(--jc,var(--rule-2));
+  border-radius:3px;padding:10px 13px;margin-bottom:14px}
+.placecard{background:var(--raised);border:1px solid var(--rule);border-radius:4px;padding:14px 16px;margin-bottom:14px}
+.placecard h3{font-family:var(--serif);font-size:19px;margin:0 0 2px;font-weight:600}
+.placemeta{display:flex;gap:9px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:11px}
+.certbadge{border:1px solid currentColor;border-radius:2px;padding:1px 5px}
+.c3{color:var(--lk)}.c2{color:var(--mt)}.c1{color:var(--mk)}
+.plist{display:grid;gap:2px;max-height:235px;overflow-y:auto}
+.plist button{text-align:left;font-family:var(--sans);font-size:13px;background:none;border:none;cursor:pointer;
+  color:var(--ink-2);padding:5px 8px;border-radius:3px;line-height:1.35}
+.plist button:hover{background:var(--sunk);color:var(--ink)}
+.plist .pr{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);display:block}
+.elev{background:var(--raised);border:1px solid var(--rule);border-radius:4px;padding:13px 15px}
+.elev h4{font-family:var(--sans);font-size:13px;font-weight:600;margin:0 0 1px}
+.elev .esub{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:9px}
+.elev svg{display:block;width:100%;height:auto;overflow:visible}
+.egrid{stroke:var(--rule);stroke-width:1}
+.ezero{stroke:var(--elev-mid);stroke-width:1.2;stroke-dasharray:3 3}
+.eline{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.eaxis{font-family:var(--mono);font-size:8.5px;fill:var(--ink-3)}
+.elab{font-family:var(--sans);font-size:9px;fill:var(--ink-2);paint-order:stroke;stroke:var(--raised);stroke-width:2.5px}
+.edot{fill:var(--raised);stroke:var(--ink);stroke-width:2}
+footer{border-top:1px solid var(--rule);margin-top:40px;padding-top:14px;
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);line-height:1.85;max-width:88ch}
+footer b{color:var(--ink-2);font-weight:500}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="shell">
+  <aside class="side">
+    <div class="side-head">
+      <div class="brand">Synoptic Diff</div>
+      <div class="brand-sub">Four gospels · complete</div>
+      <div class="stat" id="stat"></div>
+      <div class="vswitch" id="vswitch">
+        <button data-v="syn" aria-pressed="true">Synopsis</button>
+        <button data-v="map" aria-pressed="false">Map</button>
+      </div>
+      <input id="q" type="search" placeholder="Search 209 pericopes…" autocomplete="off">
+      <div class="filters" id="filters">
+        <button data-f="all" aria-pressed="true">All</button>
+        <button data-f="4" aria-pressed="false">Quadruple</button>
+        <button data-f="3" aria-pressed="false">Triple</button>
+        <button data-f="2" aria-pressed="false">Double</button>
+        <button data-f="1" aria-pressed="false">Unique</button>
+        <button data-f="L" aria-pressed="false">◆ Layered</button>
+      </div>
+    </div>
+    <div class="side-list" id="list"></div>
+  </aside>
+
+  <main><div class="pad">
+    <div id="mapview" hidden>
+      <div class="crumb">Layer 2 · where it happened</div>
+      <h1>The gospel country</h1>
+      <div class="badges"><span class="badge tag-tri">43 places</span><span class="badge tag-quad">7 journeys</span><span class="badge tag-uni" id="geostat"></span></div>
+      <div class="maplayout">
+        <div class="mapwrap" id="mapwrap"></div>
+        <div>
+          <div class="jtoggles" id="jtoggles"></div>
+          <div id="mapnote"></div>
+          <div id="placecard"></div>
+          <div id="elevbox"></div>
+        </div>
+      </div>
+    </div>
+    <div id="synview">
+    <div class="crumb" id="crumb"></div>
+    <h1 id="title"></h1>
+    <div class="badges" id="badges"></div>
+
+    <div class="sec">
+      <div class="sec-head"><h2>Structural context</h2>
+        <span class="note">what each gospel puts either side of this</span></div>
+      <div class="ctx" id="ctx"></div>
+      <div id="structnote"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h2>Textual diff</h2>
+        <span class="note" id="basenote"></span>
+        <span class="toggles">
+          <button id="tEn" aria-pressed="true">English</button>
+          <button id="tGk" aria-pressed="false">Greek</button>
+        </span></div>
+      <div class="parallel" id="parallel"></div>
+      <div class="legend">
+        <i><span class="sw" style="background:var(--mk-w);border-bottom:1.5px solid var(--mk)"></span> wording unique to that column</i>
+        <i><span class="sw" style="background:var(--sunk);border-style:dashed"></span> gospel does not carry this</i>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h2>Word study</h2>
+        <span class="note">lemma search across all 64,499 Greek words</span></div>
+      <div class="ws">
+        <div class="chips" id="chips"></div>
+        <div class="wsres" id="wsres"></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h2>The four layers</h2><span class="note" id="laynote"></span></div>
+      <div id="layerzone"></div>
+    </div>
+
+    </div>
+    <footer>
+      English: <b>World English Bible</b> (public domain), 3,779 verses.
+      Greek: <b>SBLGNT</b> via <b>MorphGNT</b> — 64,499 lemmatised words (SBLGNT text CC BY 4.0, Logos Bible Software &amp; SBL; MorphGNT annotation CC BY-SA 3.0).
+      Pericope divisions follow the public-domain harmonies (Robertson 1922; Stevens &amp; Burton 1904) and the <b>Eusebian canon</b> sections, c. 330 AD.
+      Alignment is hand-built and machine-verified: <b>100% verse coverage, zero overlaps</b>.
+      Four-layer commentary exists for two studies so far — everything else shows text and tools only.
+    </footer>
+  </div></main>
+</div>
+
+<script>
+const WEB=/*__WEB__*/, GK=/*__GK__*/, HARM=/*__HARM__*/;
+const GEO=/*__GEO__*/, PLC=/*__PLC__*/, PLINK=/*__PLINK__*/;
+const GOSPELS=["matthew","mark","luke","john"];
+const NAME={matthew:"Matthew",mark:"Mark",luke:"Luke",john:"John"};
+const VAR={matthew:"--mt",mark:"--mk",luke:"--lk",john:"--jn"};
+const AB={matthew:"Mt",mark:"Mk",luke:"Lk",john:"Jn"};
+const $=i=>document.getElementById(i);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+/* ---------- verse expansion ---------- */
+function expand(ranges,g){
+  const out=[];
+  for(const [[c1,v1],[c2,v2]] of ranges)
+    for(let c=c1;c<=c2;c++){
+      const ch=WEB[g][String(c)]||{};
+      const lo=c===c1?v1:1, hi=c===c2?v2:Math.max(0,...Object.keys(ch).map(Number));
+      for(let v=lo;v<=hi;v++) if(ch[String(v)]!==undefined) out.push({c,v,t:ch[String(v)]});
+    }
+  return out;
+}
+function expandGk(ranges,g){
+  const out=[],miss=[];
+  for(const [[c1,v1],[c2,v2]] of ranges)
+    for(let c=c1;c<=c2;c++){
+      const ch=WEB[g][String(c)]||{}, gch=(GK.text[g]||{})[String(c)]||{};
+      const lo=c===c1?v1:1, hi=c===c2?v2:Math.max(0,...Object.keys(ch).map(Number));
+      for(let v=lo;v<=hi;v++){
+        if(ch[String(v)]===undefined) continue;
+        if(gch[String(v)]) out.push({c,v,w:gch[String(v)]}); else miss.push(c+":"+v);
+      }
+    }
+  return {verses:out,miss};
+}
+
+/* ---------- sequences & tradition ---------- */
+const firstOf=p=>g=>{const r=p.refs[g];return r?r.ranges[0][0][0]*1000+r.ranges[0][0][1]:Infinity;};
+const SEQ={};
+GOSPELS.forEach(g=>{SEQ[g]=HARM.filter(p=>p.refs[g]).sort((a,b)=>firstOf(a)(g)-firstOf(b)(g));});
+const IDX={};GOSPELS.forEach(g=>{IDX[g]={};SEQ[g].forEach((p,i)=>IDX[g][p.id]=i);});
+const trad=p=>Object.keys(p.refs).length;
+const TRADLABEL={4:["Quadruple tradition","tag-quad"],3:["Triple tradition","tag-tri"],
+                 2:["Double tradition","tag-dbl"],1:["Unique","tag-uni"]};
+
+/* ---------- word diff ---------- */
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9Ͱ-Ͽἀ-῿’']/g,"");
+function uniqueMask(A,B){
+  const a=A.map(norm),b=B.map(norm),n=a.length,m=b.length;
+  if(!m) return new Array(n).fill(false);
+  const dp=Array.from({length:n+1},()=>new Uint16Array(m+1));
+  for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)
+    dp[i][j]=a[i]===b[j]?dp[i+1][j+1]+1:Math.max(dp[i+1][j],dp[i][j+1]);
+  const mask=new Array(n).fill(true);let i=0,j=0;
+  while(i<n&&j<m){ if(a[i]===b[j]){mask[i]=false;i++;j++;}
+    else if(dp[i+1][j]>=dp[i][j+1])i++; else j++; }
+  return mask;
+}
+function weave(verses,baseWords,getWords,hilite){
+  const toks=[],kind=[];
+  verses.forEach(v=>{toks.push("\u0000"+v.c+":"+v.v);kind.push(0);
+    getWords(v).forEach(w=>{toks.push(w);kind.push(1);});});
+  const real=toks.filter((t,i)=>kind[i]===1);
+  let rm=null;
+  if(baseWords){const m=uniqueMask(real,baseWords);let k=0;rm=toks.map((t,i)=>kind[i]?m[k++]:false);}
+  let out="",open=false;
+  toks.forEach((t,i)=>{
+    if(!kind[i]){ if(open){out+="</span>";open=false;}
+      out+=`<span class="vn">${t.slice(1).split(":")[1]}</span>`;return;}
+    const bare=t.replace(/[.,;··!?"'’“”()]/g,"");
+    if(hilite&&hilite.has(norm(bare))){ if(open){out+="</span>";open=false;}
+      out+=`<span class="hitw">${esc(t)}</span> `;return;}
+    const u=rm?rm[i]:false;
+    if(u&&!open){out+='<span class="uniq">';open=true;}
+    if(!u&&open){out+="</span>";open=false;}
+    out+=esc(t)+" ";
+  });
+  return out+(open?"</span>":"");
+}
+
+/* ---------- lemma index ---------- */
+const LEMI={};GK.lemmas.forEach((l,i)=>LEMI[l]=i);
+let OCCACHE={};
+function occurrences(lemId){
+  if(OCCACHE[lemId])return OCCACHE[lemId];
+  const out=[];
+  for(const g of GOSPELS){const bk=GK.text[g]||{};
+    for(const c in bk)for(const v in bk[c]){
+      const ws=bk[c][v];
+      for(let i=0;i<ws.length;i++) if(ws[i][1]===lemId){
+        out.push({g,c:+c,v:+v,i,surface:ws[i][0],
+          frag:ws.map((w,k)=>k===i?"<b>"+esc(w[0])+"</b>":esc(w[0])).join(" ")});
+        break;
+      }}}
+  out.sort((a,b)=>GOSPELS.indexOf(a.g)-GOSPELS.indexOf(b.g)||a.c-b.c||a.v-b.v);
+  return OCCACHE[lemId]=out;
+}
+const CHIPS=[["κόφινος","basket (small)"],["σπυρίς","basket (large)"],["ἑπτά","seven"],
+  ["δώδεκα","twelve"],["τρεῖς","three"],["τεσσεράκοντα","forty"],["πέντε","five"],
+  ["ἄρτος","bread"],["ἰχθύς","fish"],["συκῆ","fig tree"],["καρπός","fruit"]];
+
+/* ---------- layered studies ---------- */
+const STUDY={
+ fig:{members:["Cursing the fig tree","Cleansing the temple","The fig tree withered; faith and forgiveness"],
+  note:`<div class="nolayer" style="border-style:solid;border-left:3px solid var(--mk);background:var(--mk-w)">
+    <b>Mark makes a sandwich.</b> The fig tree opens (11:12) and closes (11:20) around the temple in the middle —
+    a structure Mark uses repeatedly. The tree is not a detour from the temple scene; it is Mark's verdict
+    <em>on</em> it. Matthew unpicks the sandwich: temple first, then the tree cursed and withered in one stroke.
+    Luke drops the tree entirely. Mark alone adds <em>"for it was not the season for figs"</em> — which makes the
+    cursing arbitrary, and is exactly the signal that it was never about fruit. <b>Matthew deletes that clause.</b></div>`,
+  layers:[
+  {n:"L1",name:"Historical",sub:"What can be established",c:"var(--ink-3)",w:"transparent",body:`
+   <p>Herod's temple was an active commercial institution, and legitimately so. The annual half-shekel tax had
+   to be paid in <b>Tyrian silver</b> — the only coinage of reliable purity in circulation — so pilgrims arriving
+   with provincial money genuinely needed money changers. Selling doves served the poor, who were entitled to the
+   cheaper offering. Nothing in the trade was illegal.</p>
+   <p>The horticulture is real too. Judean fig trees put out <em>paggim</em> — small early fruit — at the same
+   time as or before the leaves. A tree in full leaf with nothing on it is genuinely anomalous, which is why a
+   first-century listener caught the point faster than a modern one.</p>
+   <p>And the frame around all of it: the temple was destroyed by Rome in <b>70 AD</b>, and Mark is generally
+   dated within a decade of that. A story about a magnificent structure cursed for bearing no fruit is being
+   written down by people who either just watched it burn or were about to.</p>`},
+  {n:"L2",name:"Literal",sub:"What the text says",c:"var(--lk)",w:"var(--lk-w)",body:`
+   <p>He is hungry. He sees a tree advertising fruit and finds none. He curses it. He goes into the temple and
+   overturns the tables of a system that is likewise busy and likewise, in his judgment, producing nothing. In
+   the morning the tree is dead to the roots. Peter points it out.</p>
+   <p>Then the move almost everyone forgets: asked about the withered tree, Jesus doesn't explain it. He talks
+   about faith, about mountains moving, and ends here —</p>
+   <p class="q">"Whenever you stand praying, forgive, if you have anything against anyone."</p>
+   <p>A story about barrenness resolves into an instruction about forgiveness. Whatever the fruit is meant to
+   be, <b>that is the answer given.</b></p>`},
+  {n:"L3",name:"Symbolic",sub:"The pattern beneath",c:"var(--mt)",w:"var(--mt-w)",body:`
+   <p>The fig tree is not a fresh image; it is standing vocabulary. <em>Hosea 9:10</em> — Israel as the first
+   fruit on the fig. <em>Micah 7:1</em> — the lament that there is no cluster to eat. <em>Jeremiah 8:13</em> —
+   "there are no figs on the fig tree, and the leaves are withered." Anyone raised on the prophets hears the
+   tree and knows the subject is not botany.</p>
+   <p>So read Mark's sandwich as one sentence: <b>leaves without fruit, activity without justice, a structure in
+   full display that feeds no one.</b> The tree withers <em>from the roots</em>, and the very next thing Jesus
+   says is about a mountain going into the sea — spoken on the Bethany road, with the Temple Mount in view.</p>
+   <p>Note what the symbol refuses to stay pointed at. It works against the temple. It works against any
+   institution. It works against a person. That portability is the point.</p>`},
+  {n:"L4",name:"Spiritual",sub:"The path of becoming",c:"var(--jn)",w:"var(--jn-w)",body:`
+   <p>Turn it inward and the tree is the performed self: the part of a life that is all leaf. The credential,
+   the reputation, the visible practice — real, elaborate, and possible to maintain indefinitely without anything
+   growing on it. The accusation is not that the tree was evil. It's that it was <b>advertising.</b></p>
+   <p>What makes this passage unusual is that it names the fruit instead of leaving it abstract. Not belief, not
+   observance, not effort. It ends on <em>forgive</em> — and forgiveness is exactly the act that cannot be
+   performed for an audience, because it happens where no one can see it and shows up only later, as a change in
+   how someone treats the person who wronged them.</p>
+   <p>So the path here is subtraction, not addition. Nothing is asked to be added to the tree. Something is asked
+   to be <b>released</b> — and release is what the leaves were covering for.</p>`}]},
+
+ fish:{members:["Feeding the five thousand","Feeding the four thousand",
+   "The leaven; “Don't you understand yet?”"],
+  note:`<div class="nolayer" style="border-style:solid;border-left:3px solid var(--mt);background:var(--mt-w)">
+    <b>Two feedings, not one told twice.</b> Mark and Matthew carry both and keep every number distinct; Luke and
+    John carry only the first. The old habit of calling the second a garbled duplicate hits a hard problem — in
+    Mark 8:19–21 Jesus <em>quizzes the disciples on both sets of numbers</em>, and they answer correctly: twelve,
+    then seven. Whoever wrote that knew there were two and wanted you counting. Search
+    <b>κόφινος</b> and <b>σπυρίς</b> above: six occurrences and four, and they never once cross.</div>`,
+  layers:[
+  {n:"L1",name:"Historical",sub:"What can be established",c:"var(--ink-3)",w:"transparent",body:`
+   <p>The geography is checkable and it is doing work. The first feeding sits in the Jewish territory around the
+   Sea of Galilee. Between the two, Mark sends Jesus north to <b>Tyre and Sidon</b> — Phoenician, gentile — and
+   back through the <b>Decapolis</b>, a league of ten Hellenistic cities east and south of the lake. The second
+   feeding happens on that side of the map.</p>
+   <p>The crowd figures follow ancient convention: "five thousand men, besides women and children" counts adult
+   males, as muster lists did. Barley, named in John, was the cheap grain — the poor ate barley.</p>
+   <p>And the two basket words name ordinary household objects, not literary flourishes. Roman satirists mock
+   Jewish travellers for the <em>cophinus</em> they carry; Juvenal makes a joke of it. Whichever basket a writer
+   named, a first-century reader pictured a specific object.</p>`},
+  {n:"L2",name:"Literal",sub:"What the text says",c:"var(--lk)",w:"var(--lk-w)",body:`
+   <p>A crowd has followed him somewhere with no food. He asks what's on hand. He takes it, gives thanks, breaks
+   it, hands it to the disciples, who hand it to the people. Everyone eats. The leftovers are gathered, and the
+   leftovers are larger than the original supply.</p>
+   <p>Then it happens again, with different numbers — and the second time the disciples ask the same despairing
+   question they asked the first time: where would we get bread here?</p>
+   <p>Which is what Mark 8 is about. In a boat, worrying that they forgot bread — <em>with a loaf sitting in the
+   boat</em> — they get cross-examined:</p>
+   <p class="q">"When I broke the five loaves among the five thousand, how many baskets did you take up?" —
+   "Twelve." — "When the seven loaves fed the four thousand, how many?" — "Seven." — "Don't you understand yet?"</p>
+   <p>They have the data and produce it on demand. <b>The rebuke is not for forgetting. It's for knowing the
+   numbers and drawing nothing from them.</b></p>`},
+  {n:"L3",name:"Symbolic",sub:"The pattern beneath",c:"var(--mt)",w:"var(--mt-w)",body:`
+   <p>Take the quiz seriously as an instruction and the arithmetic opens. <b>Twelve</b> is never a neutral quantity
+   in this literature — twelve tribes, twelve stones, twelve gates. <b>Seven</b> is completion, and specifically the
+   seven nations of Canaan in <em>Deuteronomy 7:1</em>, shorthand for everyone who was not Israel.</p>
+   <p>So the two feedings are the same act performed on both sides of a boundary, and the leftovers are counted in
+   the currency of whoever was fed. Twelve baskets on the Jewish shore, seven on the gentile one — and the
+   <em>kophinos</em> and the <em>spyris</em> keep the two ledgers from mixing. The data above shows they never
+   blur, across four gospels.</p>
+   <p>There is also the shape of the act, four verbs repeated each time — <b>took, blessed, broke, gave</b> — the
+   sequence the church will later perform at a table every week. The feeding stories rehearse a liturgy before
+   anyone has written one.</p>
+   <p>And the arithmetic runs the wrong way on purpose. Less goes in than comes out. <b>The surplus appears after
+   the breaking</b>, never before it.</p>`},
+  {n:"L4",name:"Spiritual",sub:"The path of becoming",c:"var(--jn)",w:"var(--jn-w)",body:`
+   <p>Strip the miracle and the mechanism still stands, because the story is unusually explicit about the order of
+   operations. Nothing multiplies in anyone's hands. It multiplies <b>in transit</b> — after it is given away,
+   while it is moving between people. Held, five loaves stay five.</p>
+   <p>The disciples' error is worth sitting with, because it's the ordinary one. They had watched abundance arrive
+   out of almost nothing, could recite the figures accurately, and then hit the identical shortage and felt the
+   identical panic. <b>Experience had not become understanding.</b> That gap — knowing a thing and being unchanged
+   by it — is most of what stalls anyone's inner life, and it is exactly what the question in the boat is pointed at.</p>
+   <p>Then the harder half. The lesson is taught twice, deliberately, on both sides of a border, because the second
+   telling is the one that costs something: the same generosity extended to the people on the other side.
+   <em>Anyone</em> will feed their own crowd.</p>
+   <p class="q">Twelve for your own. Seven for everyone else. The path is the second number.</p>`}]}
+};
+const LAYERED={};
+Object.entries(STUDY).forEach(([k,s])=>s.members.forEach(t=>LAYERED[t]=k));
+
+/* ---------- state ---------- */
+let CUR=HARM.find(p=>p.title==="Cursing the fig tree")||HARM[0];
+let MODE="en", FILTER="all", Q="", LI=0, LEM=null;
+
+/* ---------- sidebar ---------- */
+function renderList(){
+  const q=Q.trim().toLowerCase();
+  const rows=HARM.filter(p=>{
+    if(q&&!(p.title.toLowerCase().includes(q)||p.div.toLowerCase().includes(q)||
+       Object.entries(p.refs).some(([g,r])=>(NAME[g]+" "+r.ref).toLowerCase().includes(q)))) return false;
+    if(FILTER==="all")return true;
+    if(FILTER==="L")return !!LAYERED[p.title];
+    return trad(p)===+FILTER;
+  });
+  let html="",div=null;
+  rows.forEach(p=>{
+    if(p.div!==div){div=p.div;html+=`<div class="divlabel">${div}</div>`;}
+    const gs=GOSPELS.filter(g=>p.refs[g]).map(g=>
+      `<span style="color:var(${VAR[g]})">${AB[g]}</span>`).join("");
+    html+=`<button class="pitem" data-id="${p.id}" aria-current="${p.id===CUR.id}">
+      ${esc(p.title)}<span class="gs">${gs}${LAYERED[p.title]?' <span class="lay">◆</span>':""}</span></button>`;
+  });
+  $("list").innerHTML=html||`<div class="divlabel">no matches</div>`;
+}
+$("list").onclick=e=>{const b=e.target.closest(".pitem");if(!b)return;
+  CUR=HARM.find(p=>p.id===b.dataset.id);LI=0;render();
+  document.querySelector("main").scrollIntoView({behavior:"smooth",block:"start"});};
+$("q").oninput=e=>{Q=e.target.value;renderList();};
+$("filters").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+  FILTER=b.dataset.f;[...$("filters").children].forEach(x=>x.setAttribute("aria-pressed",x===b));renderList();};
+
+/* ---------- context ---------- */
+function renderCtx(){
+  $("ctx").innerHTML=GOSPELS.map(g=>{
+    const st=`--gc:var(${VAR[g]});--gw:var(${VAR[g]}-w)`;
+    if(!CUR.refs[g]) return `<div class="ctxcol none" style="${st}">
+      <h4>${NAME[g]}</h4><div class="empty">∅ does not carry this</div></div>`;
+    const i=IDX[g][CUR.id],s=SEQ[g];
+    const row=(p,cls,arrow)=>p?`<div class="ctxrow ${cls}"><span class="arr">${arrow}</span>${esc(p.title)}</div>`:"";
+    return `<div class="ctxcol" style="${st}"><h4>${NAME[g]}</h4>
+      ${row(s[i-1],"","↑ before")}
+      <div class="ctxrow here"><span class="arr">${esc(CUR.refs[g].ref)}</span>${esc(CUR.title)}</div>
+      ${row(s[i+1],"","↓ after")}</div>`;
+  }).join("");
+  const st=STUDY[LAYERED[CUR.title]];
+  $("structnote").innerHTML=st?`<div style="margin-top:13px">${st.note}</div>`:"";
+}
+
+/* ---------- parallel ---------- */
+function renderParallel(){
+  const have=GOSPELS.filter(g=>CUR.refs[g]);
+  const base=have[0];
+  $("basenote").textContent=have.length>1?`base column · ${NAME[base]}`:"single attestation";
+  const hil=LEM!=null?new Set(occurrences(LEM).map(o=>norm(o.surface))):null;
+  let baseWords=null;
+  if(have.length>1){
+    baseWords=[];
+    if(MODE==="en") expand(CUR.refs[base].ranges,base).forEach(v=>
+      v.t.split(/\s+/).filter(Boolean).forEach(w=>baseWords.push(w)));
+    else expandGk(CUR.refs[base].ranges,base).verses.forEach(v=>
+      v.w.forEach(w=>baseWords.push(w[0])));
+  }
+  $("parallel").innerHTML=GOSPELS.map(g=>{
+    const st=`--gc:var(${VAR[g]});--gw:var(${VAR[g]}-w)`;
+    const r=CUR.refs[g];
+    const head=`<div class="pcol-head"><span class="g">${NAME[g]}</span>
+      <span class="r">${r?esc(r.ref.includes(":")?NAME[g]+" "+r.ref:r.ref):"—"}</span></div>`;
+    if(!r) return `<div class="pcol" style="${st}">${head}
+      <div class="absent">∅&nbsp; ${NAME[g]} does not carry this unit.</div></div>`;
+    let body,warn="";
+    if(MODE==="en"){
+      const vs=expand(r.ranges,g);
+      body=weave(vs,g===base?null:baseWords,v=>v.t.split(/\s+/).filter(Boolean),hil);
+    }else{
+      const {verses,miss}=expandGk(r.ranges,g);
+      if(!verses.length) return `<div class="pcol" style="${st}">${head}
+        <div class="absent">No SBLGNT text — these verses are absent from the critical Greek edition.</div></div>`;
+      body=weave(verses,g===base?null:baseWords,v=>v.w.map(w=>w[0]),hil);
+      if(miss.length) warn=`<div class="nogk">⚠ ${NAME[g]} ${miss.join(", ")} —
+        present in the Byzantine/KJV tradition, absent from SBLGNT.</div>`;
+    }
+    return `<div class="pcol" style="${st}">${head}
+      <p class="ptext${MODE==="gk"?" gk":""}">${body}</p>${warn}</div>`;
+  }).join("");
+}
+$("tEn").onclick=()=>{MODE="en";syncMode();};
+$("tGk").onclick=()=>{MODE="gk";syncMode();};
+function syncMode(){$("tEn").setAttribute("aria-pressed",MODE==="en");
+  $("tGk").setAttribute("aria-pressed",MODE==="gk");renderParallel();}
+
+/* ---------- word study ---------- */
+function renderChips(){
+  $("chips").innerHTML=CHIPS.map(([l,en])=>
+    `<button data-l="${l}" aria-pressed="${LEMI[l]===LEM}">${l}<span class="en">${en}</span></button>`).join("")
+    +`<input id="lq" type="search" placeholder="any lemma…" autocomplete="off">`;
+  $("chips").onclick=e=>{const b=e.target.closest("button[data-l]");if(!b)return;
+    const id=LEMI[b.dataset.l];LEM=(LEM===id?null:id);renderChips();renderWS();renderParallel();};
+  const inp=$("lq");
+  inp.oninput=e=>{const v=e.target.value.trim();
+    if(!v){LEM=null;renderWS();renderParallel();return;}
+    const hit=GK.lemmas.find(l=>l===v)||GK.lemmas.find(l=>l.startsWith(v));
+    if(hit!==undefined){LEM=LEMI[hit];renderWS();renderParallel();}};
+}
+function renderWS(){
+  if(LEM==null){$("wsres").innerHTML=
+    `<div class="wscount">Pick a lemma to count every occurrence across the four gospels and highlight it in the text above.</div>`;return;}
+  const occ=occurrences(LEM),lemma=GK.lemmas[LEM];
+  const per={};GOSPELS.forEach(g=>per[g]=occ.filter(o=>o.g===g).length);
+  const max=Math.max(1,...Object.values(per));
+  const dist=GOSPELS.map(g=>`<div class="distcol" style="--gc:var(${VAR[g]})">
+      <div class="distbar" style="height:${Math.round(100*per[g]/max)}%"></div>
+      <div class="distlab">${AB[g]} ${per[g]}</div></div>`).join("");
+  const rows=occ.map(o=>`<button class="occrow" data-g="${o.g}" data-c="${o.c}" data-v="${o.v}"
+      style="--gc:var(${VAR[o.g]})"><span class="ref">${AB[o.g]} ${o.c}:${o.v}</span>
+      <span class="frag">${o.frag}</span></button>`).join("");
+  $("wsres").innerHTML=`<div class="wscount"><b>${occ.length}</b> occurrence${occ.length===1?"":"s"}
+    of <span class="gk" style="font-family:var(--serif);font-size:15px">${lemma}</span>
+    across 64,499 words</div><div class="dist">${dist}</div><div class="occ">${rows}</div>`;
+  $("wsres").onclick=e=>{const b=e.target.closest(".occrow");if(!b)return;
+    const g=b.dataset.g,c=+b.dataset.c,v=+b.dataset.v;
+    const p=HARM.find(p=>p.refs[g]&&p.refs[g].ranges.some(([[c1,v1],[c2,v2]])=>{
+      const k=c*1000+v;return k>=c1*1000+v1&&k<=c2*1000+v2;}));
+    if(p){CUR=p;LI=0;render();window.scrollTo({top:0,behavior:"smooth"});}};
+}
+
+/* ---------- layers ---------- */
+function renderLayers(){
+  const key=LAYERED[CUR.title], z=$("layerzone");
+  if(!key){ $("laynote").textContent="not yet written for this pericope";
+    z.innerHTML=`<div class="nolayer">This pericope has <b>text, structure and word tools</b> but no
+      four-layer commentary yet. Two studies are written so far — <b>the Fig Tree &amp; Temple</b> and
+      <b>the Two Feedings</b>. Filter the list by <b>◆ Layered</b> to find them.</div>`;return;}
+  const s=STUDY[key];
+  $("laynote").textContent=s.members.length+" pericopes in this study";
+  z.innerHTML=`<div class="layers" id="lay">${s.layers.map((l,i)=>
+    `<button aria-selected="${i===LI}" data-i="${i}" style="--lc:${l.c};--lw:${l.w}">
+      <span class="n">${l.n}</span> ${l.name}</button>`).join("")}</div>
+    <div class="layerbody" id="lb"></div>`;
+  const l=s.layers[LI],lb=$("lb");
+  lb.style.setProperty("--lc",l.c);
+  lb.innerHTML=`<h3>${l.name}</h3><div class="lsub">${l.n} · ${l.sub}</div>${l.body}`;
+  $("lay").onclick=e=>{const b=e.target.closest("button");if(!b)return;LI=+b.dataset.i;renderLayers();};
+}
+
+/* ---------- render ---------- */
+function render(){
+  $("crumb").textContent=CUR.div;
+  $("title").textContent=CUR.title;
+  const t=trad(CUR),[lab,cls]=TRADLABEL[t];
+  $("badges").innerHTML=`<span class="badge ${cls}">${lab}</span>`+
+    GOSPELS.filter(g=>CUR.refs[g]).map(g=>
+      `<span class="badge" style="color:var(${VAR[g]})">${NAME[g]} ${esc(CUR.refs[g].ref)}</span>`).join("")+
+    (LAYERED[CUR.title]?`<span class="badge" style="color:var(--jn)">◆ four layers</span>`:"");
+  renderList();renderCtx();renderParallel();renderLayers();
+}
+
+/* =================== MAP VIEW =================== */
+const VB={lon0:34.40,lon1:36.40,lat0:31.35,lat1:33.70};
+const KX=Math.cos(((VB.lat0+VB.lat1)/2)*Math.PI/180);
+const MW=640, MH=Math.round(MW*((VB.lat1-VB.lat0)/((VB.lon1-VB.lon0)*KX)));
+const px=lon=>(lon-VB.lon0)*KX/((VB.lon1-VB.lon0)*KX)*MW;
+const py=lat=>(VB.lat1-lat)/(VB.lat1-VB.lat0)*MH;
+const PBY={}; PLC.places.forEach(p=>PBY[p.name]=p);
+/* invert pericope->places into place->pericopes */
+const PPER={};
+Object.entries(PLINK).forEach(([pid,names])=>names.forEach(n=>(PPER[n]=PPER[n]||[]).push(pid)));
+const nPer=n=>(PPER[n]||[]).length;
+function haversine(a,b){
+  const R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLon=(b.lon-a.lon)*Math.PI/180;
+  const la=a.lat*Math.PI/180,lb=b.lat*Math.PI/180;
+  const x=Math.sin(dLat/2)**2+Math.sin(dLon/2)**2*Math.cos(la)*Math.cos(lb);
+  return 2*R*Math.asin(Math.sqrt(x));
+}
+let ACTJ=new Set(["galilee"]), SELP=null;
+
+function pathOf(pts,off){
+  if(pts.length<2) return "";
+  let d=`M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for(let i=1;i<pts.length;i++){
+    const [x0,y0]=pts[i-1],[x1,y1]=pts[i];
+    const mx=(x0+x1)/2,my=(y0+y1)/2,dx=x1-x0,dy=y1-y0,len=Math.hypot(dx,dy)||1;
+    const cx=mx-dy/len*off, cy=my+dx/len*off;
+    d+=` Q${cx.toFixed(1)},${cy.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`;
+  }
+  return d;
+}
+function renderMap(){
+  const shown=new Set();
+  ACTJ.forEach(id=>{const j=PLC.journeys.find(x=>x.id===id);
+    if(j) j.stops.forEach(s=>shown.add(s));});
+  const coast=GEO.coast.map(s=>
+    `<path class="coast" d="M${s.map(p=>px(p[0]).toFixed(1)+","+py(p[1]).toFixed(1)).join("L")}"/>`).join("");
+  const lakes=GEO.lakes.map(l=>
+    `<path class="lake" d="M${l.ring.map(p=>px(p[0]).toFixed(1)+","+py(p[1]).toFixed(1)).join("L")}Z"/>`).join("");
+  const rivers=GEO.rivers.map(r=>
+    `<path class="river" d="M${r.line.map(p=>px(p[0]).toFixed(1)+","+py(p[1]).toFixed(1)).join("L")}"/>`).join("");
+  const jp=[...ACTJ].map((id,k)=>{
+    const j=PLC.journeys.find(x=>x.id===id); if(!j) return "";
+    const pts=j.stops.map(s=>PBY[s]).filter(Boolean).map(p=>[px(p.lon),py(p.lat)]);
+    return `<path class="jpath" d="${pathOf(pts,6+k*5)}" stroke="var(${j.color})"
+      stroke-dasharray="${6+k*2} ${4+k}"/>`;
+  }).join("");
+  const dots=PLC.places.map(p=>{
+    const x=px(p.lon),y=py(p.lat);
+    if(x<-20||x>MW+20||y<-20||y>MH+20) return "";
+    const on=shown.has(p.name), sel=SELP===p.name;
+    const n=nPer(p.name);
+    const big=n>=4||sel||on;
+    const r=sel?5.5:(on?4.2:3);
+    const fill=p.cert===3?"var(--ink)":"var(--raised)";
+    const stroke=sel?"var(--mk)":(on?"var(--ink)":"var(--ink-3)");
+    const dash=p.cert===1?'stroke-dasharray="2 1.6"':"";
+    const lab=(big||n>=3)?`<text class="plabel${big?" big":""}" x="${(x+7).toFixed(1)}"
+        y="${(y+3).toFixed(1)}">${p.name}</text>`:"";
+    return `<g class="pdot" data-p="${p.name}">
+      <circle class="hit" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11"/>
+      <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${fill}"
+        stroke="${stroke}" stroke-width="${sel?2.2:1.4}" ${dash}/>${lab}</g>`;
+  }).join("");
+  const wl=`<text class="waterlab" x="${px(35.05).toFixed(0)}" y="${py(32.55).toFixed(0)}"
+      transform="rotate(-62 ${px(35.05).toFixed(0)} ${py(32.55).toFixed(0)})">The Great Sea</text>
+    <text class="waterlab" x="${px(35.63).toFixed(0)}" y="${py(32.80).toFixed(0)}">Sea of Galilee</text>
+    <text class="waterlab" x="${px(35.54).toFixed(0)}" y="${py(31.52).toFixed(0)}">Dead Sea</text>`;
+  $("mapwrap").innerHTML=`<svg viewBox="0 0 ${MW} ${MH}" role="img"
+      aria-label="Map of the gospel country with journey routes">
+    <rect width="${MW}" height="${MH}" fill="var(--raised)"/>
+    ${lakes}${rivers}${coast}${jp}${wl}${dots}</svg>`;
+  $("mapwrap").onclick=e=>{const g=e.target.closest(".pdot");if(!g)return;
+    SELP=(SELP===g.dataset.p?null:g.dataset.p);renderMap();renderPlaceCard();};
+  $("geostat").textContent=Object.keys(PPER).length+" places cited in the text";
+}
+function renderJToggles(){
+  $("jtoggles").innerHTML=PLC.journeys.map(j=>
+    `<button data-j="${j.id}" aria-pressed="${ACTJ.has(j.id)}" style="--jc:var(${j.color})">
+      <span class="dash"></span>${j.name}<span class="n">${j.stops.length} stops</span></button>`).join("");
+  $("jtoggles").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+    const id=b.dataset.j; ACTJ.has(id)?ACTJ.delete(id):ACTJ.add(id);
+    renderJToggles();renderMap();renderNote();renderElev();};
+}
+function renderNote(){
+  const id=[...ACTJ][ACTJ.size-1];
+  const j=PLC.journeys.find(x=>x.id===id);
+  $("mapnote").innerHTML=j?`<div class="mapnote" style="--jc:var(${j.color})"><b>${j.name}.</b> ${j.note}</div>`:"";
+}
+function renderPlaceCard(){
+  if(!SELP){ $("placecard").innerHTML=
+    `<div class="placecard"><h3>Pick a place</h3><div class="placemeta">43 sites</div>
+     <div style="font-size:13.5px;color:var(--ink-2);line-height:1.55">Every dot links to the pericopes whose text <b>names</b> it — which is not always where the scene is set. Hollow dots with a dashed ring are <b>disputed</b> — sites with rival candidates.</div></div>`;
+    return;}
+  const p=PBY[SELP], ids=PPER[SELP]||[];
+  const CERT={3:["securely identified","c3"],2:["probable","c2"],1:["disputed site","c1"]};
+  const [ctxt,ccls]=CERT[p.cert];
+  const rows=ids.map(id=>{const q=HARM.find(x=>x.id===id); if(!q) return "";
+    const refs=GOSPELS.filter(g=>q.refs[g]).map(g=>AB[g]+" "+q.refs[g].ref).join(" · ");
+    return `<button data-id="${id}">${esc(q.title)}<span class="pr">${esc(refs)}</span></button>`;}).join("");
+  $("placecard").innerHTML=`<div class="placecard">
+    <h3>${p.name}</h3>
+    <div class="placemeta">
+      <span>${p.lat.toFixed(3)}°N ${p.lon.toFixed(3)}°E</span>
+      <span>${p.elev>=0?"+":""}${p.elev} m</span>
+      <span>${p.region}</span>
+      <span class="certbadge ${ccls}">${ctxt}</span>
+    </div>
+    ${ids.length?`<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px">${ids.length} pericope${ids.length===1?"":"s"} naming it</div><div class="plist">${rows}</div>`
+      :`<div style="font-size:13px;color:var(--ink-3)">Named in no pericope by this index — it appears here as geography, not as a setting.</div>`}
+    </div>`;
+  $("placecard").onclick=e=>{const b=e.target.closest("button[data-id]");if(!b)return;
+    CUR=HARM.find(x=>x.id===b.dataset.id);LI=0;setView("syn");render();window.scrollTo({top:0});};
+}
+/* ---- elevation profile: single series, diverging about a real zero (sea level) ---- */
+function renderElev(){
+  const id=[...ACTJ][ACTJ.size-1];
+  const j=PLC.journeys.find(x=>x.id===id);
+  if(!j){ $("elevbox").innerHTML=""; return; }
+  const stops=j.stops.map(s=>PBY[s]).filter(Boolean);
+  if(stops.length<2){ $("elevbox").innerHTML=""; return; }
+  let d=0; const pts=stops.map((p,i)=>{ if(i) d+=haversine(stops[i-1],p); return {name:p.name,km:d,e:p.elev}; });
+  const W=560,H=150,L=40,R=12,T=14,B=26;
+  const maxKm=Math.max(1,pts[pts.length-1].km);
+  const es=pts.map(p=>p.e), lo=Math.min(-60,...es), hi=Math.max(120,...es);
+  const X=k=>L+(k/maxKm)*(W-L-R), Y=e=>T+(hi-e)/(hi-lo)*(H-T-B);
+  const y0=Y(0);
+  const line=pts.map((p,i)=>(i?"L":"M")+X(p.km).toFixed(1)+","+Y(p.e).toFixed(1)).join("");
+  const areaAll=line+`L${X(maxKm).toFixed(1)},${y0.toFixed(1)}L${X(0).toFixed(1)},${y0.toFixed(1)}Z`;
+  const ticks=[hi,0,lo].map(v=>`<line class="egrid" x1="${L}" x2="${W-R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}"/>
+      <text class="eaxis" x="${L-6}" y="${(Y(v)+3).toFixed(1)}" text-anchor="end">${Math.round(v)}</text>`).join("");
+  // label only the extremes and the endpoints
+  const loI=es.indexOf(Math.min(...es)), hiI=es.indexOf(Math.max(...es));
+  const keep=new Set([0,pts.length-1,loI,hiI]);
+  const dots=pts.map((p,i)=>{
+    const x=X(p.km),y=Y(p.e);
+    const lab=keep.has(i)?`<text class="elab" x="${x.toFixed(1)}" y="${(y+(p.e>=0?-9:16)).toFixed(1)}"
+        text-anchor="${i===0?"start":i===pts.length-1?"end":"middle"}">${p.name} ${p.e>=0?"+":""}${p.e}m</text>`:"";
+    return `<circle class="edot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5"><title>${p.name} · ${p.e} m · ${p.km.toFixed(0)} km</title></circle>${lab}`;
+  }).join("");
+  const drop=Math.max(...es)-Math.min(...es);
+  $("elevbox").innerHTML=`<div class="elev">
+    <h4>Elevation along the route</h4>
+    <div class="esub">${j.name} · ${maxKm.toFixed(0)} km · ${drop.toLocaleString()} m between highest and lowest</div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Elevation profile for ${j.name}">
+      <defs>
+        <clipPath id="above"><rect x="0" y="0" width="${W}" height="${y0.toFixed(1)}"/></clipPath>
+        <clipPath id="below"><rect x="0" y="${y0.toFixed(1)}" width="${W}" height="${(H-y0).toFixed(1)}"/></clipPath>
+      </defs>
+      ${ticks}
+      <path d="${areaAll}" fill="var(--elev-hi)" opacity=".26" clip-path="url(#above)"/>
+      <path d="${areaAll}" fill="var(--elev-lo)" opacity=".26" clip-path="url(#below)"/>
+      <line class="ezero" x1="${L}" x2="${W-R}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>
+      <text class="eaxis" x="${W-R}" y="${(y0-5).toFixed(1)}" text-anchor="end">sea level</text>
+      <path class="eline" d="${line}"/>
+      ${dots}
+      <text class="eaxis" x="${L}" y="${H-6}">0 km</text>
+      <text class="eaxis" x="${W-R}" y="${H-6}" text-anchor="end">${maxKm.toFixed(0)} km</text>
+    </svg></div>`;
+}
+/* ---- view switching ---- */
+let VIEW="syn";
+function setView(v){
+  VIEW=v;
+  $("synview").hidden=(v!=="syn"); $("mapview").hidden=(v!=="map");
+  [...$("vswitch").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v));
+  if(v==="map"){renderJToggles();renderMap();renderNote();renderPlaceCard();renderElev();}
+}
+$("vswitch").onclick=e=>{const b=e.target.closest("button");if(!b)return;setView(b.dataset.v);};
+
+$("stat").innerHTML=`<span><b>209</b> pericopes</span><span><b>3,779</b> verses</span><span><b>64,499</b> Greek words</span>`;
+renderChips();renderWS();render();
+</script>

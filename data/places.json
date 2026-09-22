@@ -1,0 +1,591 @@
+{
+"places": [
+{
+"name": "Jerusalem",
+"lat": 31.7781,
+"lon": 35.2356,
+"elev": 754,
+"cert": 3,
+"region": "Judea",
+"alias": [
+"Jerusalem",
+"Zion"
+]
+},
+{
+"name": "Bethlehem",
+"lat": 31.7054,
+"lon": 35.2024,
+"elev": 775,
+"cert": 3,
+"region": "Judea",
+"alias": [
+"Bethlehem"
+]
+},
+{
+"name": "Bethany",
+"lat": 31.7719,
+"lon": 35.2631,
+"elev": 710,
+"cert": 3,
+"region": "Judea",
+"alias": [
+"Bethany"
+]
+},
+{
+"name": "Bethphage",
+"lat": 31.7761,
+"lon": 35.2531,
+"elev": 730,
+"cert": 2,
+"region": "Judea",
+"alias": [
+"Bethphage"
+]
+},
+{
+"name": "Mount of Olives",
+"lat": 31.7784,
+"lon": 35.2464,
+"elev": 826,
+"cert": 3,
+"region": "Judea",
+"alias": [
+"Mount of Olives",
+"Olivet"
+]
+},
+{
+"name": "Gethsemane",
+"lat": 31.7794,
+"lon": 35.2397,
+"elev": 700,
+"cert": 2,
+"region": "Judea",
+"alias": [
+"Gethsemane"
+]
+},
+{
+"name": "Golgotha",
+"lat": 31.7784,
+"lon": 35.2297,
+"elev": 760,
+"cert": 2,
+"region": "Judea",
+"alias": [
+"Golgotha",
+"Calvary",
+"skull"
+]
+},
+{
+"name": "Jericho",
+"lat": 31.8569,
+"lon": 35.4606,
+"elev": -258,
+"cert": 3,
+"region": "Judea",
+"alias": [
+"Jericho"
+]
+},
+{
+"name": "Emmaus",
+"lat": 31.8397,
+"lon": 35.0219,
+"elev": 350,
+"cert": 1,
+"region": "Judea",
+"alias": [
+"Emmaus"
+]
+},
+{
+"name": "Ephraim",
+"lat": 31.9333,
+"lon": 35.2833,
+"elev": 700,
+"cert": 1,
+"region": "Judea",
+"alias": [
+"Ephraim"
+]
+},
+{
+"name": "Hebron",
+"lat": 31.5326,
+"lon": 35.0998,
+"elev": 930,
+"cert": 3,
+"region": "Judea",
+"alias": [
+"Hebron"
+]
+},
+{
+"name": "Ein Karem",
+"lat": 31.7658,
+"lon": 35.1628,
+"elev": 650,
+"cert": 1,
+"region": "Judea",
+"alias": [
+"hill country"
+]
+},
+{
+"name": "Wilderness of Judea",
+"lat": 31.74,
+"lon": 35.38,
+"elev": 200,
+"cert": 2,
+"region": "Judea",
+"alias": [
+"wilderness"
+]
+},
+{
+"name": "Bethany beyond Jordan",
+"lat": 31.8372,
+"lon": 35.5453,
+"elev": -370,
+"cert": 1,
+"region": "Jordan Valley",
+"alias": [
+"beyond the Jordan",
+"Bethabara"
+]
+},
+{
+"name": "Jordan River",
+"lat": 31.9,
+"lon": 35.55,
+"elev": -350,
+"cert": 3,
+"region": "Jordan Valley",
+"alias": [
+"Jordan"
+]
+},
+{
+"name": "Salim / Aenon",
+"lat": 32.32,
+"lon": 35.56,
+"elev": -200,
+"cert": 1,
+"region": "Jordan Valley",
+"alias": [
+"Aenon",
+"Salim"
+]
+},
+{
+"name": "Machaerus",
+"lat": 31.5661,
+"lon": 35.6244,
+"elev": 700,
+"cert": 2,
+"region": "Perea",
+"alias": [
+"Machaerus"
+]
+},
+{
+"name": "Nazareth",
+"lat": 32.7019,
+"lon": 35.2978,
+"elev": 350,
+"cert": 3,
+"region": "Galilee",
+"alias": [
+"Nazareth"
+]
+},
+{
+"name": "Capernaum",
+"lat": 32.8808,
+"lon": 35.5752,
+"elev": -210,
+"cert": 3,
+"region": "Galilee",
+"alias": [
+"Capernaum"
+]
+},
+{
+"name": "Cana",
+"lat": 32.7461,
+"lon": 35.3419,
+"elev": 250,
+"cert": 1,
+"region": "Galilee",
+"alias": [
+"Cana"
+]
+},
+{
+"name": "Bethsaida",
+"lat": 32.9106,
+"lon": 35.6306,
+"elev": -200,
+"cert": 1,
+"region": "Galilee",
+"alias": [
+"Bethsaida"
+]
+},
+{
+"name": "Chorazin",
+"lat": 32.9106,
+"lon": 35.5642,
+"elev": -30,
+"cert": 3,
+"region": "Galilee",
+"alias": [
+"Chorazin",
+"Chorazim"
+]
+},
+{
+"name": "Magdala",
+"lat": 32.8247,
+"lon": 35.5158,
+"elev": -200,
+"cert": 2,
+"region": "Galilee",
+"alias": [
+"Magdala",
+"Magdalene"
+]
+},
+{
+"name": "Tiberias",
+"lat": 32.7922,
+"lon": 35.5312,
+"elev": -200,
+"cert": 3,
+"region": "Galilee",
+"alias": [
+"Tiberias"
+]
+},
+{
+"name": "Nain",
+"lat": 32.6317,
+"lon": 35.3444,
+"elev": 200,
+"cert": 3,
+"region": "Galilee",
+"alias": [
+"Nain"
+]
+},
+{
+"name": "Gennesaret",
+"lat": 32.845,
+"lon": 35.53,
+"elev": -200,
+"cert": 2,
+"region": "Galilee",
+"alias": [
+"Gennesaret"
+]
+},
+{
+"name": "Sea of Galilee",
+"lat": 32.82,
+"lon": 35.59,
+"elev": -211,
+"cert": 3,
+"region": "Galilee",
+"alias": [
+"Sea of Galilee",
+"sea of Tiberias",
+"lake"
+]
+},
+{
+"name": "Mount Tabor",
+"lat": 32.6869,
+"lon": 35.3906,
+"elev": 588,
+"cert": 2,
+"region": "Galilee",
+"alias": [
+"Tabor"
+]
+},
+{
+"name": "Kursi (Gergesa)",
+"lat": 32.8244,
+"lon": 35.6497,
+"elev": -190,
+"cert": 1,
+"region": "Decapolis",
+"alias": [
+"Gerasenes",
+"Gadarenes",
+"Gergesenes"
+]
+},
+{
+"name": "Caesarea Philippi",
+"lat": 33.2486,
+"lon": 35.6944,
+"elev": 350,
+"cert": 3,
+"region": "Iturea",
+"alias": [
+"Caesarea Philippi"
+]
+},
+{
+"name": "Mount Hermon",
+"lat": 33.4164,
+"lon": 35.8572,
+"elev": 2814,
+"cert": 3,
+"region": "Iturea",
+"alias": [
+"Hermon",
+"high mountain"
+]
+},
+{
+"name": "Tyre",
+"lat": 33.2705,
+"lon": 35.2038,
+"elev": 10,
+"cert": 3,
+"region": "Phoenicia",
+"alias": [
+"Tyre"
+]
+},
+{
+"name": "Sidon",
+"lat": 33.5571,
+"lon": 35.3719,
+"elev": 10,
+"cert": 3,
+"region": "Phoenicia",
+"alias": [
+"Sidon"
+]
+},
+{
+"name": "Gadara",
+"lat": 32.6556,
+"lon": 35.6847,
+"elev": 350,
+"cert": 3,
+"region": "Decapolis",
+"alias": [
+"Gadara"
+]
+},
+{
+"name": "Gerasa",
+"lat": 32.2811,
+"lon": 35.8911,
+"elev": 585,
+"cert": 3,
+"region": "Decapolis",
+"alias": [
+"Gerasa"
+]
+},
+{
+"name": "Hippos",
+"lat": 32.7783,
+"lon": 35.66,
+"elev": 350,
+"cert": 2,
+"region": "Decapolis",
+"alias": [
+"Hippos"
+]
+},
+{
+"name": "Scythopolis",
+"lat": 32.5,
+"lon": 35.5,
+"elev": -120,
+"cert": 3,
+"region": "Decapolis",
+"alias": [
+"Beth Shean",
+"Scythopolis"
+]
+},
+{
+"name": "Sychar",
+"lat": 32.2139,
+"lon": 35.2806,
+"elev": 550,
+"cert": 1,
+"region": "Samaria",
+"alias": [
+"Sychar",
+"Jacob's well"
+]
+},
+{
+"name": "Mount Gerizim",
+"lat": 32.2,
+"lon": 35.2725,
+"elev": 881,
+"cert": 3,
+"region": "Samaria",
+"alias": [
+"this mountain",
+"Gerizim"
+]
+},
+{
+"name": "Samaria (Sebaste)",
+"lat": 32.2769,
+"lon": 35.1917,
+"elev": 430,
+"cert": 3,
+"region": "Samaria",
+"alias": [
+"Samaria"
+]
+},
+{
+"name": "Caesarea Maritima",
+"lat": 32.5,
+"lon": 34.8917,
+"elev": 5,
+"cert": 3,
+"region": "Coast",
+"alias": [
+"Caesarea"
+]
+},
+{
+"name": "Joppa",
+"lat": 32.0536,
+"lon": 34.7522,
+"elev": 30,
+"cert": 3,
+"region": "Coast",
+"alias": [
+"Joppa"
+]
+},
+{
+"name": "Dead Sea",
+"lat": 31.5,
+"lon": 35.47,
+"elev": -430,
+"cert": 3,
+"region": "Judea",
+"alias": [
+"Salt Sea"
+]
+}
+],
+"journeys": [
+{
+"id": "infancy",
+"name": "Infancy",
+"color": "--jn",
+"stops": [
+"Nazareth",
+"Bethlehem",
+"Jerusalem",
+"Bethlehem",
+"Nazareth"
+],
+"offmap": "Egypt",
+"note": "Matthew sends the family to Egypt and back; Luke sends them straight home to Nazareth. The gospels do not agree on this route."
+},
+{
+"id": "baptism",
+"name": "Baptism & temptation",
+"color": "--lk",
+"stops": [
+"Nazareth",
+"Bethany beyond Jordan",
+"Wilderness of Judea"
+],
+"note": "From the hills of Galilee down to the lowest river on earth — a descent of roughly 720 m."
+},
+{
+"id": "galilee",
+"name": "Early Galilean ministry",
+"color": "--mk",
+"stops": [
+"Nazareth",
+"Cana",
+"Capernaum",
+"Chorazin",
+"Bethsaida",
+"Gennesaret",
+"Nain"
+],
+"note": "Capernaum becomes the base of operations. Almost everything in Mark 1–6 happens within a day's walk of this shore."
+},
+{
+"id": "north",
+"name": "Northern withdrawal",
+"color": "--mt",
+"stops": [
+"Capernaum",
+"Tyre",
+"Sidon",
+"Kursi (Gergesa)",
+"Bethsaida",
+"Caesarea Philippi",
+"Mount Hermon"
+],
+"note": "The gentile arc. Between the two feedings Mark runs the whole circuit through Phoenicia and the Decapolis — which is why the second crowd is fed on foreign ground."
+},
+{
+"id": "tojerusalem",
+"name": "The road to Jerusalem",
+"color": "--lk",
+"stops": [
+"Capernaum",
+"Scythopolis",
+"Sychar",
+"Bethany beyond Jordan",
+"Jericho",
+"Bethany",
+"Jerusalem"
+],
+"note": "Luke's travel narrative — ten chapters of it. The last leg from Jericho climbs 1,012 m in about 24 km."
+},
+{
+"id": "passion",
+"name": "Passion week",
+"color": "--mk",
+"stops": [
+"Bethany",
+"Bethphage",
+"Mount of Olives",
+"Jerusalem",
+"Gethsemane",
+"Golgotha"
+],
+"note": "Six days inside a five-kilometre radius."
+},
+{
+"id": "resurrection",
+"name": "After the resurrection",
+"color": "--jn",
+"stops": [
+"Jerusalem",
+"Emmaus",
+"Jerusalem",
+"Sea of Galilee"
+],
+"note": "Luke keeps the appearances around Jerusalem; Matthew and John send the disciples back to Galilee. Another route the gospels do not agree on."
+}
+]
+}

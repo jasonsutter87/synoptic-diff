@@ -1,0 +1,572 @@
+<title>Synoptic Diff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F1F2EF; --raised:#FAFAF8; --sunk:#E7E9E4;
+  --ink:#171A1F; --ink-2:#464C54; --ink-3:#767D86;
+  --rule:#D5D8D2; --rule-2:#C2C6BE;
+
+  --rubric:#A93727;        /* Mark / the fig */
+  --gold:#8E6A1F;          /* Matthew / the temple */
+  --teal:#236A63;          /* Luke / faith */
+  --violet:#54488A;        /* John */
+  --rubric-wash:#A937271A; --gold-wash:#8E6A1F1A;
+  --teal-wash:#236A631A;  --violet-wash:#54488A1A;
+
+  --serif:"EB Garamond",Iowan Old Style,Palatino,Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#13151A; --raised:#1B1E24; --sunk:#0E1014;
+  --ink:#E8E6E0; --ink-2:#AFB4BB; --ink-3:#7C838C;
+  --rule:#2A2F36; --rule-2:#3A4049;
+  --rubric:#E07D6B; --gold:#D3A854; --teal:#54A79A; --violet:#9A8BCC;
+  --rubric-wash:#E07D6B22; --gold-wash:#D3A85422;
+  --teal-wash:#54A79A22; --violet-wash:#9A8BCC22;
+}}
+:root[data-theme="dark"]{
+  --paper:#13151A; --raised:#1B1E24; --sunk:#0E1014;
+  --ink:#E8E6E0; --ink-2:#AFB4BB; --ink-3:#7C838C;
+  --rule:#2A2F36; --rule-2:#3A4049;
+  --rubric:#E07D6B; --gold:#D3A854; --teal:#54A79A; --violet:#9A8BCC;
+  --rubric-wash:#E07D6B22; --gold-wash:#D3A85422;
+  --teal-wash:#54A79A22; --violet-wash:#9A8BCC22;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+
+/* ---------- masthead ---------- */
+header.mast{border-bottom:1px solid var(--rule-2);padding-block:26px 0;margin-bottom:26px}
+.mast-top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4.4vw,40px);
+  margin:0;letter-spacing:-.015em;text-wrap:balance}
+.sub{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3)}
+.blurb{max-width:64ch;color:var(--ink-2);margin:12px 0 22px;font-size:15.5px}
+.blurb b{color:var(--ink);font-weight:600}
+
+.switch{display:flex;gap:0;flex-wrap:wrap;margin-bottom:-1px}
+.switch button{font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;
+  background:none;border:1px solid transparent;border-bottom:none;color:var(--ink-3);
+  padding:11px 17px;border-radius:5px 5px 0 0;transition:color .15s}
+.switch button:hover{color:var(--ink)}
+.switch button[aria-selected="true"]{background:var(--raised);border-color:var(--rule-2);
+  color:var(--ink);box-shadow:0 2px 0 0 var(--raised)}
+.switch button:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+
+/* ---------- section furniture ---------- */
+section{margin-block:38px}
+.sec-head{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);
+  padding-bottom:7px;margin-bottom:18px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--serif);font-size:23px;font-weight:600;margin:0;letter-spacing:-.01em}
+.sec-head .note{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.04em}
+
+/* ---------- the synopsis board ---------- */
+.board-scroll{overflow-x:auto;padding-bottom:6px}
+.board{display:grid;gap:14px;min-width:620px;
+  grid-template-columns:repeat(var(--cols,3),minmax(0,1fr))}
+.col-head{font-family:var(--serif);font-size:19px;font-weight:600;padding-bottom:7px;
+  border-bottom:2px solid var(--gh,var(--rule-2));display:flex;align-items:baseline;
+  justify-content:space-between;gap:8px;margin-bottom:11px}
+.col-head .cnt{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);font-weight:400}
+.track{display:flex;flex-direction:column;gap:8px}
+
+.unit{position:relative;text-align:left;width:100%;cursor:pointer;font-family:inherit;
+  background:var(--raised);border:1px solid var(--rule-2);border-left:3px solid var(--uc,var(--ink-3));
+  border-radius:3px;padding:10px 12px 10px 13px;transition:box-shadow .15s,transform .15s}
+.unit:hover{box-shadow:0 2px 9px #0000001f;transform:translateY(-1px)}
+.unit[aria-pressed="true"]{box-shadow:0 0 0 2px var(--uc);}
+.unit:focus-visible{outline:2px solid var(--uc);outline-offset:2px}
+.unit.solo{background:repeating-linear-gradient(135deg,transparent,transparent 7px,var(--sunk) 7px,var(--sunk) 8px);
+  border-style:dashed}
+.unit .ulabel{font-size:14px;font-weight:500;line-height:1.35;display:block;color:var(--ink)}
+.unit .uref{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:4px;display:block}
+.unit .utag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--uc);border:1px solid currentColor;border-radius:2px;
+  padding:1px 5px;margin-top:6px}
+.gap{border:1px dashed var(--rule-2);border-radius:3px;padding:9px 12px;color:var(--ink-3);
+  font-family:var(--mono);font-size:11px;background:transparent}
+.daybar{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);border-top:1px solid var(--rule);padding-top:5px;margin-top:3px}
+
+.sandwich{display:flex;align-items:center;gap:9px;margin-top:13px;padding:10px 13px;
+  background:var(--rubric-wash);border-left:3px solid var(--rubric);border-radius:3px;
+  font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.sandwich b{color:var(--ink);font-weight:600}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:15px;font-family:var(--mono);
+  font-size:10.5px;color:var(--ink-3);letter-spacing:.03em}
+.legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.sw{width:19px;height:10px;border-radius:2px;display:inline-block;border:1px solid var(--rule-2)}
+
+/* ---------- parallel text / diff ---------- */
+.parallel{display:grid;gap:15px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.pcol{background:var(--raised);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  display:flex;flex-direction:column}
+.pcol-head{padding:9px 13px;border-bottom:1px solid var(--rule);display:flex;
+  justify-content:space-between;align-items:baseline;gap:8px;background:var(--gw,transparent)}
+.pcol-head .g{font-family:var(--serif);font-size:16.5px;font-weight:600;color:var(--gc,var(--ink))}
+.pcol-head .r{font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+.ptext{font-family:var(--serif);font-size:17px;line-height:1.66;padding:13px;margin:0;flex:1}
+.ptext .vn{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);vertical-align:super;
+  margin-right:2px;user-select:none}
+.uniq{background:var(--gw);border-bottom:1.5px solid var(--gc);border-radius:2px;
+  padding:0 1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.absent{padding:16px 13px;font-family:var(--mono);font-size:12px;color:var(--ink-3);
+  line-height:1.6;background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--sunk) 8px,var(--sunk) 9px)}
+.diffnote{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-bottom:13px;
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.diffnote .k{display:inline-block;width:11px;height:11px;border-radius:2px;border-bottom:1.5px solid var(--ink-3);background:var(--sunk)}
+
+/* ---------- apparatus (greek / numbers) ---------- */
+.app{background:var(--sunk);border:1px solid var(--rule);border-radius:4px;padding:16px 18px;margin-top:20px}
+.app h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 11px;font-weight:600}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+.tscroll{overflow-x:auto}
+th,td{text-align:left;padding:8px 11px 8px 0;border-bottom:1px solid var(--rule);font-size:14px}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600}
+td.num{font-family:var(--mono);font-weight:500;font-size:15px}
+.gk{font-family:var(--serif);font-size:16px}
+.hl-12{color:var(--teal);font-weight:600}
+.hl-7{color:var(--gold);font-weight:600}
+.app p{margin:11px 0 0;font-size:14px;color:var(--ink-2);max-width:72ch}
+.app p b{color:var(--ink);font-weight:600}
+
+/* ---------- four layers ---------- */
+.layers{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.layers button{cursor:pointer;font-family:var(--sans);font-size:13px;background:var(--raised);
+  border:1px solid var(--rule-2);border-radius:3px;padding:8px 13px;color:var(--ink-2);
+  display:flex;align-items:center;gap:8px;transition:border-color .15s,color .15s}
+.layers button:hover{color:var(--ink)}
+.layers button[aria-selected="true"]{border-color:var(--lc);color:var(--ink);background:var(--lw)}
+.layers button:focus-visible{outline:2px solid var(--lc);outline-offset:1px}
+.layers .n{font-family:var(--mono);font-size:10px;color:var(--lc);font-weight:600}
+.layerbody{background:var(--raised);border:1px solid var(--rule);border-left:3px solid var(--lc,var(--rule-2));
+  border-radius:4px;padding:19px 22px}
+.layerbody h3{font-family:var(--serif);font-size:20px;margin:0 0 3px;font-weight:600}
+.layerbody .lsub{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--lc);margin-bottom:14px}
+.layerbody p{font-family:var(--serif);font-size:17px;line-height:1.68;margin:0 0 13px;max-width:68ch}
+.layerbody p:last-child{margin-bottom:0}
+.layerbody em{color:var(--ink-2)}
+.layerbody b{font-weight:600}
+.layerbody .q{border-left:2px solid var(--rule-2);padding-left:14px;color:var(--ink-2);font-style:italic}
+
+footer{border-top:1px solid var(--rule);margin-top:44px;padding-top:16px;
+  font-family:var(--mono);font-size:11px;color:var(--ink-3);line-height:1.8}
+footer b{color:var(--ink-2);font-weight:500}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:620px){.ptext{font-size:16px}.wrap{padding-inline:16px}}
+</style>
+
+<div class="wrap">
+<header class="mast">
+  <div class="mast-top">
+    <h1>Synoptic Diff</h1>
+    <span class="sub">Prototype · Layer 2</span>
+  </div>
+  <p class="blurb">The gospels narrate the same events in different orders, with different wording, and
+  sometimes fuse two scenes into one. Printed synopses have set them side by side since Eusebius numbered
+  the sections in the 300s. This does it as a <b>diff</b> — structure first, then wording — and then reads
+  the passage at four depths.</p>
+  <nav class="switch" id="switch" role="tablist" aria-label="Passage"></nav>
+</header>
+
+<section>
+  <div class="sec-head">
+    <h2>Structural diff</h2>
+    <span class="note">narrative units in the order each gospel tells them · click a unit</span>
+  </div>
+  <div class="board-scroll"><div class="board" id="board"></div></div>
+  <div id="structnote"></div>
+  <div class="legend">
+    <i><span class="sw" style="background:var(--rubric)"></span> shared unit</i>
+    <i><span class="sw" style="background:var(--sunk);border-style:dashed"></span> unique to one gospel</i>
+    <i>⊕ two units fused into one</i>
+    <i>∅ absent</i>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2 id="ptitle">Textual diff</h2>
+    <span class="note" id="pref"></span>
+  </div>
+  <div class="diffnote"><span class="k"></span> marked words appear in <em>&nbsp;that gospel only</em>, measured against the base column — word-level alignment, World English Bible.</div>
+  <div class="parallel" id="parallel"></div>
+  <div id="apparatus"></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>The four layers</h2>
+    <span class="note">same passage, four depths</span>
+  </div>
+  <div class="layers" id="layers" role="tablist" aria-label="Reading layer"></div>
+  <div class="layerbody" id="layerbody"></div>
+</section>
+
+<footer>
+  Scripture: <b>World English Bible</b> (public domain), fetched verse-by-verse — not paraphrased.
+  Pericope alignment follows the <b>Eusebian canon tables</b> (c. 330 AD) and Aland's <b>Synopsis Quattuor Evangeliorum</b>.
+  Greek readings cited from the critical text; <b>this is a prototype</b> — two passages, hand-aligned.
+</footer>
+</div>
+
+<script>
+const PASSAGES = {"mark-fig-temple":{"ref":"Mark 11:12-25","verses":[{"c":11,"v":12,"t":"The next day, when they had come out from Bethany, he was hungry."},{"c":11,"v":13,"t":"Seeing a fig tree afar off having leaves, he came to see if perhaps he might find anything on it. When he came to it, he found nothing but leaves, for it was not the season for figs."},{"c":11,"v":14,"t":"Jesus told it, “May no one ever eat fruit from you again!” and his disciples heard it."},{"c":11,"v":15,"t":"They came to Jerusalem, and Jesus entered into the temple, and began to throw out those who sold and those who bought in the temple, and overthrew the money changers’ tables, and the seats of those who sold the doves."},{"c":11,"v":16,"t":"He would not allow anyone to carry a container through the temple."},{"c":11,"v":17,"t":"He taught, saying to them, “Isn’t it written, ‘My house will be called a house of prayer for all the nations?’ But you have made it a den of robbers!”"},{"c":11,"v":18,"t":"The chief priests and the scribes heard it, and sought how they might destroy him. For they feared him, because all the multitude was astonished at his teaching."},{"c":11,"v":19,"t":"When evening came, he went out of the city."},{"c":11,"v":20,"t":"As they passed by in the morning, they saw the fig tree withered away from the roots."},{"c":11,"v":21,"t":"Peter, remembering, said to him, “Rabbi, look! The fig tree which you cursed has withered away.”"},{"c":11,"v":22,"t":"Jesus answered them, “Have faith in God."},{"c":11,"v":23,"t":"For most certainly I tell you, whoever may tell this mountain, ‘Be taken up and cast into the sea,’ and doesn’t doubt in his heart, but believes that what he says is happening; he shall have whatever he says."},{"c":11,"v":24,"t":"Therefore I tell you, all things whatever you pray and ask for, believe that you have received them, and you shall have them."},{"c":11,"v":25,"t":"Whenever you stand praying, forgive, if you have anything against anyone; so that your Father, who is in heaven, may also forgive you your transgressions."}]},"matthew-fig-temple":{"ref":"Matthew 21:12-22","verses":[{"c":21,"v":12,"t":"Jesus entered into the temple of God, and drove out all of those who sold and bought in the temple, and overthrew the money changers’ tables and the seats of those who sold the doves."},{"c":21,"v":13,"t":"He said to them, “It is written, ‘My house shall be called a house of prayer,’ but you have made it a den of robbers!”"},{"c":21,"v":14,"t":"The blind and the lame came to him in the temple, and he healed them."},{"c":21,"v":15,"t":"But when the chief priests and the scribes saw the wonderful things that he did, and the children who were crying in the temple and saying, “Hosanna to the son of David!” they were indignant,"},{"c":21,"v":16,"t":"and said to him, “Do you hear what these are saying?” Jesus said to them, “Yes. Did you never read, ‘Out of the mouth of babes and nursing babies you have perfected praise?’”"},{"c":21,"v":17,"t":"He left them, and went out of the city to Bethany, and camped there."},{"c":21,"v":18,"t":"Now in the morning, as he returned to the city, he was hungry."},{"c":21,"v":19,"t":"Seeing a fig tree by the road, he came to it, and found nothing on it but leaves. He said to it, “Let there be no fruit from you forever!” Immediately the fig tree withered away."},{"c":21,"v":20,"t":"When the disciples saw it, they marveled, saying, “How did the fig tree immediately wither away?”"},{"c":21,"v":21,"t":"Jesus answered them, “Most certainly I tell you, if you have faith, and don’t doubt, you will not only do what was done to the fig tree, but even if you told this mountain, ‘Be taken up and cast into the sea,’ it would be done."},{"c":21,"v":22,"t":"All things, whatever you ask in prayer, believing, you will receive.”"}]},"luke-temple":{"ref":"Luke 19:45-48","verses":[{"c":19,"v":45,"t":"He entered into the temple, and began to drive out those who bought and sold in it,"},{"c":19,"v":46,"t":"saying to them, “It is written, ‘My house is a house of prayer,’ but you have made it a ‘den of robbers’!”"},{"c":19,"v":47,"t":"He was teaching daily in the temple, but the chief priests and the scribes and the leading men among the people sought to destroy him."},{"c":19,"v":48,"t":"They couldn’t find what they might do, for all the people hung on to every word that he said."}]},"mark-5000":{"ref":"Mark 6:30-44","verses":[{"c":6,"v":30,"t":"The apostles gathered themselves together to Jesus, and they told him all things, whatever they had done, and whatever they had taught."},{"c":6,"v":31,"t":"He said to them, “You come apart into a deserted place, and rest awhile.” For there were many coming and going, and they had no leisure so much as to eat."},{"c":6,"v":32,"t":"They went away in the boat to a deserted place by themselves."},{"c":6,"v":33,"t":"They saw them going, and many recognized him and ran there on foot from all the cities. They arrived before them and came together to him."},{"c":6,"v":34,"t":"Jesus came out, saw a great multitude, and he had compassion on them, because they were like sheep without a shepherd, and he began to teach them many things."},{"c":6,"v":35,"t":"When it was late in the day, his disciples came to him, and said, “This place is deserted, and it is late in the day."},{"c":6,"v":36,"t":"Send them away, that they may go into the surrounding country and villages, and buy themselves bread, for they have nothing to eat.”"},{"c":6,"v":37,"t":"But he answered them, “You give them something to eat.” They asked him, “Shall we go and buy two hundred denarii worth of bread, and give them something to eat?”"},{"c":6,"v":38,"t":"He said to them, “How many loaves do you have? Go see.” When they knew, they said, “Five, and two fish.”"},{"c":6,"v":39,"t":"He commanded them that everyone should sit down in groups on the green grass."},{"c":6,"v":40,"t":"They sat down in ranks, by hundreds and by fifties."},{"c":6,"v":41,"t":"He took the five loaves and the two fish, and looking up to heaven, he blessed and broke the loaves, and he gave to his disciples to set before them, and he divided the two fish among them all."},{"c":6,"v":42,"t":"They all ate, and were filled."},{"c":6,"v":43,"t":"They took up twelve baskets full of broken pieces and also of the fish."},{"c":6,"v":44,"t":"Those who ate the loaves were five thousand men."}]},"matthew-5000":{"ref":"Matthew 14:13-21","verses":[{"c":14,"v":13,"t":"Now when Jesus heard this, he withdrew from there in a boat, to a deserted place apart. When the multitudes heard it, they followed him on foot from the cities."},{"c":14,"v":14,"t":"Jesus went out, and he saw a great multitude. He had compassion on them, and healed their sick."},{"c":14,"v":15,"t":"When evening had come, his disciples came to him, saying, “This place is deserted, and the hour is already late. Send the multitudes away, that they may go into the villages, and buy themselves food.”"},{"c":14,"v":16,"t":"But Jesus said to them, “They don’t need to go away. You give them something to eat.”"},{"c":14,"v":17,"t":"They told him, “We only have here five loaves and two fish.”"},{"c":14,"v":18,"t":"He said, “Bring them here to me.”"},{"c":14,"v":19,"t":"He commanded the multitudes to sit down on the grass; and he took the five loaves and the two fish, and looking up to heaven, he blessed, broke and gave the loaves to the disciples, and the disciples gave to the multitudes."},{"c":14,"v":20,"t":"They all ate, and were filled. They took up twelve baskets full of that which remained left over from the broken pieces."},{"c":14,"v":21,"t":"Those who ate were about five thousand men, besides women and children."}]},"luke-5000":{"ref":"Luke 9:10-17","verses":[{"c":9,"v":10,"t":"The apostles, when they had returned, told him what things they had done. He took them, and withdrew apart to a desert region of a city called Bethsaida."},{"c":9,"v":11,"t":"But the multitudes, perceiving it, followed him. He welcomed them, and spoke to them of God’s Kingdom, and he cured those who needed healing."},{"c":9,"v":12,"t":"The day began to wear away; and the twelve came, and said to him, “Send the multitude away, that they may go into the surrounding villages and farms, and lodge, and get food, for we are here in a deserted place.”"},{"c":9,"v":13,"t":"But he said to them, “You give them something to eat.” They said, “We have no more than five loaves and two fish, unless we should go and buy food for all these people.”"},{"c":9,"v":14,"t":"For they were about five thousand men. He said to his disciples, “Make them sit down in groups of about fifty each.”"},{"c":9,"v":15,"t":"They did so, and made them all sit down."},{"c":9,"v":16,"t":"He took the five loaves and the two fish, and looking up to the sky, he blessed them, and broke them, and gave them to the disciples to set before the multitude."},{"c":9,"v":17,"t":"They ate, and were all filled. They gathered up twelve baskets of broken pieces that were left over."}]},"john-5000":{"ref":"John 6:1-15","verses":[{"c":6,"v":1,"t":"After these things, Jesus went away to the other side of the sea of Galilee, which is also called the Sea of Tiberias."},{"c":6,"v":2,"t":"A great multitude followed him, because they saw his signs which he did on those who were sick."},{"c":6,"v":3,"t":"Jesus went up into the mountain, and he sat there with his disciples."},{"c":6,"v":4,"t":"Now the Passover, the feast of the Jews, was at hand."},{"c":6,"v":5,"t":"Jesus therefore lifting up his eyes, and seeing that a great multitude was coming to him, said to Philip, “Where are we to buy bread, that these may eat?”"},{"c":6,"v":6,"t":"This he said to test him, for he himself knew what he would do."},{"c":6,"v":7,"t":"Philip answered him, “Two hundred denarii worth of bread is not sufficient for them, that everyone of them may receive a little.”"},{"c":6,"v":8,"t":"One of his disciples, Andrew, Simon Peter’s brother, said to him,"},{"c":6,"v":9,"t":"“There is a boy here who has five barley loaves and two fish, but what are these among so many?”"},{"c":6,"v":10,"t":"Jesus said, “Have the people sit down.” Now there was much grass in that place. So the men sat down, in number about five thousand."},{"c":6,"v":11,"t":"Jesus took the loaves; and having given thanks, he distributed to the disciples, and the disciples to those who were sitting down; likewise also of the fish as much as they desired."},{"c":6,"v":12,"t":"When they were filled, he said to his disciples, “Gather up the broken pieces which are left over, that nothing be lost.”"},{"c":6,"v":13,"t":"So they gathered them up, and filled twelve baskets with broken pieces from the five barley loaves, which were left over by those who had eaten."},{"c":6,"v":14,"t":"When therefore the people saw the sign which Jesus did, they said, “This is truly the prophet who comes into the world.”"},{"c":6,"v":15,"t":"Jesus therefore, perceiving that they were about to come and take him by force, to make him king, withdrew again to the mountain by himself."}]},"mark-4000":{"ref":"Mark 8:1-10","verses":[{"c":8,"v":1,"t":"In those days, when there was a very great multitude, and they had nothing to eat, Jesus called his disciples to himself, and said to them,"},{"c":8,"v":2,"t":"“I have compassion on the multitude, because they have stayed with me now three days, and have nothing to eat."},{"c":8,"v":3,"t":"If I send them away fasting to their home, they will faint on the way, for some of them have come a long way.”"},{"c":8,"v":4,"t":"His disciples answered him, “From where could one satisfy these people with bread here in a deserted place?”"},{"c":8,"v":5,"t":"He asked them, “How many loaves do you have?” They said, “Seven.”"},{"c":8,"v":6,"t":"He commanded the multitude to sit down on the ground, and he took the seven loaves. Having given thanks, he broke them, and gave them to his disciples to serve, and they served the multitude."},{"c":8,"v":7,"t":"They had a few small fish. Having blessed them, he said to serve these also."},{"c":8,"v":8,"t":"They ate, and were filled. They took up seven baskets of broken pieces that were left over."},{"c":8,"v":9,"t":"Those who had eaten were about four thousand. Then he sent them away."},{"c":8,"v":10,"t":"Immediately he entered into the boat with his disciples, and came into the region of Dalmanutha."}]},"matthew-4000":{"ref":"Matthew 15:32-39","verses":[{"c":15,"v":32,"t":"Jesus summoned his disciples and said, “I have compassion on the multitude, because they continue with me now three days and have nothing to eat. I don’t want to send them away fasting, or they might faint on the way.”"},{"c":15,"v":33,"t":"The disciples said to him, “Where should we get so many loaves in a deserted place as to satisfy so great a multitude?”"},{"c":15,"v":34,"t":"Jesus said to them, “How many loaves do you have?” They said, “Seven, and a few small fish.”"},{"c":15,"v":35,"t":"He commanded the multitude to sit down on the ground;"},{"c":15,"v":36,"t":"and he took the seven loaves and the fish. He gave thanks and broke them, and gave to the disciples, and the disciples to the multitudes."},{"c":15,"v":37,"t":"They all ate, and were filled. They took up seven baskets full of the broken pieces that were left over."},{"c":15,"v":38,"t":"Those who ate were four thousand men, besides women and children."},{"c":15,"v":39,"t":"Then he sent away the multitudes, got into the boat, and came into the borders of Magdala."}]},"mark-quiz":{"ref":"Mark 8:14-21","verses":[{"c":8,"v":14,"t":"They forgot to take bread; and they didn’t have more than one loaf in the boat with them."},{"c":8,"v":15,"t":"He warned them, saying, “Take heed: beware of the yeast of the Pharisees and the yeast of Herod.”"},{"c":8,"v":16,"t":"They reasoned with one another, saying, “It’s because we have no bread.”"},{"c":8,"v":17,"t":"Jesus, perceiving it, said to them, “Why do you reason that it’s because you have no bread? Don’t you perceive yet, neither understand? Is your heart still hardened?"},{"c":8,"v":18,"t":"Having eyes, don’t you see? Having ears, don’t you hear? Don’t you remember?"},{"c":8,"v":19,"t":"When I broke the five loaves among the five thousand, how many baskets full of broken pieces did you take up?” They told him, “Twelve.”"},{"c":8,"v":20,"t":"“When the seven loaves fed the four thousand, how many baskets full of broken pieces did you take up?” They told him, “Seven.”"},{"c":8,"v":21,"t":"He asked them, “Don’t you understand yet?”"}]}};
+
+/* ---------- editorial data: units, tracks, layers ---------- */
+const GOSPEL = {
+  Matthew:{c:"var(--gold)",  w:"var(--gold-wash)"},
+  Mark:   {c:"var(--rubric)",w:"var(--rubric-wash)"},
+  Luke:   {c:"var(--teal)",  w:"var(--teal-wash)"},
+  John:   {c:"var(--violet)",w:"var(--violet-wash)"}
+};
+
+const STUDIES = {
+fig:{
+  title:"The Fig Tree & the Temple",
+  gospels:["Mark","Matthew","Luke"],
+  units:{
+    FIG_CURSE :{label:"Fig tree cursed",              color:"var(--rubric)"},
+    TEMPLE    :{label:"Temple cleansed",              color:"var(--gold)"},
+    FIG_WITHER:{label:"Fig tree found withered",      color:"var(--rubric)"},
+    FAITH     :{label:"Lesson on faith & prayer",     color:"var(--teal)"},
+    HEAL      :{label:"Blind & lame healed in temple",color:"var(--ink-3)",solo:1},
+    HOSANNA   :{label:"Children cry Hosanna",         color:"var(--ink-3)",solo:1},
+    PLOT      :{label:"Teaching daily; leaders plot", color:"var(--ink-3)",solo:1}
+  },
+  tracks:{
+    Mark:[
+      {u:"FIG_CURSE", src:"mark-fig-temple", from:[11,12],to:[11,14],ref:"Mark 11:12–14",day:"Day one"},
+      {u:"TEMPLE",    src:"mark-fig-temple", from:[11,15],to:[11,19],ref:"Mark 11:15–19"},
+      {u:"FIG_WITHER",src:"mark-fig-temple", from:[11,20],to:[11,21],ref:"Mark 11:20–21",day:"Next morning"},
+      {u:"FAITH",     src:"mark-fig-temple", from:[11,22],to:[11,25],ref:"Mark 11:22–25"}
+    ],
+    Matthew:[
+      {u:"TEMPLE",    src:"matthew-fig-temple",from:[21,12],to:[21,13],ref:"Matthew 21:12–13",day:"Day one"},
+      {u:"HEAL",      src:"matthew-fig-temple",from:[21,14],to:[21,14],ref:"Matthew 21:14"},
+      {u:"HOSANNA",   src:"matthew-fig-temple",from:[21,15],to:[21,16],ref:"Matthew 21:15–16"},
+      {u:"FIG_CURSE", src:"matthew-fig-temple",from:[21,18],to:[21,19],ref:"Matthew 21:18–19",
+       day:"Next morning",fused:"FIG_WITHER",tag:"⊕ fused"},
+      {u:"FAITH",     src:"matthew-fig-temple",from:[21,20],to:[21,22],ref:"Matthew 21:20–22"}
+    ],
+    Luke:[
+      {u:"TEMPLE",    src:"luke-temple",from:[19,45],to:[19,46],ref:"Luke 19:45–46"},
+      {u:"PLOT",      src:"luke-temple",from:[19,47],to:[19,48],ref:"Luke 19:47–48"},
+      {u:"__GAP__",   note:"no fig tree anywhere in Luke"}
+    ]
+  },
+  note:`<div class="sandwich"><div><b>Mark makes a sandwich.</b> The fig tree opens (11:12) and closes (11:20)
+    around the temple in the middle — a structure Mark uses repeatedly. The tree isn't a detour from the temple
+    scene; it's Mark's verdict <em>on</em> it. Matthew unpicks the sandwich: temple first, then the tree, cursed
+    and withered in a single stroke. Luke drops the tree entirely and keeps only the cleansing.</div></div>`,
+  apparatus:`<div class="app"><h3>Critical note · one clause does all the work</h3>
+    <p>Mark alone adds <em>"for it was not the season for figs"</em> (11:13). Read flatly, that makes the
+    cursing arbitrary — the tree is blamed for obeying the calendar. Which is the signal that it was never
+    about fruit. This is a <b>prophetic sign-act</b>, the same genre as Jeremiah wearing a yoke or Ezekiel
+    lying on his side: a thing done so it can be read.</p>
+    <p>Matthew, tidying, <b>removes the clause.</b> The difficulty goes away — and so does the signal.
+    That single deletion is the whole argument for why a diff view earns its place.</p>
+    <p>One more: the mountain Jesus tells them to throw into the sea (Mark 11:23) is spoken on the
+    Bethany road. <b>The mountain in view is the Temple Mount.</b></p></div>`,
+  layers:[
+   {n:"L1",name:"Historical",sub:"What can be established",color:"var(--ink-3)",wash:"transparent",body:`
+    <p>Herod's temple was an active commercial institution, and legitimately so. The annual half-shekel tax
+    had to be paid in <b>Tyrian silver</b> — the only coinage of reliable purity in circulation — so pilgrims
+    arriving with Roman or provincial money genuinely needed money changers. Selling doves served the poor,
+    who were entitled to the cheaper offering. Nothing in the trade was illegal, and calling it a den of
+    robbers was not an accounting complaint.</p>
+    <p>The horticulture is also real. Judean fig trees put out <em>paggim</em> — small early fruit — at the
+    same time as or before the leaves. A tree in full leaf with nothing on it is genuinely anomalous, which
+    is why a first-century listener would have caught the point faster than a modern one.</p>
+    <p>And the frame around all of it: the temple was destroyed by Rome in <b>70 AD</b>. Mark is generally
+    dated within a decade of that, give or take. A story about a magnificent structure being cursed for
+    bearing no fruit is being written down by people who either just watched it burn or were about to.</p>`},
+   {n:"L2",name:"Literal",sub:"What the text says",color:"var(--teal)",wash:"var(--teal-wash)",body:`
+    <p>He is hungry. He sees a tree advertising fruit and finds none. He curses it. He goes into the temple
+    and overturns the tables of a system that is likewise busy and likewise, in his judgment, producing
+    nothing. In the morning the tree is dead to the roots. Peter points it out.</p>
+    <p>Then the closing move, which is the part almost everyone forgets: asked about the withered tree,
+    Jesus doesn't explain it. He talks about faith, about mountains moving, and ends here —</p>
+    <p class="q">"Whenever you stand praying, forgive, if you have anything against anyone."</p>
+    <p>A story about barrenness resolves into an instruction about forgiveness. Whatever the fruit is
+    supposed to be, <b>that is the answer given.</b></p>`},
+   {n:"L3",name:"Symbolic",sub:"The pattern beneath",color:"var(--gold)",wash:"var(--gold-wash)",body:`
+    <p>The fig tree is not a fresh image; it is standing vocabulary. <em>Hosea 9:10</em> — Israel as the first
+    fruit on the fig. <em>Micah 7:1</em> — the lament that there is no cluster to eat. <em>Jeremiah 8:13</em> —
+    "there are no figs on the fig tree, and the leaves are withered." Any listener raised on the prophets
+    hears the tree and knows the subject is not botany.</p>
+    <p>So read Mark's sandwich as one sentence: <b>leaves without fruit, activity without justice, a structure
+    in full display that feeds no one.</b> The tree withers <em>from the roots</em>, and the very next thing
+    Jesus says is about a mountain going into the sea — with the Temple Mount in front of him.</p>
+    <p>And note what the symbol refuses to stay pointed at. It works against the temple. It works against
+    any institution. It works against a person. That portability is the point — the image is built to be
+    turned.</p>`},
+   {n:"L4",name:"Spiritual",sub:"The path of becoming",color:"var(--violet)",wash:"var(--violet-wash)",body:`
+    <p>Turn it inward and the tree is the performed self: the part of a life that is all leaf. The credential,
+    the reputation, the visible practice — real, elaborate, and possible to maintain indefinitely without
+    anything growing on it. The story's accusation is not that the tree was evil. It's that it was
+    <b>advertising.</b></p>
+    <p>What makes this passage unusual is that it names the fruit instead of leaving it abstract. Not belief,
+    not observance, not effort. The passage ends on <em>forgive</em> — and forgiveness is exactly the act that
+    cannot be performed for an audience, because it happens where no one can see it and shows up only later,
+    as a change in how someone treats the person who wronged them.</p>
+    <p>So the path here is subtraction, not addition. Nothing is asked to be added to the tree.
+    Something is asked to be <b>released</b> — and release is what the leaves were covering for.</p>`}]
+},
+
+fish:{
+  title:"The Two Feedings",
+  gospels:["Mark","Matthew","Luke","John"],
+  units:{
+    F5000:{label:"Feeding the five thousand",color:"var(--teal)"},
+    F4000:{label:"Feeding the four thousand",color:"var(--gold)"},
+    QUIZ :{label:"“Don't you understand yet?”",color:"var(--rubric)"}
+  },
+  tracks:{
+    Mark:[
+      {u:"F5000",src:"mark-5000",from:[6,30],to:[6,44],ref:"Mark 6:30–44",day:"Jewish Galilee"},
+      {u:"F4000",src:"mark-4000",from:[8,1], to:[8,10],ref:"Mark 8:1–10",day:"The Decapolis"},
+      {u:"QUIZ", src:"mark-quiz",from:[8,14],to:[8,21],ref:"Mark 8:14–21"}
+    ],
+    Matthew:[
+      {u:"F5000",src:"matthew-5000",from:[14,13],to:[14,21],ref:"Matthew 14:13–21",day:"Jewish Galilee"},
+      {u:"F4000",src:"matthew-4000",from:[15,32],to:[15,38],ref:"Matthew 15:32–38",day:"By the Sea of Galilee"}
+    ],
+    Luke:[
+      {u:"F5000",src:"luke-5000",from:[9,10],to:[9,17],ref:"Luke 9:10–17"},
+      {u:"__GAP__",note:"no second feeding"}
+    ],
+    John:[
+      {u:"F5000",src:"john-5000",from:[6,1],to:[6,14],ref:"John 6:1–14"},
+      {u:"__GAP__",note:"no second feeding"}
+    ]
+  },
+  note:`<div class="sandwich"><div><b>Two feedings, not one told twice.</b> Mark and Matthew both carry the pair
+    and keep every number distinct. Luke and John carry only the first. The older habit of calling the second
+    a garbled duplicate runs into a hard problem: in Mark 8:19–21 Jesus <em>quizzes the disciples on both sets
+    of numbers</em> — and the text has them answer correctly, twelve and seven. Whoever wrote that knew there
+    were two, and wanted you counting.</div></div>`,
+  apparatus:`<div class="app"><h3>Apparatus · the baskets are not the same baskets</h3>
+    <div class="tscroll"><table>
+    <tr><th></th><th>Loaves</th><th>Fish</th><th>Baskets after</th><th>Greek</th><th>Fed</th></tr>
+    <tr><td>Five thousand</td><td class="num">5</td><td class="num">2</td>
+        <td class="num hl-12">12</td><td class="gk">κόφινος <em>kophinos</em></td><td class="num">5,000</td></tr>
+    <tr><td>Four thousand</td><td class="num">7</td><td class="num">a few</td>
+        <td class="num hl-7">7</td><td class="gk">σπυρίς <em>spyris</em></td><td class="num">4,000</td></tr>
+    </table></div>
+    <p>Every English translation prints <b>“baskets” both times.</b> The Greek uses two different words and
+    never once confuses them — across both gospels, both feedings, and Jesus' own recap in Mark 8. A
+    <em>kophinos</em> is the small stiff provision basket a Jewish traveller carried. A <em>spyris</em> is a
+    large hamper; it's the basket Paul is lowered over the Damascus wall in at <b>Acts 9:25</b> — big enough
+    to hold a man.</p>
+    <p>So the numbers are carrying freight. <b>Twelve</b> is the tribes of Israel. <b>Seven</b> is the count of
+    the nations of Canaan in <em>Deuteronomy 7:1</em>, and the number the church later picks for the seven
+    appointed to feed the Greek-speaking widows in <em>Acts 6</em>. The first feeding happens in Jewish
+    Galilee; the second follows a chapter spent in Tyre, Sidon and the Decapolis — gentile ground.</p>
+    <p>Twelve baskets for Israel, seven for the nations. <b>None of it survives translation into English</b>,
+    which is the entire case for reading at the level of the word.</p></div>`,
+  layers:[
+   {n:"L1",name:"Historical",sub:"What can be established",color:"var(--ink-3)",wash:"transparent",body:`
+    <p>The geography is checkable and it is doing work. The first feeding sits in the Jewish territory around
+    the Sea of Galilee. Between the two, Mark sends Jesus north to <b>Tyre and Sidon</b> — Phoenician, gentile —
+    and then back through the <b>Decapolis</b>, a league of ten Hellenistic cities east and south of the lake.
+    The second feeding happens on that side of the map.</p>
+    <p>The crowd figures follow ancient convention: Matthew's "five thousand men, besides women and children"
+    counts adult males, as census and muster lists did. Barley, named in John, was the cheap grain — the poor
+    ate barley, the comfortable ate wheat.</p>
+    <p>And the two basket words are ordinary first-century household objects, not literary flourishes. Roman
+    satirists mock Jewish travellers for the <em>cophinus</em> they carry; Juvenal makes a joke of it.
+    Whichever basket a writer named, a first-century reader pictured a specific object.</p>`},
+   {n:"L2",name:"Literal",sub:"What the text says",color:"var(--teal)",wash:"var(--teal-wash)",body:`
+    <p>A crowd has followed him somewhere with no food. He asks what's on hand. He takes it, gives thanks,
+    breaks it, and hands it to the disciples, who hand it to the people. Everyone eats. The leftovers are
+    gathered, and the leftovers are larger than the original supply.</p>
+    <p>Then it happens again, with different numbers, and the second time the disciples ask the same
+    despairing question they asked the first time: where would we get bread here?</p>
+    <p>Which is what Mark 8 is about. In a boat, worrying that they forgot bread — <em>with a loaf sitting in
+    the boat</em> — they get cross-examined:</p>
+    <p class="q">"When I broke the five loaves among the five thousand, how many baskets did you take up?"
+    — "Twelve." — "When the seven loaves fed the four thousand, how many?" — "Seven." —
+    "Don't you understand yet?"</p>
+    <p>They have the data and they produce it on demand. <b>The rebuke is not for forgetting. It's for
+    knowing the numbers and drawing nothing from them.</b></p>`},
+   {n:"L3",name:"Symbolic",sub:"The pattern beneath",color:"var(--gold)",wash:"var(--gold-wash)",body:`
+    <p>Take the quiz seriously as an instruction and the arithmetic opens. <b>Twelve</b> is never a neutral
+    quantity in this literature — twelve tribes, twelve stones, twelve gates. <b>Seven</b> is completion, and
+    specifically the seven nations of Canaan, the shorthand for everyone who was not Israel.</p>
+    <p>So the two feedings are the same act performed on both sides of a boundary, and the leftovers are
+    counted in the currency of whoever was fed. Twelve baskets on the Jewish shore. Seven on the gentile
+    one. The <em>kophinos</em> and the <em>spyris</em> keep the two ledgers from mixing.</p>
+    <p>There is also the shape of the act itself, repeated four times in four verbs — <b>took, blessed, broke,
+    gave</b> — which is the sequence the church will later perform at a table every week. The feeding stories
+    are rehearsing a liturgy before anyone has written one.</p>
+    <p>And the arithmetic is the wrong way round on purpose. Less goes in than comes out. <b>The surplus
+    appears after the breaking</b>, never before it.</p>`},
+   {n:"L4",name:"Spiritual",sub:"The path of becoming",color:"var(--violet)",wash:"var(--violet-wash)",body:`
+    <p>Strip the miracle and the mechanism still stands, because the story is unusually explicit about the
+    order of operations. Nothing multiplies in anyone's hands. It multiplies <b>in transit</b> — after it is
+    given away, while it is moving between people. Held, five loaves stay five.</p>
+    <p>The disciples' error is worth sitting with, because it's the ordinary one. They had watched abundance
+    arrive out of almost nothing, could recite the figures accurately, and then hit the identical shortage
+    and felt the identical panic. <b>Experience had not become understanding.</b> That gap — knowing a thing
+    and being unchanged by it — is most of what stalls anyone's inner life, and it is exactly what the
+    question in the boat is pointed at.</p>
+    <p>Then the harder half. The lesson is taught twice, deliberately, on both sides of a border, because the
+    second telling is the one that costs something: the same generosity, the same act, the same abundance,
+    extended to the people on the other side. <em>Anyone</em> will feed their own crowd.</p>
+    <p class="q">Twelve for your own. Seven for everyone else. The path is the second number.</p>`}]
+}
+};
+
+/* ---------- text assembly + word diff ---------- */
+const keyOf=(c,v)=>c*1000+v;
+function slice(srcKey,from,to){
+  const p=PASSAGES[srcKey]; if(!p) return [];
+  const a=keyOf(from[0],from[1]), b=keyOf(to[0],to[1]);
+  return p.verses.filter(v=>{const k=keyOf(v.c,v.v);return k>=a&&k<=b;});
+}
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9’']/g,"");
+
+/* longest common subsequence over normalised words -> which words are unique */
+function uniqueMask(words, baseWords){
+  const A=words.map(norm), B=baseWords.map(norm);
+  const n=A.length,m=B.length;
+  const dp=Array.from({length:n+1},()=>new Uint16Array(m+1));
+  for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)
+    dp[i][j]= A[i]===B[j] ? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const mask=new Array(n).fill(true);
+  let i=0,j=0;
+  while(i<n&&j<m){
+    if(A[i]===B[j]){mask[i]=false;i++;j++;}
+    else if(dp[i+1][j]>=dp[i][j+1]) i++;
+    else j++;
+  }
+  return mask;
+}
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function renderText(verses, baseVerses){
+  const words=[],meta=[];
+  verses.forEach(v=>{ words.push("\u0000"+v.v); meta.push(null);
+    v.t.split(/\s+/).filter(Boolean).forEach(w=>{words.push(w);meta.push(1);}); });
+  let mask=null;
+  if(baseVerses){
+    const bw=[]; baseVerses.forEach(v=>v.t.split(/\s+/).filter(Boolean).forEach(w=>bw.push(w)));
+    const real=words.filter(w=>w[0]!=="\u0000");
+    const rm=uniqueMask(real,bw);
+    let k=0; mask=words.map(w=>w[0]==="\u0000"?false:rm[k++]);
+  }
+  let out="",open=false;
+  words.forEach((w,i)=>{
+    if(w[0]==="\u0000"){ if(open){out+="</span>";open=false;}
+      out+=`<span class="vn">${w.slice(1)}</span>`; return; }
+    const u=mask?mask[i]:false;
+    if(u&&!open){out+='<span class="uniq">';open=true;}
+    if(!u&&open){out+="</span>";open=false;}
+    out+=esc(w)+" ";
+  });
+  if(open)out+="</span>";
+  return out;
+}
+
+/* ---------- state + render ---------- */
+let SK="fig", UK=null, LI=0;
+const $=id=>document.getElementById(id);
+
+function buildSwitch(){
+  $("switch").innerHTML=Object.entries(STUDIES).map(([k,s])=>
+    `<button role="tab" id="tab-${k}" aria-selected="${k===SK}" data-k="${k}">${s.title}</button>`).join("");
+  $("switch").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+    SK=b.dataset.k; UK=null; LI=0; renderAll();};
+}
+
+function firstShared(s){
+  for(const g of s.gospels) for(const it of s.tracks[g])
+    if(it.u!=="__GAP__" && !s.units[it.u].solo) return it.u;
+  return null;
+}
+
+function renderBoard(){
+  const s=STUDIES[SK];
+  const board=$("board"); board.style.setProperty("--cols",s.gospels.length);
+  board.innerHTML=s.gospels.map(g=>{
+    const items=s.tracks[g].map(it=>{
+      if(it.u==="__GAP__") return `<div class="gap">∅ ${it.note}</div>`;
+      const u=s.units[it.u];
+      const label=it.fused? `${u.label} <b>+ ${s.units[it.fused].label.toLowerCase()}</b>` : u.label;
+      return `${it.day?`<div class="daybar">${it.day}</div>`:""}
+        <button class="unit${u.solo?" solo":""}" style="--uc:${u.color}"
+          data-u="${it.u}" aria-pressed="${it.u===UK}">
+          <span class="ulabel">${label}</span>
+          <span class="uref">${it.ref}</span>
+          ${it.tag?`<span class="utag">${it.tag}</span>`:""}
+          ${u.solo?`<span class="utag">only ${g}</span>`:""}
+        </button>`;
+    }).join("");
+    const n=s.tracks[g].filter(i=>i.u!=="__GAP__").length;
+    return `<div><div class="col-head" style="--gh:${GOSPEL[g].c}">
+      <span style="color:${GOSPEL[g].c}">${g}</span><span class="cnt">${n} units</span></div>
+      <div class="track">${items}</div></div>`;
+  }).join("");
+  board.onclick=e=>{const b=e.target.closest(".unit");if(!b)return;UK=b.dataset.u;renderBoard();renderParallel();};
+  $("structnote").innerHTML=s.note;
+}
+
+function renderParallel(){
+  const s=STUDIES[SK];
+  const u=UK||firstShared(s);
+  const unit=s.units[u];
+  $("ptitle").textContent=unit.label.replace(/[“”]/g,'"');
+  const holders=s.gospels.map(g=>{
+    const it=s.tracks[g].find(x=>x.u===u || x.fused===u);
+    return {g,it};
+  });
+  const base=holders.find(h=>h.it);
+  const baseV=base?slice(base.it.src,base.it.from,base.it.to):null;
+  $("pref").textContent = base ? `base column · ${base.g}` : "";
+  $("parallel").innerHTML=holders.map(({g,it})=>{
+    const head=`<div class="pcol-head" style="--gc:${GOSPEL[g].c};--gw:${GOSPEL[g].w}">
+        <span class="g">${g}</span><span class="r">${it?it.ref:"—"}</span></div>`;
+    if(!it) return `<div class="pcol">${head}<div class="absent">∅ &nbsp;${g} does not carry this unit.</div></div>`;
+    const vs=slice(it.src,it.from,it.to);
+    const isBase = it===base.it;
+    const body=renderText(vs, isBase?null:baseV);
+    const fuse = it.fused===u||it.u===u&&it.fused
+      ? `<div class="absent" style="background:none;border-top:1px solid var(--rule)">⊕ ${g} fuses this with the ${s.units[it.fused].label.toLowerCase()}.</div>`:"";
+    return `<div class="pcol" style="--gc:${GOSPEL[g].c};--gw:${GOSPEL[g].w}">${head}
+      <p class="ptext">${body}</p>${fuse}</div>`;
+  }).join("");
+  $("apparatus").innerHTML=s.apparatus;
+}
+
+function renderLayers(){
+  const s=STUDIES[SK];
+  $("layers").innerHTML=s.layers.map((l,i)=>
+    `<button role="tab" aria-selected="${i===LI}" data-i="${i}" style="--lc:${l.color};--lw:${l.wash}">
+      <span class="n">${l.n}</span> ${l.name}</button>`).join("");
+  $("layers").onclick=e=>{const b=e.target.closest("button");if(!b)return;LI=+b.dataset.i;renderLayers();};
+  const l=s.layers[LI];
+  const box=$("layerbody");
+  box.style.setProperty("--lc",l.color);
+  box.innerHTML=`<h3>${l.name}</h3><div class="lsub">${l.n} · ${l.sub}</div>${l.body}`;
+}
+
+function renderAll(){
+  document.querySelectorAll("#switch button").forEach(b=>
+    b.setAttribute("aria-selected", b.dataset.k===SK));
+  renderBoard(); renderParallel(); renderLayers();
+}
+buildSwitch(); renderAll();
+</script>
