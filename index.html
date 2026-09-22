@@ -175,6 +175,38 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(25px,3.6vw,34px);mar
 .vswitch button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 
+
+/* ---- reader ---- */
+.rhint{max-width:62ch;color:var(--ink-2);font-size:15px;line-height:1.6}
+.rhint code{font-family:var(--mono);font-size:12.5px;background:var(--sunk);padding:1px 6px;
+  border-radius:3px;border:1px solid var(--rule)}
+.rseam{display:flex;align-items:baseline;gap:10px;margin:22px 0 9px;flex-wrap:wrap}
+.rseam:first-child{margin-top:0}
+.rseam button{font-family:var(--serif);font-size:17px;font-weight:600;background:none;border:none;
+  cursor:pointer;color:var(--ink);padding:0;text-align:left;border-bottom:1.5px solid transparent}
+.rseam button:hover{border-bottom-color:var(--ink-3)}
+.rpar{display:flex;gap:5px;flex-wrap:wrap}
+.rpar span{font-family:var(--mono);font-size:9.5px;border:1px solid currentColor;border-radius:2px;padding:1px 5px}
+.rseamline{flex:1;height:1px;background:var(--rule);min-width:18px}
+.rtext{font-family:var(--serif);font-size:18px;line-height:1.72;max-width:66ch;margin:0}
+.rtext.gk{font-size:17px;line-height:1.85}
+.rtext .vnum{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);vertical-align:super;
+  margin-right:3px;user-select:none}
+.rtext .vnum.big{color:var(--mk);font-weight:600}
+.rmiss{font-family:var(--mono);font-size:11.5px;color:var(--mk);background:var(--mk-w);
+  border-radius:3px;padding:7px 10px;margin:9px 0;max-width:66ch;line-height:1.5}
+.sugg{border-bottom:1px solid var(--rule);padding:8px 8px 10px;margin-bottom:4px}
+.sugg button{display:block;width:100%;text-align:left;cursor:pointer;background:var(--raised);
+  border:1px solid var(--mk);color:var(--ink);font-family:var(--sans);font-size:13.5px;font-weight:500;
+  padding:7px 10px;border-radius:3px}
+.sugg .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-bottom:5px}
+.vhits{border-top:1px solid var(--rule);margin-top:8px;padding-top:6px}
+.vhit{display:block;width:100%;text-align:left;cursor:pointer;background:none;border:none;
+  font-family:var(--sans);font-size:12.5px;color:var(--ink-2);padding:5px 8px;border-radius:3px;line-height:1.35}
+.vhit:hover{background:var(--raised);color:var(--ink)}
+.vhit .vr{font-family:var(--mono);font-size:9px;color:var(--gc);font-weight:600;display:block}
+.vhit b{color:var(--mk)}
 /* ---- material world ---- */
 .wintro{max-width:66ch;color:var(--ink-2);font-size:15px;margin:0 0 18px}
 .wcats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
@@ -261,8 +293,9 @@ footer b{color:var(--ink-2);font-weight:500}
         <button data-v="syn" aria-pressed="true">Synopsis</button>
         <button data-v="map" aria-pressed="false">Map</button>
         <button data-v="world" aria-pressed="false">World</button>
+        <button data-v="read" aria-pressed="false">Read</button>
       </div>
-      <input id="q" type="search" placeholder="Search 209 pericopes…" autocomplete="off">
+      <input id="q" type="search" placeholder="Matthew 19 · John 3:16 · or any words…" autocomplete="off">
       <div class="filters" id="filters">
         <button data-f="all" aria-pressed="true">All</button>
         <button data-f="4" aria-pressed="false">Quadruple</button>
@@ -276,6 +309,17 @@ footer b{color:var(--ink-2);font-weight:500}
   </aside>
 
   <main><div class="pad">
+    <div id="readview" hidden>
+      <div class="crumb" id="rcrumb">Reader</div>
+      <h1 id="rtitle">Look up a passage</h1>
+      <div class="badges" id="rbadges"></div>
+      <div class="sec-head" style="margin-bottom:14px"><h2 id="rsub"></h2>
+        <span class="toggles">
+          <button id="rEn" aria-pressed="true">English</button>
+          <button id="rGk" aria-pressed="false">Greek</button>
+        </span></div>
+      <div id="rbody"></div>
+    </div>
     <div id="worldview" hidden>
       <div class="crumb">Layers 1 &amp; 3 · the physical world</div>
       <h1>The material world</h1>
@@ -566,7 +610,13 @@ let MODE="en", FILTER="all", Q="", LI=0, LEM=null;
 
 /* ---------- sidebar ---------- */
 function renderList(){
-  const q=Q.trim().toLowerCase();
+  const raw=Q.trim(), q=raw.toLowerCase();
+  let html="";
+  // 1. a parsed reference wins the top slot
+  const ref=raw?parseRef(raw):null;
+  if(ref) html+=`<div class="sugg"><span class="lbl">Go to reference</span>
+    <button id="gotoref">${refLabel(ref)} &nbsp;→</button></div>`;
+  // 2. pericope titles / divisions / refs
   const rows=HARM.filter(p=>{
     if(q&&!(p.title.toLowerCase().includes(q)||p.div.toLowerCase().includes(q)||
        Object.entries(p.refs).some(([g,r])=>(NAME[g]+" "+r.ref).toLowerCase().includes(q)))) return false;
@@ -574,7 +624,7 @@ function renderList(){
     if(FILTER==="L")return !!LAYERED[p.title];
     return trad(p)===+FILTER;
   });
-  let html="",div=null;
+  let div=null;
   rows.forEach(p=>{
     if(p.div!==div){div=p.div;html+=`<div class="divlabel">${div}</div>`;}
     const gs=GOSPELS.filter(g=>p.refs[g]).map(g=>
@@ -582,11 +632,34 @@ function renderList(){
     html+=`<button class="pitem" data-id="${p.id}" aria-current="${p.id===CUR.id}">
       ${esc(p.title)}<span class="gs">${gs}${LAYERED[p.title]?' <span class="lay">◆</span>':""}</span></button>`;
   });
-  $("list").innerHTML=html||`<div class="divlabel">no matches</div>`;
+  // 3. raw text hits, when the query isn't a reference and is worth searching
+  if(raw.length>=3&&!ref){
+    const hits=textSearch(raw,40);
+    if(hits.length){
+      html+=`<div class="vhits"><div class="divlabel">In the text · ${hits.length}${hits.length===40?"+":""}</div>`;
+      const re=new RegExp("("+raw.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+      hits.forEach(hh=>{
+        const snip=esc(hh.t).replace(re,"<b>$1</b>");
+        html+=`<button class="vhit" data-g="${hh.g}" data-c="${hh.c}" data-v="${hh.v}"
+          style="--gc:var(${VAR[hh.g]})"><span class="vr">${AB[hh.g]} ${hh.c}:${hh.v}</span>${snip}</button>`;
+      });
+      html+=`</div>`;
+    }
+  }
+  if(!html) html=`<div class="divlabel">no matches</div>`;
+  $("list").innerHTML=html;
 }
-$("list").onclick=e=>{const b=e.target.closest(".pitem");if(!b)return;
-  CUR=HARM.find(p=>p.id===b.dataset.id);LI=0;render();
-  document.querySelector("main").scrollIntoView({behavior:"smooth",block:"start"});};
+$("list").onclick=e=>{
+  if(e.target.closest("#gotoref")){const r=parseRef(Q.trim());if(r)gotoRef(r);return;}
+  const vh=e.target.closest(".vhit");
+  if(vh){gotoRef({book:vh.dataset.g,c:+vh.dataset.c,v1:+vh.dataset.v,v2:+vh.dataset.v,
+    whole:false,last:+vh.dataset.v});return;}
+  const b=e.target.closest(".pitem");if(!b)return;
+  CUR=HARM.find(p=>p.id===b.dataset.id);LI=0;setView("syn");render();
+  window.scrollTo({top:0,behavior:"smooth"});
+};
+$("q").onkeydown=e=>{if(e.key!=="Enter")return;
+  const r=parseRef($("q").value.trim()); if(r) gotoRef(r);};
 $("q").oninput=e=>{Q=e.target.value;renderList();};
 $("filters").onclick=e=>{const b=e.target.closest("button");if(!b)return;
   FILTER=b.dataset.f;[...$("filters").children].forEach(x=>x.setAttribute("aria-pressed",x===b));renderList();};
@@ -924,15 +997,134 @@ function occBlock(l){
     <div class="occ">${rows}</div>`;
 }
 
+
+/* =================== REFERENCE PARSER + READER =================== */
+const BOOKALIAS={matthew:["matthew","matt","mat","mt"],mark:["mark","mrk","mar","mk","mr"],
+  luke:["luke","luk","lk","lu"],john:["john","joh","jhn","jn","jo"]};
+function parseRef(s){
+  const m=String(s||"").trim().toLowerCase()
+    .match(/^([a-z]+)\s*\.?\s*(\d{1,3})(?:\s*[:.\s]\s*(\d{1,3})(?:\s*[-–]\s*(\d{1,3}))?)?$/);
+  if(!m) return null;
+  const word=m[1];
+  let book=null;
+  for(const g of GOSPELS) if(BOOKALIAS[g].includes(word)){book=g;break;}
+  if(!book) for(const g of GOSPELS) if(BOOKALIAS[g].some(a=>a.startsWith(word)&&word.length>=2)){book=g;break;}
+  if(!book) return null;
+  const c=+m[2]; const ch=WEB[book][String(c)];
+  if(!ch) return null;
+  const last=Math.max(...Object.keys(ch).map(Number));
+  let v1=m[3]?+m[3]:1, v2=m[4]?+m[4]:(m[3]?+m[3]:last);
+  if(v1>last) return null;
+  v2=Math.min(v2,last); if(v2<v1) v2=v1;
+  return {book,c,v1,v2,whole:!m[3],last};
+}
+const refLabel=r=>`${NAME[r.book]} ${r.c}`+(r.whole?"":`:${r.v1}`+(r.v2!==r.v1?`–${r.v2}`:""));
+let RREF=null, RMODE="en";
+
+/* which pericopes overlap a reference, in verse order */
+function pericopesFor(r){
+  const a=r.c*1000+r.v1, b=r.c*1000+r.v2;
+  return HARM.filter(p=>p.refs[r.book]&&p.refs[r.book].ranges.some(([[c1,v1],[c2,v2]])=>
+      !(c2*1000+v2<a || c1*1000+v1>b)))
+    .sort((x,y)=>{
+      const f=p=>{const g=p.refs[r.book].ranges[0][0];return g[0]*1000+g[1];};
+      return f(x)-f(y);});
+}
+function versesIn(r){
+  const ch=WEB[r.book][String(r.c)]||{}, out=[];
+  for(let v=r.v1;v<=r.v2;v++) if(ch[String(v)]!==undefined) out.push({c:r.c,v,t:ch[String(v)]});
+  return out;
+}
+function startsAt(p,book,c,v){
+  return p.refs[book].ranges.some(([[c1,v1]])=>c1===c&&v1===v);
+}
+function renderReader(){
+  if(!RREF){
+    $("rtitle").textContent="Look up a passage";
+    $("rcrumb").textContent="Reader";
+    $("rbadges").innerHTML=""; $("rsub").textContent="";
+    $("rbody").innerHTML=`<p class="rhint">Type a reference into the search box — a whole chapter
+      (<code>Matthew 19</code>, <code>mk 8</code>), a single verse (<code>John 3:16</code>), or a range
+      (<code>Matthew 5:1-12</code>). Anything that isn't a reference is searched as text across all
+      3,779 verses.<br><br>The reader marks where each <b>pericope</b> begins, so you can see the seams
+      in the chapter and jump straight into the diff for any unit.</p>`;
+    return;}
+  const r=RREF, vs=versesIn(r), peris=pericopesFor(r);
+  $("rcrumb").textContent="Reader · "+NAME[r.book];
+  $("rtitle").textContent=refLabel(r);
+  const quad=peris.filter(p=>trad(p)===4).length, uni=peris.filter(p=>trad(p)===1).length;
+  $("rbadges").innerHTML=
+    `<span class="badge" style="color:var(${VAR[r.book]})">${vs.length} verse${vs.length===1?"":"s"}</span>`+
+    `<span class="badge tag-tri">${peris.length} pericope${peris.length===1?"":"s"}</span>`+
+    (uni?`<span class="badge tag-uni">${uni} unique to ${NAME[r.book]}</span>`:"")+
+    (quad?`<span class="badge tag-quad">${quad} in all four</span>`:"");
+  $("rsub").textContent=r.whole?`Whole chapter · ${r.last} verses`:"Selection";
+  // group verses under the pericope that starts at or before them
+  let html="", open=false, missGk=[];
+  const gch=(GK.text[r.book]||{})[String(r.c)]||{};
+  vs.forEach(v=>{
+    const st=peris.find(p=>startsAt(p,r.book,v.c,v.v));
+    if(st||!open){
+      const p=st||peris[0];
+      if(open) html+="</p>";
+      if(p){
+        const par=GOSPELS.filter(g=>g!==r.book&&p.refs[g]).map(g=>
+          `<span style="color:var(${VAR[g]})">${AB[g]} ${esc(p.refs[g].ref)}</span>`).join("");
+        html+=`<div class="rseam"><button data-id="${p.id}">${esc(p.title)}</button>
+          <span class="rseamline"></span><span class="rpar">${par||
+            `<span style="color:var(--ink-3)">no parallel</span>`}</span></div>`;
+      }
+      html+=`<p class="rtext${RMODE==="gk"?" gk":""}">`; open=true;
+    }
+    if(RMODE==="en"){
+      html+=`<span class="vnum${st?" big":""}">${v.v}</span>${esc(v.t)} `;
+    }else{
+      const w=gch[String(v.v)];
+      if(w) html+=`<span class="vnum${st?" big":""}">${v.v}</span>${w.map(x=>esc(x[0])).join(" ")} `;
+      else missGk.push(v.v);
+    }
+  });
+  if(open) html+="</p>";
+  if(RMODE==="gk"&&missGk.length)
+    html+=`<div class="rmiss">⚠ ${NAME[r.book]} ${r.c}:${missGk.join(", ")} —
+      present in the Byzantine/KJV tradition, absent from the SBLGNT critical text.</div>`;
+  $("rbody").innerHTML=html;
+  $("rbody").onclick=e=>{const b=e.target.closest("button[data-id]");if(!b)return;
+    CUR=HARM.find(x=>x.id===b.dataset.id);LI=0;setView("syn");render();window.scrollTo({top:0});};
+}
+$("rEn").onclick=()=>{RMODE="en";$("rEn").setAttribute("aria-pressed",true);
+  $("rGk").setAttribute("aria-pressed",false);renderReader();};
+$("rGk").onclick=()=>{RMODE="gk";$("rGk").setAttribute("aria-pressed",true);
+  $("rEn").setAttribute("aria-pressed",false);renderReader();};
+function gotoRef(r){RREF=r;setView("read");renderReader();window.scrollTo({top:0});}
+
+/* ---- full-text search across every verse ---- */
+function textSearch(q,cap){
+  const needle=q.toLowerCase(); const out=[];
+  for(const g of GOSPELS){
+    const bk=WEB[g];
+    for(const c of Object.keys(bk).sort((a,b)=>a-b)){
+      const ch=bk[c];
+      for(const v of Object.keys(ch).sort((a,b)=>a-b)){
+        const t=ch[v];
+        if(t.toLowerCase().includes(needle)){
+          out.push({g,c:+c,v:+v,t});
+          if(out.length>=cap) return out;
+        }}}}
+  return out;
+}
+
 /* ---- view switching ---- */
 let VIEW="syn";
 function setView(v){
   VIEW=v;
   $("synview").hidden=(v!=="syn"); $("mapview").hidden=(v!=="map");
   $("worldview").hidden=(v!=="world");
+  $("readview").hidden=(v!=="read");
   [...$("vswitch").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v));
   if(v==="map"){renderJToggles();renderMap();renderNote();renderPlaceCard();renderElev();}
   if(v==="world"){renderWorld();}
+  if(v==="read"){renderReader();}
 }
 $("vswitch").onclick=e=>{const b=e.target.closest("button");if(!b)return;setView(b.dataset.v);};
 

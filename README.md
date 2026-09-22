@@ -41,6 +41,11 @@ answers it honestly.
 - **Material world** — 28 entries across flora, fauna, money and objects, with
   47 tracked lemmas and live counts. Selection rule: an entry earns its place
   only when the real thing changes how the passage reads.
+- **Reader** — type a reference (`Matthew 19`, `mk 8`, `John 3:16`,
+  `Matthew 5:1-12`) and read it straight through, in English or Greek. The
+  reader marks where each **pericope begins** and prints its parallels beside
+  the seam, so the structure of a chapter is visible while you read it.
+  Anything that isn't a reference is searched as text across all 3,779 verses.
 
 **`prototype.html`** — the original two-passage prototype (Fig Tree & Temple,
 the Two Feedings). Kept because it's a tighter read of the core idea.
