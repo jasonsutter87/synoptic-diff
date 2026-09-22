@@ -36,9 +36,22 @@ answers it honestly.
 - **Map** — 43 places with real coordinates, elevations and certainty flags;
   7 toggleable journeys; elevation profiles measured against sea level.
   Every place links to the pericopes that name it.
+- **Material world** — 28 entries across flora, fauna, money and objects, with
+  47 tracked lemmas and live counts. Selection rule: an entry earns its place
+  only when the real thing changes how the passage reads.
 
 **`index.html`** — the original two-passage prototype (Fig Tree & Temple, the
 Two Feedings). Kept because it's a tighter read of the core idea.
+
+## The material world
+
+Darnel (*Lolium temulentum*) is visually indistinguishable from wheat until it
+heads, which is why the parable says to leave it — you cannot identify it early,
+let alone pull it. Mustard is a weed that reaches 3 m from a 1 mm seed. The
+Syrophoenician woman is offered the **diminutive** *kynarion*, a house dog, not
+the insult *kyōn*. Greek has three words for "net" — a one-man cast net, a
+sweeping dragnet, and a generic one — and the kingdom parable uses the dragnet
+precisely because it takes everything. English prints one word for all three.
 
 ## Two things the data proved
 
@@ -82,6 +95,7 @@ python3 places.py         # -> places.json    (gazetteer + journeys)
 | Greek lemmas/morphology | MorphGNT | **CC BY-SA 3.0** |
 | Coastline, lakes, rivers | Natural Earth 10m | Public domain |
 | Pericope divisions | Robertson (1922), Stevens & Burton (1904), Eusebian canons | Public domain |
+| Harmony, gazetteer, material-world notes | Written for this project | — |
 
 ⚠️ **MorphGNT is share-alike.** The lemma data embedded in `app.html` carries
 CC BY-SA 3.0, which propagates to anything distributing it. If this ever ships
@@ -117,6 +131,8 @@ CVD-separation, normal-vision and contrast checks in both light and dark:
   disagree about, and the app says so.
 - **Place links find pericopes that *name* a place**, which is not always where
   the scene is set.
+- **Lemma counts are verses, not word instances.** A lemma appearing twice in one
+  verse counts once (τάλαντον: 14 words across 8 verses). The UI says "verses".
 
 ## Next
 

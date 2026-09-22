@@ -5,7 +5,7 @@ The source template carries /*__NAME__*/ placeholders; each is replaced with the
 minified contents of the matching dataset. Everything ships in one file because
 the artifact CSP blocks same-origin fetch for data.
 """
-import json, pathlib, sys
+import json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).parent
 DATA = {
@@ -15,6 +15,7 @@ DATA = {
     "__GEO__":   "geo.json",             # Natural Earth, clipped
     "__PLC__":   "places.json",          # gazetteer + journeys
     "__PLINK__": "place_links.json",     # pericope -> place index
+    "__MAT__":   "material.json",       # flora/fauna/money/objects
 }
 
 def main():
@@ -25,6 +26,9 @@ def main():
             sys.exit(f"missing placeholder {token} in app_src.html")
         blob = json.loads((ROOT / "data" / fname).read_text(encoding="utf-8"))
         html = html.replace(token, json.dumps(blob, ensure_ascii=False, separators=(",", ":")))
+    leftover = re.findall(r"/\*__[A-Z_]+__\*/", html)
+    if leftover:
+        sys.exit(f"unreplaced placeholders (add them to DATA): {sorted(set(leftover))}")
     out = ROOT / "app.html"
     out.write_text(html, encoding="utf-8")
     print(f"built {out.name} — {len(html)/1024/1024:.2f} MB")

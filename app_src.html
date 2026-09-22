@@ -174,6 +174,32 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(25px,3.6vw,34px);mar
   cursor:pointer;background:var(--raised);border:1px solid var(--rule-2);color:var(--ink-3);padding:6px;border-radius:3px}
 .vswitch button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
+
+/* ---- material world ---- */
+.wintro{max-width:66ch;color:var(--ink-2);font-size:15px;margin:0 0 18px}
+.wcats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.wcats button{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;background:var(--raised);border:1px solid var(--rule-2);color:var(--ink-3);
+  padding:6px 12px;border-radius:3px}
+.wcats button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.went{background:var(--raised);border:1px solid var(--rule);border-left:3px solid var(--wc);
+  border-radius:4px;padding:16px 19px;margin-bottom:13px}
+.whead{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;margin-bottom:3px}
+.whead h3{font-family:var(--serif);font-size:20px;font-weight:600;margin:0}
+.whead .tr{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);font-style:normal}
+.whead .gl{font-family:var(--sans);font-size:12px;color:var(--ink-3)}
+.wlem{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 13px}
+.wlem button{font-family:var(--serif);font-size:15.5px;cursor:pointer;background:var(--sunk);
+  border:1px solid var(--rule-2);color:var(--ink);padding:3px 11px;border-radius:13px;display:flex;
+  align-items:baseline;gap:7px}
+.wlem button:hover{border-color:var(--wc)}
+.wlem button[aria-pressed="true"]{background:var(--wc);color:var(--paper);border-color:var(--wc)}
+.wlem .c{font-family:var(--mono);font-size:10px;opacity:.7}
+.wbody p{font-family:var(--serif);font-size:16.5px;line-height:1.64;margin:0 0 11px;max-width:70ch}
+.wbody p:last-child{margin-bottom:0}
+.wlabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-bottom:3px}
+.wocc{margin-top:13px;border-top:1px dashed var(--rule-2);padding-top:11px}
 /* ---- map ---- */
 .maplayout{display:grid;gap:18px;grid-template-columns:minmax(0,1.05fr) minmax(255px,.95fr);align-items:start}
 @media (max-width:860px){.maplayout{grid-template-columns:1fr}}
@@ -234,6 +260,7 @@ footer b{color:var(--ink-2);font-weight:500}
       <div class="vswitch" id="vswitch">
         <button data-v="syn" aria-pressed="true">Synopsis</button>
         <button data-v="map" aria-pressed="false">Map</button>
+        <button data-v="world" aria-pressed="false">World</button>
       </div>
       <input id="q" type="search" placeholder="Search 209 pericopes…" autocomplete="off">
       <div class="filters" id="filters">
@@ -249,6 +276,14 @@ footer b{color:var(--ink-2);font-weight:500}
   </aside>
 
   <main><div class="pad">
+    <div id="worldview" hidden>
+      <div class="crumb">Layers 1 &amp; 3 · the physical world</div>
+      <h1>The material world</h1>
+      <div class="badges"><span class="badge tag-tri">28 entries</span><span class="badge tag-dbl" id="matstat"></span></div>
+      <p class="wintro">Plants, animals, coins and objects, chosen by one rule: the entry earns its place only when the real thing changes how the passage reads. Counts are live from the Greek — click any lemma to see every verse it appears in.</p>
+      <div class="wcats" id="wcats"></div>
+      <div id="wlist"></div>
+    </div>
     <div id="mapview" hidden>
       <div class="crumb">Layer 2 · where it happened</div>
       <h1>The gospel country</h1>
@@ -291,7 +326,7 @@ footer b{color:var(--ink-2);font-weight:500}
 
     <div class="sec">
       <div class="sec-head"><h2>Word study</h2>
-        <span class="note">lemma search across all 64,499 Greek words</span></div>
+        <span class="note">lemma search · 64,499 Greek words, 2,932 lemmas</span></div>
       <div class="ws">
         <div class="chips" id="chips"></div>
         <div class="wsres" id="wsres"></div>
@@ -316,7 +351,7 @@ footer b{color:var(--ink-2);font-weight:500}
 
 <script>
 const WEB=/*__WEB__*/, GK=/*__GK__*/, HARM=/*__HARM__*/;
-const GEO=/*__GEO__*/, PLC=/*__PLC__*/, PLINK=/*__PLINK__*/;
+const GEO=/*__GEO__*/, PLC=/*__PLC__*/, PLINK=/*__PLINK__*/, MAT=/*__MAT__*/;
 const GOSPELS=["matthew","mark","luke","john"];
 const NAME={matthew:"Matthew",mark:"Mark",luke:"Luke",john:"John"};
 const VAR={matthew:"--mt",mark:"--mk",luke:"--lk",john:"--jn"};
@@ -630,7 +665,7 @@ function renderChips(){
 }
 function renderWS(){
   if(LEM==null){$("wsres").innerHTML=
-    `<div class="wscount">Pick a lemma to count every occurrence across the four gospels and highlight it in the text above.</div>`;return;}
+    `<div class="wscount">Pick a lemma to find every verse it appears in across the four gospels, and highlight it in the text above.</div>`;return;}
   const occ=occurrences(LEM),lemma=GK.lemmas[LEM];
   const per={};GOSPELS.forEach(g=>per[g]=occ.filter(o=>o.g===g).length);
   const max=Math.max(1,...Object.values(per));
@@ -640,8 +675,8 @@ function renderWS(){
   const rows=occ.map(o=>`<button class="occrow" data-g="${o.g}" data-c="${o.c}" data-v="${o.v}"
       style="--gc:var(${VAR[o.g]})"><span class="ref">${AB[o.g]} ${o.c}:${o.v}</span>
       <span class="frag">${o.frag}</span></button>`).join("");
-  $("wsres").innerHTML=`<div class="wscount"><b>${occ.length}</b> occurrence${occ.length===1?"":"s"}
-    of <span class="gk" style="font-family:var(--serif);font-size:15px">${lemma}</span>
+  $("wsres").innerHTML=`<div class="wscount"><b>${occ.length}</b> verse${occ.length===1?"":"s"} containing
+    <span class="gk" style="font-family:var(--serif);font-size:15px">${lemma}</span>
     across 64,499 words</div><div class="dist">${dist}</div><div class="occ">${rows}</div>`;
   $("wsres").onclick=e=>{const b=e.target.closest(".occrow");if(!b)return;
     const g=b.dataset.g,c=+b.dataset.c,v=+b.dataset.v;
@@ -840,13 +875,64 @@ function renderElev(){
       <text class="eaxis" x="${W-R}" y="${H-6}" text-anchor="end">${maxKm.toFixed(0)} km</text>
     </svg></div>`;
 }
+
+/* =================== MATERIAL WORLD =================== */
+const WCAT=["Flora","Fauna","Money","Objects"];
+const WCOL={Flora:"--lk",Fauna:"--mk",Money:"--mt",Objects:"--jn"};
+let WSEL="Flora", WLEM=null;
+const lemCount=l=>{const i=LEMI[l]; return i==null?0:occurrences(i).length;};
+function renderWorld(){
+  $("wcats").innerHTML=WCAT.map(c=>{
+    const n=MAT.filter(e=>e.cat===c).length;
+    return `<button data-c="${c}" aria-pressed="${c===WSEL}">${c} · ${n}</button>`;}).join("");
+  $("wcats").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+    WSEL=b.dataset.c;WLEM=null;renderWorld();};
+  const col=`var(${WCOL[WSEL]})`;
+  $("wlist").innerHTML=MAT.filter(e=>e.cat===WSEL).map((e,i)=>{
+    const lems=e.lemmas.map(l=>`<button data-l="${l}" aria-pressed="${WLEM===l}">${l}
+        <span class="c">${lemCount(l)}</span></button>`).join("");
+    const occ=(WLEM&&e.lemmas.includes(WLEM))?`<div class="wocc">${occBlock(WLEM)}</div>`:"";
+    return `<div class="went" style="--wc:${col}">
+      <div class="whead"><h3>${esc(e.name)}</h3><span class="tr">${esc(e.tr)}</span>
+        <span class="gl">${esc(e.gloss)}</span></div>
+      <div class="wlem">${lems}</div>
+      <div class="wbody">
+        <p><span class="wlabel">What it actually is</span>${e.what}</p>
+        <p><span class="wlabel">Why it matters</span>${e.why}</p>
+      </div>${occ}</div>`;}).join("");
+  $("wlist").onclick=ev=>{
+    const b=ev.target.closest("button[data-l]");
+    if(b){WLEM=(WLEM===b.dataset.l?null:b.dataset.l);renderWorld();return;}
+    const r=ev.target.closest("button[data-id]");
+    if(r){CUR=HARM.find(x=>x.id===r.dataset.id);LI=0;setView("syn");render();window.scrollTo({top:0});}
+  };
+  $("matstat").textContent=MAT.reduce((n,e)=>n+e.lemmas.length,0)+" lemmas tracked";
+}
+function occBlock(l){
+  const id=LEMI[l]; if(id==null) return "";
+  const occ=occurrences(id);
+  const per={};GOSPELS.forEach(g=>per[g]=occ.filter(o=>o.g===g).length);
+  const bars=GOSPELS.map(g=>`<span style="font-family:var(--mono);font-size:10px;color:var(${VAR[g]})">
+      ${AB[g]}&nbsp;${per[g]}</span>`).join("&nbsp;·&nbsp;");
+  const rows=occ.map(o=>{
+    const p=HARM.find(p=>p.refs[o.g]&&p.refs[o.g].ranges.some(([[c1,v1],[c2,v2]])=>{
+      const k=o.c*1000+o.v;return k>=c1*1000+v1&&k<=c2*1000+v2;}));
+    return `<button class="occrow" data-id="${p?p.id:""}" style="--gc:var(${VAR[o.g]})">
+      <span class="ref">${AB[o.g]} ${o.c}:${o.v}</span>
+      <span class="frag">${p?esc(p.title):""}</span></button>`;}).join("");
+  return `<div class="wscount"><b>${occ.length}</b> verse${occ.length===1?"":"s"} &nbsp;${bars}</div>
+    <div class="occ">${rows}</div>`;
+}
+
 /* ---- view switching ---- */
 let VIEW="syn";
 function setView(v){
   VIEW=v;
   $("synview").hidden=(v!=="syn"); $("mapview").hidden=(v!=="map");
+  $("worldview").hidden=(v!=="world");
   [...$("vswitch").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v));
   if(v==="map"){renderJToggles();renderMap();renderNote();renderPlaceCard();renderElev();}
+  if(v==="world"){renderWorld();}
 }
 $("vswitch").onclick=e=>{const b=e.target.closest("button");if(!b)return;setView(b.dataset.v);};
 
