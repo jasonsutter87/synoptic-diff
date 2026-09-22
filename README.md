@@ -1,5 +1,7 @@
 # Bible Companion — Synoptic Diff
 
+**[Open the app →](https://jasonsutter87.github.io/synoptic-diff/)**
+
 A multi-level Bible study tool. The premise: every Bible app ships the same flat
 reader, so this one reads a passage at **four depths** and treats the gospels as
 something you can **diff**.
@@ -22,7 +24,7 @@ answers it honestly.
 
 ## What's built
 
-**`app.html`** — all four gospels.
+**`index.html`** — all four gospels. This is the built app.
 
 - **209 pericopes** covering every verse of Matthew, Mark, Luke and John.
   Machine-verified at **100% verse coverage, zero overlaps**.
@@ -40,8 +42,8 @@ answers it honestly.
   47 tracked lemmas and live counts. Selection rule: an entry earns its place
   only when the real thing changes how the passage reads.
 
-**`index.html`** — the original two-passage prototype (Fig Tree & Temple, the
-Two Feedings). Kept because it's a tighter read of the core idea.
+**`prototype.html`** — the original two-passage prototype (Fig Tree & Temple,
+the Two Feedings). Kept because it's a tighter read of the core idea.
 
 ## The material world
 
@@ -71,12 +73,12 @@ wasn't a planned feature.
 ## Build
 
 ```sh
-python3 build.py          # app_src.html + data/*.json -> app.html
+python3 build.py          # app_src.html + data/*.json -> index.html
 ```
 
 Everything is inlined into a single file — the artifact CSP blocks same-origin
 `fetch`, so external data loading isn't available. No dependencies, no bundler,
-no server. Open `app.html` in a browser.
+no server. Open `index.html` in a browser.
 
 Regenerate the derived datasets:
 
@@ -97,7 +99,10 @@ python3 places.py         # -> places.json    (gazetteer + journeys)
 | Pericope divisions | Robertson (1922), Stevens & Burton (1904), Eusebian canons | Public domain |
 | Harmony, gazetteer, material-world notes | Written for this project | — |
 
-⚠️ **MorphGNT is share-alike.** The lemma data embedded in `app.html` carries
+Full terms, including the required attribution string, are in
+**[NOTICE.md](NOTICE.md)**. Project source is MIT — see [LICENSE](LICENSE).
+
+⚠️ **MorphGNT is share-alike.** The lemma data embedded in `index.html` carries
 CC BY-SA 3.0, which propagates to anything distributing it. If this ever ships
 commercially, either honour the SA terms or swap the morphology layer for a
 permissive source.

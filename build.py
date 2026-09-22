@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build app.html from app_src.html + data/*.json.
+"""Build index.html from app_src.html + data/*.json.
 
 The source template carries /*__NAME__*/ placeholders; each is replaced with the
 minified contents of the matching dataset. Everything ships in one file because
@@ -29,7 +29,7 @@ def main():
     leftover = re.findall(r"/\*__[A-Z_]+__\*/", html)
     if leftover:
         sys.exit(f"unreplaced placeholders (add them to DATA): {sorted(set(leftover))}")
-    out = ROOT / "app.html"
+    out = ROOT / "index.html"
     out.write_text(html, encoding="utf-8")
     print(f"built {out.name} — {len(html)/1024/1024:.2f} MB")
 
